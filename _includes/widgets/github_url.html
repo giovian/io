@@ -1,0 +1,6 @@
+{%- assign url = gh.repository_url -%}
+{%- if include.path -%}
+{%- assign branch = repo | map: "default_branch" | first -%}
+{%- assign url = gh.repository_url | append: '/blob/' | append: branch | append: '/' | append: page.path -%}
+{%- endif -%}
+{{ url }}

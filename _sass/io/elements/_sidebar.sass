@@ -1,0 +1,25 @@
+main .wrapper
+
+  & > section:first-of-type
+    flex: 1
+
+  & > aside:first-of-type
+    // STICKY
+    position: sticky
+    top: 6.3em
+
+    // WIDTH
+    flex: .4
+
+    // Hide if empty
+    &:empty
+      flex: 0
+
+    // Table of contents
+    ul
+      list-style-type: none
+      padding-left: 1em
+
+    // Notifications
+    #notification > div
+      font-size: 92%

@@ -1,0 +1,54 @@
+nav
+
+  // Dominate
+  z-index: 1000
+  position: sticky
+  top: 0
+
+  // COLORS
+  background: var(--bg)
+  @extend .border-b
+
+  .wrapper
+
+    // FLEX
+    display: flex
+    justify-content: space-between
+
+    & > span
+      @extend .p-around
+
+    ul
+
+      // FLEX
+      display: flex
+
+      // RESET LIST
+      margin: 0
+      padding-left: 0
+      list-style: none
+
+      // LIST ELEMENTS
+      li
+
+        // SPANS AND LINKS
+        span
+          cursor: default
+        a, span
+          display: block
+          padding: .7em
+
+        // HIDE DROPDOWN
+        &:hover ul
+          display: block
+
+        // DROPDOWN
+        ul
+          position: absolute
+          display: none
+          // COLORS
+          background: var(--bg-secondary)
+
+          li
+            a, span
+              padding: .5em .7em

@@ -1,0 +1,45 @@
+.bg-secondary
+  background: var(--bg-secondary)
+
+.fg-secondary
+  color: var(--fg-secondary)
+
+.hidden, [hidden], template
+  display: none
+
+.wrapper
+  max-width: $max-width
+  margin: 0 auto
+
+.p-around
+  padding: .7em 1em
+
+// Margin vertical half
+.m-vh
+  margin: .5em 0
+// Margin horizontal half
+.m-hh
+  margin: 0 .5em
+
+.rounded
+  border-radius: $border-radius
+
+// Border
+.border
+  border: 1px solid var(--border)
+// Border bottom
+.border-b
+  border-bottom: 1px solid var(--border)
+// Border top
+.border-t
+  border-top: 1px solid var(--border)
+
+.grid
+  display: grid
+  grid-template-columns: 1fr 1fr
+  gap: 1em
+
+[class*='color-']
+  // Colors
+  background: var(--bg)
+  color: var(--fg)

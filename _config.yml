@@ -1,0 +1,18 @@
+timezone: Europe/Rome
+baseurl: /io
+permalink: pretty
+repository: giovian/io
+
+# COLLECTIONS
+collections:
+  docs:
+    output: true
+    title: Docs
+
+# DEFAULTS
+defaults:
+  - scope:
+      path: ''
+    values:
+      layout: default
+      login: true

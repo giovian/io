@@ -1,0 +1,16 @@
+h1, h2, h3, h4, h5, h6
+  font-family: sans-serif
+  font-weight: normal
+
+// Spacing
+@for $index from 1 through length($headings-margins)
+  $margin: nth($headings-margins, $index)
+  h#{$index}
+    margin-top: #{$margin*4}em
+    margin-bottom: #{$margin}em
+    padding: .1rem .5rem
+
+// h1 normalize
+article, aside, nav, section
+  h1
+    font-size: 2rem

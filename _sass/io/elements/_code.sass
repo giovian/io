@@ -1,0 +1,27 @@
+code, kbd, pre, samp
+  font-family: monospace
+  font-size: 92%
+
+.highlighter-rouge, .highlight
+  @extend .rounded
+  // Spacing
+  margin: 0
+
+pre.highlight, .highlight pre
+  // Spacing
+  @extend .p-around
+  margin: 0
+
+//
+// INLINE
+// --------------------------------------
+*:not(pre) > code
+
+  border-radius: 2px !important
+
+  // Spacing
+  padding: 0.1rem 0.2rem
+
+  // Colors
+  background: inherit
+  color: inherit

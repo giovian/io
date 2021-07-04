@@ -1,0 +1,25 @@
+$headings-margins: 0.67 0.83 1 1.33 1.67 2.33 !default
+$colors: (blue: DodgerBlue, red: Red, green: LimeGreen, orange: Orange, pink: Fuchsia) !default
+$border-radius: 6px !default
+// LAYOUT
+$max-width:    55rem !default
+// Mobile
+$mobile-width: 700px !default
+
+\:root
+  --link:         DodgerBlue
+  --bg:           hsl(0, 0%, 4%)
+  --fg:           hsl(0, 0%, 83%)
+  --bg-secondary: hsl(0, 0%, 9%)
+  --fg-secondary: hsl(0, 0%, 57%)
+  --border:       hsl(0, 0%, 21%)
+
+@each $color-name, $color-value in $colors
+  $hue: hue($color-value)
+  .color-#{$color-name}
+    --link:         #{$color-value}
+    --bg:           #{hsl($hue, 28%, 7%)}
+    --fg:           #{hsl($hue, 17%, 83%)}
+    --bg-secondary: #{hsl($hue, 21%, 11%)}
+    --fg-secondary: #{hsl($hue, 9%, 58%)}
+    --border:       #{hsl($hue, 12%, 21%)}

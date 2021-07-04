@@ -1,0 +1,18 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<link rel="icon" href="{{ "/assets/images/favicon.ico" | absolute_url }}">
+
+<meta name="site_build" content="{{ build_time }}">
+<meta name="repository_created_at" content="{{ repo.created_at }}">
+<meta name="repository_updated_at" content="{{ repo.updated_at }}">
+<meta name="repository_sha" content="{{ gh.build_revision }}">
+
+<!-- SEO -->
+{% seo %}
+
+<!-- CSS -->
+<link rel="stylesheet" href="{{ "/assets/css/stylesheet.css?v=" | append: build_time_unix | absolute_url }}">
+
+<!-- SCRIPTS -->
+<script src="{{ "/assets/js/jquery.3.3.1.min.js" | absolute_url }}"></script>
+<script src="{{ "/assets/js/script.js?v=" | append: build_time_unix | absolute_url }}" defer></script>

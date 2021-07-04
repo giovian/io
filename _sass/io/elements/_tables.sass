@@ -1,0 +1,15 @@
+table
+  
+  // Spacing
+  border-spacing: 0
+  @extend .m-vh, .rounded, .border
+
+th, td
+  padding: .5em
+
+tr:not(:last-of-type) td
+  @extend .border-b
+
+th
+  background: var(--bg-secondary)
+  @extend .border-b

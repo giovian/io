@@ -1,0 +1,33 @@
+{% include page/init.html %}
+<!DOCTYPE html>
+<html
+  id="page-top"
+  class="{{ page.classes | join: " " }}">
+
+<head>
+  {% include page/head.html %}
+</head>
+
+<body
+  site-pages="{{ site.html_pages.size | plus: site.documents.size }}"
+  page-title="{{ page.title | slugify }}"
+  page-collection="{{ page.collection }}">
+
+<nav>
+{% include page/nav.html %}
+</nav>
+
+<!-- <header>
+{% include page/header.html %}
+</header> -->
+
+<main>
+{% include page/main.html %}
+</main>
+
+<footer>
+{% include page/footer.html %}
+</footer>
+
+</body>
+</html>

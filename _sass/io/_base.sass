@@ -1,0 +1,13 @@
+*
+  box-sizing: border-box
+
+// Remove top and bottom margins of the first and last elements
+hgroup, form, blockquote, section, aside
+  & > *:first-child
+    margin-top: 0
+  & > *:last-child
+    margin-bottom: 0
+
+// Cursor on title attribute
+span[title]
+  cursor: default
