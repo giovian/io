@@ -1,4 +1,4 @@
-# apply-if-parent apply-if-children
+# apply-if-parent apply-if-children attributes in the form "class|target_selector"
 apply_family = () ->
   $('[apply-if-parent]').each ->
     [apply, match] = $(@).attr('apply-if-parent').split '|'

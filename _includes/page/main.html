@@ -1,6 +1,6 @@
 <div class="wrapper">
   <aside>
-    {% include page/sidebar.html %}
+    {%- for widget in page.sidebar -%}{% include widgets/{{ widget }}.html %}{%- endfor -%}
   </aside>
   <section>
     {{ content }}

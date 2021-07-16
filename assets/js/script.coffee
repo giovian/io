@@ -13,6 +13,7 @@ $.ajaxPrefilter (options) ->
   if options.url.startsWith '{{ site.github.api_url }}'
     # Check personal token
     if login.storage()["token"]
+      # Set GitHub headers
       options.headers = {
         "Authorization": "token #{login.storage()['token']}"
         "Accept": "application/vnd.github.v3+json"
@@ -21,8 +22,9 @@ $.ajaxPrefilter (options) ->
       options.headers = { "Accept": "application/vnd.github.v3+json" }
   return
 
+# Include scripts
 {% include scripts/toc.coffee %}
-{% include scripts/apply_family.coffee %}
+{% include scripts/apply_family.coffee %} # Apply classes to parents/childrens
 {% include scripts/datetime.coffee %}     # Use apply_family
 {% include scripts/notification.coffee %} # Use datetime
 {% include scripts/storage.coffee %}

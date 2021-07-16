@@ -1,6 +1,20 @@
+{%- include page/init.html -%}
 {%- assign url = gh.repository_url -%}
 {%- if include.path -%}
-{%- assign branch = repo | map: "default_branch" | first -%}
-{%- assign url = gh.repository_url | append: '/blob/' | append: branch | append: '/' | append: page.path -%}
+{%- assign branch = repo | map: 'default_branch' | first -%}
+{%- assign url = gh.repository_url | append: '/blob/' | append: branch | append: '/' | append: include.path -%}
 {%- endif -%}
 {{ url }}
+{%- capture api -%}
+## GitHub URL
+
+Render the GitHub URL of a file given a path.
+
+```liquid
+{% raw %}{% include widgets/github_url.html path='folder/file.ext' %}{% endraw %}
+```
+
+**Includes**
+
+- `path`: path of the file on the repository, default to the repository URL
+{%- endcapture -%}

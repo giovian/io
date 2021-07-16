@@ -1,5 +1,13 @@
 ---
 ---
-// Override default SASS variabiles here
-@import io
-// Override CSS rules here
+// Import SASS variabiles
+@import variabiles
+
+// Import theme
+@import {{ site.css.theme | default: 'io' }}
+
+// Import syntax
+@import {{ site.css.syntax | default: 'rouge/molokai' | prepend: 'syntax/' }}
+
+// Import custom CSS rules
+@import custom

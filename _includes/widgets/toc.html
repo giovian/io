@@ -1,0 +1,11 @@
+<details id="widget-toc" open>
+  <summary><h3>Table of contents</h3></summary>
+</details>
+{%- capture api -%}
+## Table of contents
+If the markdown generated toc `#markdown-toc` and the `toc` widget are present in the page, the table of content will be moved inside the `<details>`{:.language-html} widget.
+
+```liquid
+{% raw %}{% include widgets/toc.html %}{% endraw %}
+```
+{%- endcapture -%}
