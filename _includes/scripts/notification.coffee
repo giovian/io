@@ -1,7 +1,7 @@
 notification = (text, cls) ->
+  color = if cls then "color-#{cls}" else 'bg-secondary'
   if $('#notification').length
     $('#notification').attr 'open', ''
-    color = if cls then "color-#{cls}" else 'bg-secondary'
     # Create notification SPAN
     span = $('<span/>', {datetime: new Date(), text: text})
     # Activate countdown/countup
