@@ -22,12 +22,17 @@ $.ajaxPrefilter (options) ->
       options.headers = { "Accept": "application/vnd.github.v3+json" }
   return
 
+# Debug in_view
+# in_view = {}
+
 # Include scripts
-{% include scripts/toc.coffee %}
+{% include scripts/toc.coffee %}          # Move toc to sidebar
 {% include scripts/apply_family.coffee %} # Apply classes to parents/childrens
 {% include scripts/datetime.coffee %}     # Use apply_family
 {% include scripts/notification.coffee %} # Use datetime
 {% include scripts/storage.coffee %}
 {% include scripts/login.coffee %}        # Use notification, apply_family, storage
 {% include scripts/details.coffee %}      # Use storage
+{% include scripts/focus.coffee %}
 {% include scripts/custom.coffee %}       # Custom file (empty by default)
+{% include scripts/intersection.coffee %} # In view Observer

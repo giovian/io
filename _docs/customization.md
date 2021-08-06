@@ -41,7 +41,6 @@ css:
 
 The main page content has an optional sidebar which use `flex`.
 
-
 ```html
 <div class="wrapper">
   <aside><!-- Sidebar --></aside>
@@ -49,11 +48,11 @@ The main page content has an optional sidebar which use `flex`.
 </dov>
 ```
 
-Default position is right (`flex-direction: row-reverse;`{:.language-css}), for a right sidebar add `$sidebar_flex_direction: row`{:.language-css} in the {% include widgets/github_link.html path='_sass/variabiles.sass' %} file.
+Default position is right (`flex-direction: row-reverse;`{:.language-css}), for a left sidebar add `$sidebar_flex_direction: row`{:.language-css} in the {% include widgets/github_link.html path='_sass/variabiles.sass' %} file.
 
 The sidebar will be populated with widgets included in the folder `_includes/widgets/`.
 
-Select the widgets with a YAML array `sidebar: [...]`{:.language-yml} for the relative pages:
+Select the widgets with a YAML array `sidebar: [...]`{:.language-yml}:
 
 <div class="grid">
 <div markdown="1">
@@ -108,7 +107,7 @@ If the sidebar is empty (no widgets) it will collapse `flex: 0`{:.language-sass}
 {% endfor %}
 </div>
 
-{% include api/show.html include='page/footer' %}
+{% include widgets/api.html include='page/footer' %}
 
 ## Tables
 

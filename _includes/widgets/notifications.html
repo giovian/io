@@ -1,4 +1,4 @@
-<details id="notification">
+<details id="widget-notifications">
   <summary><h3>Notifications</h3></summary>
 </details>
 {%- capture api -%}
@@ -6,19 +6,7 @@
 
 Render a collapsible DETAILS with the javascript notifications, if this widgets is not present notifications are shown in the console.
 
-A datetime countdown/countup is rendered on hover.
-
 ```liquid
 {% raw %}{% include widgets/notifications.html %}{% endraw %}
 ```
-<span></span>
-```coffee
-# Coffeescript notification
-notification 'text', 'color'
-```
-
-**Options**
-
-- `text`: text to show
-- `color`: added as class with prepended `color-`{:.language-sass}, default to `bg-secondary`{:.language-sass}
 {%- endcapture -%}

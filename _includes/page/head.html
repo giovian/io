@@ -8,7 +8,7 @@
 <meta name="repository_sha" content="{{ gh.build_revision }}">
 
 <!-- SEO -->
-{% seo %}
+{% include page/seo.html %}
 
 <!-- CSS -->
 <link rel="stylesheet" href="{{ "/assets/css/stylesheet.css?v=" | append: build_time_unix | absolute_url }}">

@@ -8,11 +8,13 @@ order: 3
 # Widgets
 {:.no_toc}
 
-{% include api/show.html include="widgets/github_url" %}
+{% include widgets/api.html %}
 
-{% include api/show.html include="widgets/github_link" %}
+{% include widgets/api.html include="widgets/github_url" %}
 
-{% include api/show.html include="widgets/datetime" %}
+{% include widgets/api.html include="widgets/github_link" %}
+
+{% include widgets/api.html include="widgets/datetime" %}
 
 __Examples__
 
@@ -61,6 +63,8 @@ __Examples__
 </div>
 </div>
 
-{% include api/show.html include='widgets/notifications' %}
+{% include widgets/api.html include='widgets/notifications' %}
 
-{% include api/show.html include='widgets/toc' %}
+{% include widgets/api.html include='widgets/toc' %}
+
+{% include widgets/api.html include='widgets/navigation' %}

@@ -1,0 +1,21 @@
+{%- if include.include -%}
+{%- assign include_file = include.include -%}
+{%- assign extension = include_file | split: '.' -%}
+{%- if extension.size == 1 -%}{%- assign include_file = include_file | append: '.html' -%}{%- endif -%}
+{%- capture include_content -%}{% include {{include_file}} %}{%- endcapture -%}
+{%- else -%}
+{%- capture api -%}
+## API
+Capture, markdownify and render the liquid `api` variabile of an include file.
+
+```liquid
+{% raw %}{% include widgets/api.html include="folder/file" %}{% endraw %}
+```
+
+**Includes**
+
+- `include`: target include file in the form `folder/file`  
+  Extension `.html` can be omitted
+{%- endcapture -%}
+{%- endif -%}
+{{ api | mardowify }}

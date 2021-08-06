@@ -22,7 +22,7 @@ Exclude headers from the TOC with the class `no_toc`.
 {: .no_toc}
 ```
 
-Check [toc widget]({{ 'docs/widgets#table-of-contents' | absolute_url }}) to change the position of the toc.
+Check [toc widget]({{ 'docs/widgets#table-of-contents' | absolute_url }}) to put the TOC in the sidebar.
 
 ## Code
 
