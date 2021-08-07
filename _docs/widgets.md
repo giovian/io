@@ -68,3 +68,5 @@ __Examples__
 {% include widgets/api.html include='widgets/toc' %}
 
 {% include widgets/api.html include='widgets/navigation' %}
+
+{% include widgets/api.html include='version' %}
