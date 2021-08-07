@@ -10,9 +10,9 @@ observe = (inview = inview_default) ->
   if 'IntersectionObserver' of window
     intersectionObserver = new IntersectionObserver (entries) ->
       entries.forEach (entry) ->
-        id = entry.target[inview.in.attribute]
+        attribute = $(entry.target).attr inview.in.attribute
         in_view = entry.isIntersecting
-        ele = $("#{inview.out.element}[#{inview.out.attribute}*=#{id}]")
+        ele = $("#{inview.out.element}[#{inview.out.attribute}*=#{attribute}]")
         if in_view then ele.addClass 'inview' else ele.removeClass 'inview'
         return # end entries loop
       return # end intersectionObserver
