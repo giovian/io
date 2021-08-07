@@ -8,10 +8,9 @@ order: 4
 * toc
 {:toc}
 
-{% include widgets/api.html include='scripts/notification.coffee' %}
-
-{% include widgets/api.html include='scripts/storage.coffee' %}
-
-{% include widgets/api.html include='scripts/focus.coffee' %}
-
 {% include widgets/api.html include='scripts/toc.coffee' %}
+{% include widgets/api.html include='scripts/notification.coffee' %}
+{% include widgets/api.html include='scripts/storage.coffee' %}
+{% include widgets/api.html include='scripts/focus.coffee' %}
+{% include widgets/api.html include='scripts/inview.coffee' %}
+

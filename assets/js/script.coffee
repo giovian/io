@@ -34,5 +34,5 @@ $.ajaxPrefilter (options) ->
 {% include scripts/login.coffee %}        # Use notification, apply_family, storage
 {% include scripts/details.coffee %}      # Use storage
 {% include scripts/focus.coffee %}
+{% include scripts/inview.coffee %} # In view Observer
 {% include scripts/custom.coffee %}       # Custom file (empty by default)
-{% include scripts/intersection.coffee %} # In view Observer
