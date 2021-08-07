@@ -12,8 +12,8 @@ notification = (text, cls) ->
       }).append span
   else
     # Output to console
-    console.log text, color
-  return
+    console.log "#{text}, #{color}, #{new Date()}"
+  return # end notification
 {%- capture api -%}
 ## Notification
 

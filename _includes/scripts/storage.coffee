@@ -20,51 +20,59 @@ storage =
     else
       localStorage.removeItem(storage.key)
     return storage
-
-console.group storage.key
-console.log localStorage.getItem storage.key
-console.log storage.get()
-console.groupEnd()
-
+  console: ->
+    console.group storage.key
+    console.log localStorage.getItem storage.key
+    console.log storage.get()
+    console.groupEnd()
+    return
 {%- capture api -%}
 ## Storage
 
-Storage system in LocalStorage.
+Hashed localStorage system with key `owner/repository`.
+
+**GET**
 
 ```cs
-// STORAGE
-// localStorage key is "owner/repository"
-
-// GET --------------------------->
 // Return whole object { ... }
 storage.get()
 // Return value (can be number, string, array, object)
-storage.get('key')
+storage.get("key")
 // Return object's property
-storage.get('object')['property']
+storage.get("object")["property"]
 // Return index element of array
-storage.get('array')[index]
-
-// SET --------------------------->
+storage.get("array")[index]
+```
+**SET**
+```cs
 // Store { key: value } (can be number, string, array, object)
-storage.set('key', value)
-
-// PUSH -------------------------->
+storage.set("key", value)
+```
+**PUSH**
+```cs
 // Push element to array
-storage.push('array', element)
-
-// CONCAT ------------------------>
+storage.push("array", element)
+```
+**CONCAT**
+```cs
 // Store array's merge
-storage.concat('array', [array])
-
-// ASSIGN ------------------------>
+storage.concat("array", [array])
+```
+**ASSIGN**
+```cs
 // Store merged objects
-storage.assign('object', object)
-
-// CLEAR ------------------------->
+storage.assign("object", object)
+```
+**CLEAR**
+```cs
 // Return storage, remove localStorage key
 storage.clear()
 // Return storage, remove { key: value, ... }
-storage.clear('key')
+storage.clear("key")
+```
+**CONSOLE**
+```cs
+// Show storage objects in web console
+storage.console()
 ```
 {%- endcapture -%}
