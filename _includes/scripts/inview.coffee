@@ -49,9 +49,9 @@ If a table of contents is present, when an `h2` title is inside the viewport, th
 **Default `options` object**
 ```js
 options = {
-  root: document.body
+  root: document
   rootMargin: "0px"
-  threshold: 1.0
+  threshold: 0
 }
 ```
 {%- endcapture -%}
