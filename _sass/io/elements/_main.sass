@@ -1,11 +1,20 @@
 main
+
   .wrapper
     padding: 3em 1em
 
     // Sidebar
     display: flex
+
     // Right sidebar
-    flex-direction: $sidebar_flex_direction
+    @if $sidebar-side == right
+      flex-direction: row-reverse
+    @if $sidebar-side == left
+      flex-direction: row
+
     // Necessary to stick
     align-items: flex-start
     gap: 2em
+
+    &.no-sidebar
+      gap: 0

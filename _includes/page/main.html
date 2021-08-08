@@ -1,4 +1,4 @@
-<div class="wrapper">
+<div class="wrapper{% if page.sidebar.size == 0 %} no-sidebar{%- endif -%}">
   <aside>
     {%- for widget in page.sidebar -%}{% include widgets/{{ widget }}.html %}{%- endfor -%}
   </aside>

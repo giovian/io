@@ -7,6 +7,7 @@ html
   color: var(--fg)
 
   // Sticky scroll
-  \:target
-    scroll-margin-top: 4.3em
-    scroll-snap-margin-top: 4.3em
+  @if $nav-sticky
+    \:target
+      scroll-margin-top: 4.3em
+      scroll-snap-margin-top: 4.3em

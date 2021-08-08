@@ -7,8 +7,12 @@ main .wrapper
 
   & > aside:first-of-type
     // STICKY
-    position: sticky
-    top: 6.3em
+    @if $sidebar-sticky
+      position: sticky
+      top: 6.3em
+    @else
+      position: static
+      margin-top: 7px
 
     // WIDTH
     flex: .4

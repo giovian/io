@@ -1,9 +1,10 @@
 nav
 
-  // Dominate
-  z-index: 1000
-  position: sticky
-  top: 0
+  // Sticky
+  @if $nav-sticky
+    z-index: 1000
+    position: sticky
+    top: 0
 
   // COLORS
   background: var(--bg)
