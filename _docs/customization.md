@@ -89,7 +89,9 @@ sidebar: [...]
 ---
 ```
 
-If the sidebar is empty (no widgets) it will collapse `flex: 0`{:.language-sass}
+If the sidebar is empty (no widgets) it will collapse `flex: 0`{:.language-sass}.  
+
+To add custom content, create a `_includes/widgets/sidebar.html` file and include in the array: `sidebar: [sidebar]`{:.language-yml}
 
 ## Colors
 
