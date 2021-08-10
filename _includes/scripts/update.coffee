@@ -10,7 +10,9 @@ check_update = ->
     latest.done (data) ->
       # Compare online and built repository commit SHA
       if data[0].sha is $('meta[name=repository_sha]').attr('content')
-        console.log 'Build is updated', new Date()
+        notification 'Build is updated', 'green'
+        # Check again i 10 minutes
+        setTimeout check_update, 10 * 60 * 1000
       else
         # Refresh no cache
         location.reload true
@@ -25,5 +27,7 @@ check_update = ->
 
 Every pageload wait 1 minute and compare website build_revision SHA with repository latest commit.  
 
-If they are different reload the page without cache.
+If they are different reload the page without cache.  
+
+Active only in production `environment = dotcom`.
 {%- endcapture -%}
