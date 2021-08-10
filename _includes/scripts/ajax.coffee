@@ -1,5 +1,6 @@
 # Ajax prefilter
 $.ajaxPrefilter (options) ->
+  options.cache = false
   # Check request url
   if options.url.startsWith '{{ site.github.api_url }}'
     # Check personal token
