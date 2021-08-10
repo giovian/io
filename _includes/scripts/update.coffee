@@ -15,11 +15,15 @@ check_update = ->
         # Refresh no cache
         location.reload true
 
-      # Check every 2 minutes, unauthenticated rate limit is 60 requests per hour.
-      setTimeout check_update, 2 * 60 * 1000
-
       return # end ajax done
 
     latest.fail (request, status, error) -> notification "Login #{status}, #{error}", 'red'
 
   return # end check_update
+{%- capture api -%}
+## Update
+
+Every pageload wait 1 minute and compare website build_revision SHA with repository latest commit.  
+
+If they are different reload the page without cache.
+{%- endcapture -%}
