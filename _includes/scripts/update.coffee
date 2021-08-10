@@ -17,7 +17,7 @@ check_update = ->
 
       return # end ajax done
 
-    latest.fail (request, status, error) -> notification "Login #{status}, #{error}", 'red'
+    latest.fail (request, status, error) -> notification "#{status}, #{error}", 'red'
 
   return # end check_update
 {%- capture api -%}
