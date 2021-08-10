@@ -1,38 +1,17 @@
 ---
 ---
-# Prevent default events
-$("a.prevent-default").on "click", (e) -> e.preventDefault()
-$("form.prevent-default").on "submit", (e) -> e.preventDefault()
 
-# Fix inline <code> element without class
-$(':not(pre) code').addClass 'highlight'
-
-# Ajax prefilter
-$.ajaxPrefilter (options) ->
-  # Check request url
-  if options.url.startsWith '{{ site.github.api_url }}'
-    # Check personal token
-    if login.storage()["token"]
-      # Set GitHub headers
-      options.headers = {
-        "Authorization": "token #{login.storage()['token']}"
-        "Accept": "application/vnd.github.v3+json"
-      }
-    else
-      options.headers = { "Accept": "application/vnd.github.v3+json" }
-  return
-
-# Debug in_view
-# in_view = {}
-
-# Include scripts
+{% include scripts/prevent.coffee %}      # Prevent default events for links and forms
+{% include scripts/ajax.coffee %}         # Prefilter for Ajax calls
 {% include scripts/toc.coffee %}          # Move toc to sidebar
 {% include scripts/apply_family.coffee %} # Apply classes to parents/childrens
 {% include scripts/datetime.coffee %}     # Use apply_family
 {% include scripts/notification.coffee %} # Use datetime
-{% include scripts/storage.coffee %}
+{% include scripts/storage.coffee %}      # Hashed storage system for localStorage
 {% include scripts/login.coffee %}        # Use notification, apply_family, storage
 {% include scripts/details.coffee %}      # Use storage
-{% include scripts/focus.coffee %}
-{% include scripts/inview.coffee %} # In view Observer
-{% include scripts/custom.coffee %}       # Custom file (empty by default)
+{% include scripts/focus.coffee %}        # Check website browser tab is focused
+{% include scripts/inview.coffee %}       # In view Observer
+{% include scripts/update.coffee %}       # Check website is updated with repository
+
+{% include scripts/custom.coffee %}       # Custom file, empty by default

@@ -2,11 +2,11 @@
 <meta name="viewport" content="width=device-width">
 <link rel="icon" href="{{ "/assets/images/favicon.ico" | absolute_url }}">
 
-<meta name="site_build" content="{{ build_time }}">
-<meta name="repository_created_at" content="{{ repo.created_at }}">
-<meta name="repository_updated_at" content="{{ repo.updated_at }}">
+<meta name="site_build" content="{{ build_time | date_to_rfc822 }}">
+<meta name="repository_created_at" content="{{ repo.created_at | date_to_rfc822 }}">
+<meta name="repository_updated_at" content="{{ repo.updated_at | date_to_rfc822 }}">
 <meta name="repository_sha" content="{{ gh.build_revision }}">
-<meta name="version" content="{% include version.html %}">
+<meta name="remote-theme-version" content="{% include version.html %}">
 {% if site.remote_theme %}<meta name="remote_theme" content="{{ site.remote_theme }}">
 {% endif %}
 <!-- SEO -->
