@@ -9,7 +9,7 @@ check_update = ->
 
     latest.done (data) ->
       # Compare online and built repository commit SHA
-      if data[0].commit.tree.sha is $('meta[name=repository_sha]').attr('content')
+      if data[0].sha is $('meta[name=repository_sha]').attr('content')
         console.log 'Build is updated', new Date()
       else
         # Refresh no cache
