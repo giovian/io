@@ -111,7 +111,7 @@ Are appied to elements with the class `.color-blue/red/green/orange/pink`.
 {% for color in colors %}
 <div class="p-around rounded color-{{ color }}">
   Example {{ color }} <span class="fg-secondary">secondary text</span>
-  <div class="p-around m-vh bg-secondary rounded">Secondary background</div>
+  <div class="p-around mvh bg-secondary rounded">Secondary background</div>
   and <a href="#">Link</a>
 </div>
 {% endfor %}

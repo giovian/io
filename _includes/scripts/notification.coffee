@@ -8,7 +8,7 @@ notification = (text, cls) ->
     dateTime span
     # Append DIV with classes and SPAN
     $('#widget-notifications').append $('<div/>', {
-        class: "#{color} p-around m-vh rounded"
+        class: "#{color} p-around mvh rounded"
       }).append span
   else
     # Output to console
