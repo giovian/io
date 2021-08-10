@@ -1,26 +1,21 @@
-update = (timer = 60 * 1000) ->
+update = ->
 
   if "{{ site.github.environment }}" is "dotcom"
 
-    # GET latest build
-    latest = $.get '{{ site.github.api_url }}/repos/{{ site.github.repository_nwo }}/pages/builds/latest'
-    notification 'Checking latest build'
+    # GET repository sha
+    latest = $.get '{{ site.github.api_url }}/repos/{{ site.github.repository_nwo }}/commits'
 
     latest.done (data) ->
       # Compare online and built repository commit SHA
-      if data.commit is $('meta[name=repository_sha]').attr('content')
-        notification 'Build is updated', 'green'
+      if data[0].commit.tree.sha is $('meta[name=repository_sha]').attr('content')
+        console.log 'Build is updated', new Date()
       else
-        # Check if new website is built
-        if data.status is 'built'
-          # Refresh no cache
-          location.reload true
-        else if data.status in ['building', 'queued']
-          # Website is building, check frequently
-          notification "#{data.status}: timer one second", 'orange'
-          timer = 1000
+        # Refresh no cache
+        location.reload true
 
-      setTimeout update, timer
+      # Check every 2 minutes, unauthenticated rate limit is 60 requests per hour.
+      setTimeout update, 2 * 60 * 1000
+
       return # end ajax done
 
     latest.fail (request, status, error) -> notification "Login #{status}, #{error}", 'red'

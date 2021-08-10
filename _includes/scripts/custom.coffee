@@ -1,1 +1,1 @@
-update 30 * 1000
+update()
