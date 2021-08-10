@@ -71,5 +71,33 @@ dateTime = (e) ->
 
   # Return a setTimeout function
   setTimeout dateTime, update, e
+  
+  return # end dateTime
 
 $("[datetime]").each -> dateTime @
+{%- capture api -%}
+## Datetime
+
+Update an element with `datetime` attribute showing a countdown or countup.  
+
+Countdown and countup can replace the element text, be appended or appear on hover (tooltip).  
+
+Element will have an updated class `future` or `past`.
+
+```js
+span = $("<span/>", {
+  datetime: new Date(),
+  text: text
+})
+dateTime(span)
+```
+
+**Options**
+
+- `datetime`: the datetime, default "now"
+- `time`: hour time in the for "hh:mm" or "hh:mm:ss"
+- `text`: text to show, default is datetime in the form yyyy-mm-ddThh:mm:ss+hh:mm
+- `title`: title attribute on hover, default to datetime in the form yyyy-mm-ddThh:mm:ss+hh:mm
+- `embed`: append countdown or countup to the text
+- `replace`: will replace the date with countdown/countup
+{%- endcapture -%}

@@ -16,6 +16,19 @@ Capture, markdownify and render the liquid `api` variabile of an include file.
 
 - `include`: target include file in the form `folder/file`.  
   Extension `.html` can be omitted.
+
+**Example of include file**
+```liquid
+...code...
+
+{% raw %}{%- capture api -%}
+## Title
+
+Description
+
+- options...
+{%- endcapture -%}{% endraw %}
+```
 {%- endcapture -%}
 {% endif %}
 {{ api | mardowify }}
