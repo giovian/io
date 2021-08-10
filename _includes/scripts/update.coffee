@@ -1,4 +1,6 @@
-update = ->
+update = -> setTimeout check_update, 60 * 1000
+
+check_update = ->
 
   if "{{ site.github.environment }}" is "dotcom"
 
@@ -14,10 +16,10 @@ update = ->
         location.reload true
 
       # Check every 2 minutes, unauthenticated rate limit is 60 requests per hour.
-      setTimeout update, 2 * 60 * 1000
+      setTimeout check_update, 2 * 60 * 1000
 
       return # end ajax done
 
     latest.fail (request, status, error) -> notification "Login #{status}, #{error}", 'red'
 
-  return # end update
+  return # end check_update
