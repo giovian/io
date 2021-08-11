@@ -67,7 +67,7 @@ css:
   syntax: rouge/github
 ```
 
-Possible themes are on {% include widgets/github_link.html path='_sass/syntax' %}. 
+Possible themes are in {% include widgets/github_link.html path='_sass/syntax' %}. 
 
 ## Sidebar
 

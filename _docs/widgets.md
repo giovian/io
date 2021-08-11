@@ -9,14 +9,8 @@ order: 3
 {:.no_toc}
 
 {% include widgets/api.html %}
-
-{% include widgets/api.html include="widgets/github_url" %}
-
-{% include widgets/api.html include="widgets/github_link" %}
-
 {% include widgets/api.html include="widgets/datetime" %}
-
-__Examples__
+**Examples**
 
 {% assign now = 'now' | date: "%s" %}
 {% assign minute = 60 %}
@@ -63,10 +57,10 @@ __Examples__
 </div>
 </div>
 
-{% include widgets/api.html include='widgets/notifications' %}
-
-{% include widgets/api.html include='widgets/toc' %}
-
+{% include widgets/api.html include='widgets/github_url' %}
+{% include widgets/api.html include='widgets/github_link' %}
+{% include widgets/api.html include='widgets/login' %}
 {% include widgets/api.html include='widgets/navigation' %}
-
+{% include widgets/api.html include='widgets/notifications' %}
+{% include widgets/api.html include='widgets/toc' %}
 {% include widgets/api.html include='version' %}

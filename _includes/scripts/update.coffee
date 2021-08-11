@@ -26,9 +26,9 @@ check_update = ->
 {%- capture api -%}
 ## Update
 
-Every pageload wait 1 minute and compare website build_revision SHA with repository latest commit.  
+Every pageload wait 1 minute and compare website build_revision SHA with repository latest commit: if they are different, reload the page without cache.  
 
-If they are different reload the page without cache.  
+Subsequent checks are every 10 minutes for unauthenticated users and evry minute for logged ones.  
 
-Active only in production `environment = dotcom`.
+Active only in production: `{%raw%}{{ site.github.environment }}{%endraw%}`{:.language-liquid} is `dotcom`.
 {%- endcapture -%}

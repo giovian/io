@@ -59,3 +59,10 @@ login.setLogout = ->
 
 # Immediately Invoked Function Expressions
 login.init = (-> if login.storage()["token"] then login.setLogout() else login.setLogin())()
+{%- capture api -%}
+## Login
+
+Manage GitHub login and logout using `localStorage` and the relative links in the login widget.  
+
+When logged, HTML will have a `.logged` class and the role classes `role-admin` or `role-guest` depending on write permissions of the logged user.
+{%- endcapture -%}

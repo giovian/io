@@ -16,7 +16,7 @@ $('details').each ->
   # Click event
   summary.on 'click', ->
     # false = closing, true = opening
-    open = !$(@).parent('details').attr? 'open'
+    open = !detail.attr? 'open'
     if storage.get('details')?[id] is undefined
       storage.assign 'details', {"#{id}": open}
     else
@@ -25,3 +25,8 @@ $('details').each ->
       storage.set 'details', obj
     return
   true
+{%- capture api -%}
+## Details
+
+Store the state of the DETAILS elements (open/close) in every page.
+{%- endcapture -%}
