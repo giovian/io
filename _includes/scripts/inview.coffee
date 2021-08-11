@@ -28,7 +28,7 @@ inview = (config = {}, options = {}) ->
 
 Observer for elements inside viewport.
 ```cs
-observe(config, options)
+inview(config, options)
 ```
 
 Will check if an `config.in.element` is inside the viewport and apply an `.config`{:.language-sass} class to the `config.out.element` whom `config.out.attribute` contains `config.in.attribute`.
@@ -46,7 +46,7 @@ config = {
 ```
 If a table of contents is present, when an `h2` title is inside the viewport, the corresponding TOC link will have an `.inview`{:.language-sass} class.
 
-**Default `options` object**
+**Example `options` object**
 ```js
 options = {
   root: document

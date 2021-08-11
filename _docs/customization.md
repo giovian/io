@@ -15,15 +15,47 @@ Replace the file and open in the browser with this [link]({{ 'assets/images/favi
 
 ## Theme
 
-The theme is set in the `_config.yml` file with the value `css.theme`, default to `io`.
+The theme is set in the `_config.yml` file with the value `css.theme`, default to `dark`.
 
 ```yml
 # _config.yml
 css:
-  theme: io
+  theme: light
 ```
 
-Theme list: `io`, `basic`
+Theme list: `dark`, `light`
+
+## Sass
+
+The theme {% include widgets/github_link.html path='_sass/default/_variabiles.sass' text='variabiles' %} can be overridden in the (empty) file `_sass/variabiles.sass`.  
+
+To create a new theme, add a file `_sass/theme-name.sass`. To change only the color scheme, include in the file the colors and lightness variabiles and `@import default`{:.language-sass}.
+
+Custom sass can be included in the (empty) file `_sass/custom.sass`.
+
+## Colors
+
+Color variations are defined in the theme file, along with the link color.
+```sass
+$link-color: DodgerBlue
+$colors: (blue: DodgerBlue, red: Red, green: LimeGreen, orange: Orange, pink: Fuchsia)
+```
+For every colors there are five shades defined in the lightness SASS list for background, foreground, secondary background and foreground and borders.
+```sass
+$lightness: (bg: 4%, fg: 83%, bg_secondary: 9%, fg_secondary: 57%, border: 21%)
+```
+
+Colors are appied to elements with the classes `.color-(blue/red/green/orange/pink)`.
+<div class="grid">
+{%- assign colors = "blue,green,red,orange,pink,default" | split: "," -%}
+{% for color in colors %}
+<div class="p-around rounded color-{{ color }}">
+  Example {{ color }} <span class="fg-secondary">secondary text</span>
+  <div class="p-around mvh bg-secondary rounded">Secondary background</div>
+  and <a href="#">Link</a>
+</div>
+{% endfor %}
+</div>
 
 ## Syntax highlight
 
@@ -35,13 +67,7 @@ css:
   syntax: rouge/github
 ```
 
-Possible themes are on {% include widgets/github_link.html path='_sass/syntax' %}.
-
-## Sass
-
-The theme {% include widgets/github_link.html path='_sass/io/_variabiles.sass' text='variabiles' %} can be overridden in the file {% include widgets/github_link.html path='_sass/variabiles.sass' %}.  
-
-Custom sass can be included in the file {% include widgets/github_link.html path='_sass/custom.sass' %}. 
+Possible themes are on {% include widgets/github_link.html path='_sass/syntax' %}. 
 
 ## Sidebar
 
@@ -97,31 +123,13 @@ sidebar: [...]
 
 To add custom content, create a `_includes/widgets/sidebar.html` file and include in the array: `sidebar: [sidebar]`{:.language-yml}
 
-If the sidebar is empty (no widgets) it will collapse `flex: 0`{:.language-sass}.  
-
-## Colors
-
-Colors are defined in a SASS list.
-```sass
-$colors: (blue: DodgerBlue, red: Red, green: LimeGreen, orange: Orange, pink: Fuchsia)
-```
-Are appied to elements with the class `.color-blue/red/green/orange/pink`.
-<div class="grid">
-{%- assign colors = "blue,green,red,orange,pink,default" | split: "," -%}
-{% for color in colors %}
-<div class="p-around rounded color-{{ color }}">
-  Example {{ color }} <span class="fg-secondary">secondary text</span>
-  <div class="p-around mvh bg-secondary rounded">Secondary background</div>
-  and <a href="#">Link</a>
-</div>
-{% endfor %}
-</div>
+If the sidebar is empty (no widgets) it will collapse `flex: 0`{:.language-sass}.
 
 {% include widgets/api.html include='page/footer' %}
 
 ## Tables
 
-Default TABLES have a border, rounded corners and shaded header. A class color can be applyed on rows or cells.
+Default TABLES have a border, rounded corners and shaded headers. A class color can be applied on rows or cells.
 
 {% assign colors = "blue,green,red,orange,pink" | split: "," %}
 <table>
