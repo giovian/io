@@ -11,7 +11,7 @@ order: 1
 ## Favicon
 
 The favicon file is `assets/images/favicon.ico`.  
-Replace the file and open in the browser with this [link]({{ 'assets/images/favicon.ico' | absolute_url }}) to update. 
+Replace the file and open in the browser with this [link]({{ 'assets/images/favicon.ico' | absolute_url }}) to update in the browser cache.
 
 ## Theme
 

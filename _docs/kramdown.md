@@ -10,7 +10,9 @@ order: 2
 
 ## Table of contents
 
-Render an ordered or unordered nested list (with default ID `markdown-toc`) of the headers by assigning it an Inline Attribute List (IAL) with reference name `toc`.
+Render an ordered or unordered nested list (with default ID `markdown-toc`) of the headers in the page.  
+
+Add an Inline Attribute List (IAL) with reference name `toc` to a one element ordered or unordered list.
 ```md
 * toc or 1. toc
 {:toc}
