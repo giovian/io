@@ -151,4 +151,9 @@ Default TABLES have a border, rounded corners and shaded headers. A class color 
       </tr>
     {% endfor %}
   </tbody>
+  <tbody>
+    <tr>
+      <td colspan=6>New body</td>
+    </tr>
+  </tbody>
 </table>

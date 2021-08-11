@@ -7,9 +7,13 @@ table
 th, td
   padding: .5em
 
-tr:not(:last-of-type) td
+tbody:not(:last-of-type) td,
+tbody:last-of-type tr:not(:last-of-type) td
   @extend .border-b
 
 th
   background: var(--bg-secondary)
   @extend .border-b
+
+tbody:nth-of-type(2n) td
+  background: var(--bg-secondary)
