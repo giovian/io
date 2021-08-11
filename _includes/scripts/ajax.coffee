@@ -16,5 +16,5 @@ $.ajaxPrefilter (options) ->
 {%- capture api -%}
 ## Ajax prefilter
 
-Set `Accept` and `Authorization` headers for request to GitHub API.
+Remove cache for ajax requests and set `Accept` and `Authorization` headers for request to GitHub API.
 {%- endcapture -%}
