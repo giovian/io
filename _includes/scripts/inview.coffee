@@ -1,4 +1,4 @@
-inview_default = {
+config_default = {
   in:
     element: 'h2'
     attribute: 'id'
@@ -6,20 +6,20 @@ inview_default = {
     element: '#markdown-toc a'
     attribute: 'href'
 }
-observe = (inview, options = {}) ->
-  $.extend inview_default, inview
+inview = (config = {}, options = {}) ->
+  $.extend config, config_default
   if 'IntersectionObserver' of window
     callback = (entries) ->
       entries.forEach (entry) ->
-        attribute = $(entry.target).attr inview.in.attribute
+        attribute = $(entry.target).attr config.in.attribute
         in_view = entry.isIntersecting
-        ele = $("#{inview.out.element}[#{inview.out.attribute}*=#{attribute}]")
+        ele = $("#{config.out.element}[#{config.out.attribute}*=#{attribute}]")
         if in_view then ele.addClass 'inview' else ele.removeClass 'inview'
         return # end entries loop
       return # end callback
 
     # start observing
-    $(inview.in.element).each -> new IntersectionObserver(callback, options).observe @
+    $(config.in.element).each -> new IntersectionObserver(callback, options).observe @
 
   return # end observe
 
@@ -28,14 +28,14 @@ observe = (inview, options = {}) ->
 
 Observer for elements inside viewport.
 ```cs
-observe(inview, options)
+observe(config, options)
 ```
 
-Will check if an `inview.in.element` is inside the viewport and apply an `.inview`{:.language-sass} class to the `inview.out.element` whom `inview.out.attribute` contains `inview.in.attribute`.
+Will check if an `config.in.element` is inside the viewport and apply an `.config`{:.language-sass} class to the `config.out.element` whom `config.out.attribute` contains `config.in.attribute`.
 
-**Default `inview` object**
+**Default `config` object**
 ```js
-inview = {
+config = {
   in:
     element: "h2"
     attribute: "id"
