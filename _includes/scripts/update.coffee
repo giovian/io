@@ -11,8 +11,9 @@ check_update = ->
       # Compare online and built repository commit SHA
       if data[0].sha is $('meta[name=repository_sha]').attr('content')
         notification 'Build is updated', 'green'
-        # Check again i 10 minutes
-        setTimeout check_update, 10 * 60 * 1000
+        # Check again i 1 or 10 minutes depending on logged or unauthenticated
+        if $('html').hasClass 'logged' then timer = 60 * 1000 else timer = 10 * 60 * 1000
+        setTimeout check_update, timer
       else
         # Refresh no cache
         location.reload true
