@@ -1,7 +1,7 @@
-a, a .highlight
+a, a .highlight, a > code
 
   // Color
-  color: var(--link)
+  color: var(--link) !important
 
   // Decorations
   text-decoration: none
@@ -9,11 +9,11 @@ a, a .highlight
 
   // Interactions
   &:hover
-    color: var(--fg)
+    color: var(--fg) !important
   &:active, &.active
-    color: var(--fg-secondary)
+    color: var(--fg-secondary) !important
 
   // Disabled
   &[disabled], &.disabled
     pointer-events: none
-    color: var(--fg-secondary)
+    color: var(--fg-secondary) !important
