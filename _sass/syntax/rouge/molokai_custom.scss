@@ -1,7 +1,8 @@
 .highlight table td { padding: 5px; }
 .highlight table pre { margin: 0; }
 .highlight .c, .highlight .ch, .highlight .cd, .highlight .cpf {
-  color: #5e5d83;
+  // color: #5e5d83;
+  color: hsl(241.6, 25%, 56%);
   font-style: italic;
 }
 .highlight .cm {
@@ -89,7 +90,8 @@
   font-weight: bold;
 }
 .highlight .o {
-  color: #f92672;
+  // color: #f92672;
+  color: hsl(338.4, 80%, 56.3%);
   font-weight: bold;
 }
 .highlight .mf {
@@ -152,7 +154,8 @@
   color: #a6e22e;
 }
 .highlight .nc {
-  color: #a6e22e;
+  // color: #a6e22e;
+  color: hsl(80, 70%, 60%);
   font-weight: bold;
 }
 .highlight .nd {
@@ -203,7 +206,8 @@
   font-weight: bold;
 }
 .highlight .nt {
-  color: #f92672;
+  // color: #f92672;
+  color: hsl(338.4, 80%, 70%);
 }
 .highlight {
   color: #f8f8f2;
