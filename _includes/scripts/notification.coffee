@@ -1,15 +1,23 @@
 notification = (text, cls) ->
   color = if cls then "color-#{cls}" else 'bg-secondary'
-  if $('#widget-notifications').length
-    $('#widget-notifications').attr 'open', ''
-    # Create notification SPAN
-    span = $('<span/>', {datetime: new Date(), text: text})
-    # Activate countdown/countup
-    dateTime span
-    # Append DIV with classes and SPAN
-    $('#widget-notifications').append $('<div/>', {
-        class: "#{color} p-around mvh rounded"
-      }).append span
+  widget = $('#widget-notifications')
+  # Check if notifications widget is present
+  if widget.length
+    # Open widget and check for equal notifications
+    widget.attr 'open', ''
+    span = $('#widget-notifications').find("span:contains(#{text}):first")
+    if span.length
+      # Update old notification SPAN
+      span.attr 'datetime', new Date()
+      dateTime span
+    else
+      # Create notification SPAN
+      span = $('<span/>', {datetime: new Date(), text: text})
+      dateTime span
+      # Append DIV with classes and SPAN
+      $('#widget-notifications').append $('<div/>', {
+          class: "#{color} p-around mvh rounded"
+        }).append span
   else
     # Output to console
     console.log "#{text}, #{color}, #{new Date()}"
