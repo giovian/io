@@ -125,6 +125,7 @@ To add custom content, create a `_includes/widgets/sidebar.html` file and includ
 
 If the sidebar is empty (no widgets) it will collapse `flex: 0`{:.language-sass}.
 
+{% include widgets/api.html include='page/navigation' %}
 {% include widgets/api.html include='page/footer' %}
 
 ## Tables

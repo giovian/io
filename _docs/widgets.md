@@ -63,4 +63,11 @@ order: 3
 {% include widgets/api.html include='widgets/navigation' %}
 {% include widgets/api.html include='widgets/notifications' %}
 {% include widgets/api.html include='widgets/toc' %}
-{% include widgets/api.html include='version' %}
+
+## Version
+
+The file {% include widgets/github_link.html path='_includes/version.html' %} contains only an hardcoded version string for when the repository is used as `remote_theme`.
+
+```liquid
+{% raw %}{% include version.html %}{% endraw %}
+```

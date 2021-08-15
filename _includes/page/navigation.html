@@ -16,3 +16,18 @@
   {% endif %}{%- endfor -%}{% endif %}
   {% if page.login %}{% include widgets/login.html %}{% endif %}
 </ul>
+{%- capture api -%}
+## Navigation
+
+If the website has more than 1 page, render the website navigation as unordered list with dropdowns.  
+
+- Site pages `{% raw %}{{ site.html_pages }}{% endraw %}`{:.language-liquid} sorted by `order` liquid variabile.
+- Collections `{% raw %}{{ site.collections }}{% endraw %}`{:.language-liquid} dropdowns sorted by `order` liquid variabile.
+- Login links, if `{% raw %}{{ page.login }}{% endraw %}`{:.language-liquid} is `true`.
+
+```liquid
+{% raw %}{% include page/navigation.html %}{% endraw %}
+```
+
+By default the navigation bar is sticky; for a normal behavior add `$nav-sticky: false`{:.language-sass} in `_sass/custom.sass`.
+{%- endcapture -%}
