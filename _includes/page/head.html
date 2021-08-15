@@ -1,6 +1,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width">
-<link rel="icon" href="{{ "/assets/images/favicon.ico" | absolute_url }}">
+{% if static_files_paths contains '/assets/images/favicon.ico' %}<link rel="icon" href="{{ "/assets/images/favicon.ico" | absolute_url }}">{% elsif site.favicon.ico %}<link rel="icon" href="{{ site.favicon.ico | absolute_url }}">{% endif %}
+{% if static_files_paths contains '/assets/images/favicon.png' %}<link rel="apple-touch-icon" href="{{ "/assets/images/favicon.png" | absolute_url }}">{% elsif site.favicon.png %}<link rel="apple-touch-icon" href="{{ site.favicon.png | absolute_url }}">{% endif %}
 
 <meta name="site_build" content="{{ build_time | date_to_rfc822 }}">
 <meta name="repository_created_at" content="{{ repo.created_at | date_to_rfc822 }}">

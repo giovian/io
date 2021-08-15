@@ -10,8 +10,16 @@ order: 1
 
 ## Favicon
 
-The favicon file is `assets/images/favicon.ico`.  
-Replace the file and open in the browser with this [link]({{ 'assets/images/favicon.ico' | absolute_url }}) to update in the browser cache.
+The favicon files are expected to be `/assets/images/favicon.ico` and `/assets/images/favicon.png`.  
+
+Specify different paths in `_config.yml`
+```yml
+favicon:
+  ico: ico-file-path
+  png: png-file-path
+```
+
+Changing favicon files require updating the browser cache opening the file directly: [ico file]({{ 'assets/images/favicon.ico' | absolute_url }}), [png file]({{ 'assets/images/favicon.png' | absolute_url }}).
 
 ## Theme
 
