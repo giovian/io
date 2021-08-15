@@ -73,3 +73,20 @@
     $margin: nth($headings-margins, $index)
     h#{$index}
       margin-top: #{$margin*2}em
+
+  // Tables
+  section
+    overflow-x: auto
+  table, thead, tbody, th, td, tr
+    display: block
+  td, th
+    text-align: left !important
+    border-bottom-width: 0px !important
+    &:empty
+      display: none
+    &:last-child
+      border-bottom-width: 1px !important
+    // &:not(:first-of-type)
+    //   padding-top: 0 !important
+    // &:not(:last-of-type)
+    //   padding-bottom: 0 !important
