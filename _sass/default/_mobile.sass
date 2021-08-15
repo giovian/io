@@ -50,9 +50,11 @@
               a, span
                 padding: 0
 
+  // Stack grid columns
   .grid
-    // Stack columns
     grid-template-columns: 1fr
+  .flex
+    flex-direction: column
 
   //
   // Footer
@@ -81,10 +83,10 @@
   td, th
     text-align: left !important
     border-bottom-width: 0px !important
-    &:empty
-      display: none
     &:last-child
       border-bottom-width: 1px !important
+    // &:empty
+    //   display: none
     // &:not(:first-of-type)
     //   padding-top: 0 !important
     // &:not(:last-of-type)
