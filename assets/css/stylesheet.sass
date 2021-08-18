@@ -3,11 +3,11 @@
 // Import SASS variabiles
 @import variabiles
 
-// Import theme
-@import {{ site.css.theme | default: 'dark' }}
-
 // Import syntax
 @import {{ site.css.syntax | default: 'rouge/molokai_custom' | prepend: 'syntax/' }}
+
+// Import theme
+@import {{ site.css.theme | default: 'dark' }}
 
 // Import custom CSS rules
 @import custom

@@ -5,7 +5,7 @@
   // --------------------------------------
   main .wrapper
     max-width: 100%
-    padding: 1em 1em
+    padding: $space
 
     // Stack sidebar
     flex-direction: column
@@ -36,8 +36,8 @@
 
       & > ul
         display: block
-        padding-left: 1em
-        padding-bottom: 1em
+        padding-left: $space
+        padding-bottom: $space
         li
           a, span
             padding: 0
@@ -45,7 +45,7 @@
             display: block
             position: static
             background: var(--bg)
-            padding-left: 1em
+            padding-left: $space
             li
               a, span
                 padding: 0
@@ -60,7 +60,7 @@
   // Footer
   // --------------------------------------
   footer .wrapper
-    padding: 1em 1em
+    padding: $space
 
     // Stack lists
     flex-direction: column
@@ -85,9 +85,3 @@
     border-bottom-width: 0px !important
     &:last-child
       border-bottom-width: 1px !important
-    // &:empty
-    //   display: none
-    // &:not(:first-of-type)
-    //   padding-top: 0 !important
-    // &:not(:last-of-type)
-    //   padding-bottom: 0 !important

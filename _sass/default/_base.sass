@@ -13,5 +13,14 @@ hgroup, form, blockquote, section, aside, article
     margin-bottom: 0
 
 // Cursor on title attribute
-span[title]
+span[title],
+abbr
   cursor: default
+
+// Inserted and deleted
+ins
+  @extend .color-green
+  color: var(--fg)
+del
+  @extend .color-red
+  color: var(--fg)

@@ -29,8 +29,10 @@
 .highlight .gi {
   color: #a6e22e;
 }
-.highlight .gd {
-  color: #f92672;
+.highlight .gd,
+.highlight .nx {
+  // color: #f92672;
+  color: hsl(338.4, 75.6%, 65.3%);
 }
 .highlight .ge {
   color: #1b1d1e;
@@ -150,7 +152,7 @@
   color: #d7d787;
 }
 .highlight .na,
-.highlight .nv, .highlight .vm {
+.highlight .nv, .highlight .vm, .highlight .nl {
   color: #a6e22e;
 }
 .highlight .nc {
@@ -202,7 +204,7 @@
 // }
 .highlight .nl {
   // color: #f8f8f2;
-  color: #a6e22e;
+  // color: #a6e22e;
   font-weight: bold;
 }
 .highlight .nt {
@@ -211,6 +213,6 @@
 }
 .highlight {
   color: #f8f8f2;
-  // background-color: #1b1d1e;
-  background-color: var(--bg-secondary)
+  background-color: #1b1d1e;
+  // background-color: var(--bg-secondary)
 }

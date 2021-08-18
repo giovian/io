@@ -8,7 +8,7 @@ nav
 
   // COLORS
   background: var(--bg)
-  @extend .border-b
+  @extend .border-bottom
 
   .wrapper
 
@@ -37,7 +37,7 @@ nav
           cursor: default
         a, span
           display: block
-          padding: .7em
+          padding: $space*.7
 
         // HIDE DROPDOWN
         &:hover ul
@@ -52,4 +52,4 @@ nav
 
           li
             a, span
-              padding: .5em .7em
+              padding: $space/2 $space*.7

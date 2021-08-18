@@ -14,28 +14,31 @@
 .p-around
   padding: $space*.7 $space
 
+// Margins
+// Margin vertical full
+.mv
+  margin-block: $space
 // Margin vertical half
 .mvh
-  margin-top: $space/2
-  margin-bottom: $space/2
+  margin-block: $space/2
 // Margin horizontal half
 .mhh
-  margin-right: $space/2
-  margin-left: $space/2
+  margin-inline: $space/2
 
 // Border
 .border
-  border: 1px solid var(--border)
+  border: $border-small solid var(--border)
 // Border bottom
-.border-b
-  border-bottom: 1px solid var(--border)
+.border-bottom
+  border-bottom: $border-small solid var(--border)
 // Border top
-.border-t
-  border-top: 1px solid var(--border)
+.border-top
+  border-top: $border-small solid var(--border)
 // Rounded
 .rounded
-  border-radius: $border-radius
+  border-radius: $border-big
 
+// GRIDS
 .grid
   display: grid
   grid-template-columns: 1fr 1fr
@@ -44,7 +47,13 @@
   display: flex
   flex-direction: row
 
+// COLORS
 [class*='color-']
-  // Colors
   background: var(--bg)
   color: var(--fg)
+
+// Footnotes
+.footnotes
+  color: var(--fg-secondary)
+  background: var(--bg-secondary)
+  border: $border-small solid var(--bg-secondary)
