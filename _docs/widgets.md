@@ -2,16 +2,15 @@
 order: 3
 ---
 
+# Widgets
+{:.no_toc}
 - toc
 {:toc}
 
-# Widgets
-{:.no_toc}
+> <https://jekyllrb.com/docs/>
 
 {% include widgets/api.html %}
 {% include widgets/api.html include="widgets/datetime" %}
-**Examples**
-
 {% assign now = 'now' | date: "%s" %}
 {% assign minute = 60 %}
 {% assign hour = minute | times: 60 %}
@@ -35,7 +34,6 @@ order: 3
 - Empty {% include widgets/datetime.html %}
 - Embed {% include widgets/datetime.html embed=true %}
 - Replace {% include widgets/datetime.html replace=true %}
-
 <div class="grid">
 <div markdown=1>
 **Future**
@@ -56,7 +54,6 @@ order: 3
 - Year {% include widgets/datetime.html replace=1 datetime=past_year %}
 </div>
 </div>
-
 {% include widgets/api.html include='widgets/github_url' %}
 {% include widgets/api.html include='widgets/github_link' %}
 {% include widgets/api.html include='widgets/login' %}

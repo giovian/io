@@ -10,7 +10,7 @@ order: 1
 
 ## Favicon
 
-The favicon files are expected to be `/assets/images/favicon.ico` and `/assets/images/favicon.png`.  
+The favicon files are expected to be `/assets/images/favicon.ico` and `/assets/images/favicon.png`.
 
 Specify different paths in `_config.yml`
 ```yml
@@ -58,9 +58,9 @@ Colors are appied to elements with the classes `.color-(blue/red/green/orange/pi
 {%- assign colors = "blue,green,red,orange,pink,default" | split: "," -%}
 {% for color in colors %}
 <div class="p-around rounded color-{{ color }}">
-  Example {{ color }} <span class="fg-secondary">secondary text</span>
-  <div class="p-around mvh bg-secondary rounded">Secondary background</div>
-  and <a href="#">Link</a>
+Example {{ color }} <span class="fg-secondary">secondary text</span>
+<div class="p-around mvh bg-secondary rounded">Secondary background</div>
+and <a href="#">Link</a>
 </div>
 {% endfor %}
 </div>
@@ -136,33 +136,18 @@ If the sidebar is empty (no widgets) it will collapse `flex: 0`{:.language-sass}
 {% include widgets/api.html include='page/navigation' %}
 {% include widgets/api.html include='page/footer' %}
 
-## Tables
+## Collections
 
-Default TABLES have a border, rounded corners and shaded headers. A class color can be applied on rows or cells.
+Minimum configuration on `_config.yml` for pages in the folder `_myCollection`
 
-{% assign colors = "blue,green,red,orange,pink" | split: "," %}
-<table>
-  <thead>
-    <tr>
-      <th colspan=6>Colors</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code>code</code></td>
-      {% for color in colors %}
-        <td class="color-{{ color }}">.color-{{ color }}</td>
-      {% endfor %}
-    </tr>
-    {% for color in colors %}
-      <tr class="color-{{ color }}">
-        <td colspan=6>.color-{{ color }} <code>code</code></td>
-      </tr>
-    {% endfor %}
-  </tbody>
-  <tbody>
-    <tr>
-      <td colspan=6>New body</td>
-    </tr>
-  </tbody>
-</table>
+```yml
+collections:
+  myCollection:
+    output: true
+
+defaults:
+  - scope:
+      type: myCollection
+    values:
+      layout: default
+```

@@ -4,9 +4,10 @@ order: 4
 
 # Scripts
 {:.no_toc}
-
 * toc
 {:toc}
+
+> <https://coffeescript-cookbook.github.io/>
 
 {% include widgets/api.html include='scripts/prevent.coffee' %}
 {% include widgets/api.html include='scripts/ajax.coffee' %}
