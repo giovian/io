@@ -1,6 +1,6 @@
 storage =
   key: "{{ site.github.repository_nwo }}"
-  get: (key) -> if key then storage.get_object()[key] else storage.get_object()
+  get: (key) -> if key then key.split('.').reduce(((acc, part) => acc && acc[part]), storage.get_object()) else storage.get_object()
   get_object: () -> JSON.parse atob localStorage.getItem(storage.key) || "e30="
   set_object: (obj) -> localStorage.setItem(storage.key, btoa JSON.stringify obj)
   push: (key, element) -> storage.set key, (storage.get(key) || []).concat [element]
@@ -29,15 +29,46 @@ storage =
 {%- capture api -%}
 ## Storage
 
-Hashed localStorage system with key `owner/repository`.
+Hashed localStorage object with key `owner/repository`.
+
+If unlogged is empty or store the DETAILS state:
+```js
+{
+  details: {
+    "page-title-1|detail-summary-1": false,
+    "page-title-2|detail-summary-2": true
+  }
+}
+```
+
+If logged:
+```js
+{
+  details: {
+    "page-title-1|detail-summary-1": false,
+    "page-title-2|detail-summary-2": true
+  },
+  login: {
+    token: "...",
+    user: "<username>",
+    logged: "2021-08-18T16:06:38.559Z",
+    role: "<admin/guest>"
+  },
+  repository: {
+    fork: boolean,
+    parent: false or repository_object,
+    sha: "<sha>"
+}
+```
 
 **GET**
 
 ```cs
 // Return whole object { ... }
 storage.get()
-// Return value (can be number, string, array, object)
+// Return value (can be number, string, array, object), key is a dot notation
 storage.get("key")
+storage.get("key.nested.property")
 // Return object's property
 storage.get("object")["property"]
 // Return index element of array
