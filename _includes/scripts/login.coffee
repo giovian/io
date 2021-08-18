@@ -27,7 +27,7 @@ login.permissions = ->
   repo.fail (request, status, error) -> notification "Permissions #{status}, #{error}", 'red'
   repo.done (data, status) ->
     storage.assign('login', {
-      "role": (if data.permissions.admin then 'admin' else 'guest')
+      'role': (if data.permissions.admin then 'admin' else 'guest')
     }).assign 'repository', {
       'fork': data.fork
       'parent': data.parent?.full_name?
@@ -54,6 +54,7 @@ login.setLogin = ->
 login.setLogout = ->
   $('html').addClass "role-#{login.storage()['role']} logged"
   login.logout_link.attr 'title', login.text()
+  storage.assign 'repository', {'sha': '{{ site.github.build_revision }}'}
   apply_family()
   true
 
