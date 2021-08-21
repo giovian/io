@@ -1,5 +1,5 @@
 ---
-sidebar: navigation
+sidebar: [navigation]
 ---
 
 # Home

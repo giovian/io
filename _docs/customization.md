@@ -79,7 +79,7 @@ Possible themes are in {% include widgets/github_link.html path='_sass/syntax' %
 
 ## Sidebar
 
-The main page content has an optional sidebar which use `flex`.
+The main page content use `flexbox` to show an optional sidebar.
 
 ```html
 <div class="wrapper">
@@ -88,9 +88,7 @@ The main page content has an optional sidebar which use `flex`.
 </dov>
 ```
 
-To choose sidebar side add `$sidebar-side: left/right`{:.language-sass} in the {% include widgets/github_link.html path='_sass/variabiles.sass' %} file (default is right).
-
-The sidebar will be populated with widgets included in the folder `_includes/widgets/`.
+The sidebar will be populated with widgets included from the folder `_includes/widgets/`.
 
 Select the widgets with a YAML array `sidebar: [...]`{:.language-yml}:
 
@@ -129,9 +127,13 @@ sidebar: [...]
 ---
 ```
 
-To add custom content, create a `_includes/widgets/sidebar.html` file and include in the array: `sidebar: [sidebar]`{:.language-yml}
+To add custom content, create a `_includes/widgets/sidebar.html` file and include it in the array: `sidebar: [sidebar]`{:.language-yml}
 
-If the sidebar is empty (no widgets) it will collapse `flex: 0`{:.language-sass}.
+To choose sidebar side add `$sidebar-side: left/right`{:.language-sass} in the {% include widgets/github_link.html path='_sass/variabiles.sass' %} file (default is `right`).
+
+The sidebar width is the minimum to hold its content, customize with `$sidebar-width`{:.language-sass} and a fraction of the SECTION width (e.g. 1 is same width).
+
+If the sidebar is empty (no widgets) it will collapse `flex: initial`{:.language-sass}.
 
 {% include widgets/api.html include='page/navigation' %}
 {% include widgets/api.html include='page/footer' %}
