@@ -1,0 +1,112 @@
+form
+  @extend .border, .mv, .rounded
+  
+  // Width as needed
+  display: inline-block
+  
+  // Do not clip rounded corners
+  overflow: hidden
+
+  // Grid has no GAP
+  div.grid
+    gap: 0
+
+  // Spacing
+  div[data-type], & > h3, & > p
+    padding: $space/2 $space*.7
+    margin: 0
+
+  // Fonts and Outline
+  input, select, textarea, button, option
+    font-family: inherit
+    font-size: inherit
+    line-height: inherit
+    outline: none
+
+  //
+  // LABELS & SPANS
+  // --------------------------------------
+  span
+    font-size: 85%
+    @extend .fg-secondary
+  [data-type=range]
+    label, span
+      display: block
+
+  //
+  // BORDERS and BLOCK
+  // --------------------------------------
+  input:not([type=range]), textarea, select
+    display: block
+    @extend .border
+    margin-top: $space*.2
+    margin-bottom: $space*.1
+    border-radius: $border-small
+
+  //
+  // BUTTONS
+  // --------------------------------------
+  div[data-type=button]
+    padding: $space
+  // Enabled
+  button:enabled, input[type=button], input[type=reset], input[type=submit]
+    @extend .button
+    display: inline-block
+    margin: 0
+  // Disabled
+  input:disabled, input[readonly], button:disabled
+    @extend .disabled
+  .button
+    font-size: 92%
+    @extend .border, .p-around, .rounded
+
+  // Reset appearance
+  input:not([type=range]), textarea, select
+    appearance: none
+    -webkit-appearance: none
+
+  //
+  // COLORS
+  // --------------------------------------
+
+  // Secondary
+  input, textarea, select,
+  & > h3, & > h4,
+  [data-type=button], .button:hover
+    background: var(--bg-secondary)
+    color: var(--fg)
+
+  // Normal
+  div, .button, .button:active
+    background: var(--bg)
+    color: var(--fg)
+
+  // Special
+  input[type=submit]
+    @extend .color-green
+  input[type=reset]
+    @extend .color-red
+
+  //
+  // TWEAKS
+  // --------------------------------------
+
+  // COLOR swatch border hack
+  input[type="color"]
+    &::-moz-color-swatch
+      border: none
+    &::-webkit-color-swatch
+      border: none
+
+  // Hide number ARROWS
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button
+    -webkit-appearance: none !important
+  input[type=number]
+    -moz-appearance: textfield !important
+
+  // Range OUTPUT
+  output
+    position: relative
+    top: $space*-.5
+    left: $space*.3
