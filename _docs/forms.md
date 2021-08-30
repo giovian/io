@@ -9,7 +9,7 @@ order: 5
 
 > <https://json-schema.org/>
 
-Data structure are defined with JSON Schema and managed with FORMS, depending on file extension can be stored either in JSON or YML/YAML format.
+Data structure are defined with JSON Schema and managed with FORMS.
 
 Data resides in [`_data`]({% include widgets/github_url.html path="_data" %}) folder, available for Jekyll with `{% raw %}{{ site.data }}{% endraw %}`{:.language-liquid}.
 
@@ -35,7 +35,7 @@ Describe a schema
 
 ## Type
 
-Primitive types of an instance are `string, number, integer, array, object, boolean, null` and can be defined in this ways:
+Primitive types of an instance are `string, number, array, object, boolean, null` (integer too) and can be defined in this ways:
 
 - `type`: may either be a string or a unique strings array
 - `enum`: restrict the value to a fixed set (array), a SELECT input will be used  
@@ -47,7 +47,7 @@ Every instance can have a `default` pre-filled value (must be valid)
 ### String
 
 **Validation keywords**
-- `minLength` and `maxLength`: non-negative integers
+- `minLength` and `maxLength`: integers > 0
 - `pattern`: ECMA-262 regular expression  
   `^(\\([0-9]{3}\\))?[0-9]{3}-[0-9]{4}$` North American telephone number with optional area code e.g. `(888)555-1212`
 
@@ -69,15 +69,15 @@ Every instance can have a `default` pre-filled value (must be valid)
 **Custom keywords**
 - `tooltip`: text visualized on mousehover
 - `placeholder`: semi-opaque text rendered in the empty input field
-- `label`: brief description displayed in the form
 
 ### Numbers
 
-- `integer` (negative and zero fractional are ok)
 - `number`
+- `integer` (negative and zero fractional are ok)  
+  `<input>`{:.language-html} use `step="1" pattern="\d+"` attributes
 
 **Validation keywords**
-- `multipleOf`
+- `multipleOf`: number > 0
 - `minimum` and `maximum`: inclusive limits (numbers)
 - `exclusiveMinimum` and `exclusiveMaximum`: exclusive limits (numbers)
 
@@ -88,14 +88,13 @@ Every instance can have a `default` pre-filled value (must be valid)
 **Custom keywords**
 - `tooltip`: text visualized on mousehover (string)
 - `placeholder`: semi-opaque text rendered in the empty input field (string)
-- `label`: brief description displayed in the form (string)
 - `units`: annotation string
 
 ### Object
 
 They map `keys` to `values`, each of these pairs is conventionally referred to as a _property_ and defined using the `properties` keywords.
 
-- In JSON, the “keys” must always be strings.
+- In JSON, the `keys` must always be strings.
 - `required`: is unique strings array (the required properties) and is defined under an object property (scope).
 - `dependentRequired`: requires that certain properties must be present if a given property is present.  
   ```json
@@ -132,7 +131,7 @@ They map `keys` to `values`, each of these pairs is conventionally referred to a
 
 Schemas have an absolute URI `{{ site.github.repository_url }}/_data/` and a JSON pointer (slash-separated path to traverse the properties).
 
-A schema in the file `_data/schema.yml` will have `$id: {{ site.github.repository_url }}/_data/schema`
+A schema in the file `_data/schema.json` will have `$id: {{ site.github.repository_url }}/_data/schema`
 
 - `$ref` URI reference a schema or a definition (`$def` is an object with properties).  
   ```json
@@ -179,23 +178,51 @@ A schema in the file `_data/schema.yml` will have `$id: {{ site.github.repositor
   parse("1+2+3"); 
   ```
 
+## User interface
+
+**Columns**
+
+`columns` is a nested array, every first order item is an array of properties pertaining to that column.
+
+```js
+{
+  "columns": [
+    [col1-1, col1-2],
+    [col2-1]
+  ]
+}
+```
+
+**Colors**
+
+`colors` is an object, the properties are theme colors and are arrays of properties pertaining to that color.
+
+```js
+{
+  "colors": {
+    "blue": [prop-1, prop-2],
+    "red": [prop-3]
+  }
+}
+```
+
 ## Storing data
 
 **Authentication and saving path**
 
-To save a data file e.g. `path/file.yml`, a login with writing permission is required.
+To save a data file e.g. `path/file.json`, a login with writing permission is required.
 ```js
 storage.get("login.role") = "admin"
 ```
 {:.minimal}
 
-When done in a original repository (not a fork), the file will be directy committed in `/_data/path/file.yml`.
+When done in a original repository (not a fork), the file will be directy committed in `/_data/path/file.json`.
 ```js
 storage.get("repository.fork") = false
 ```
 {:.minimal}
 
-When done in a forked repository, the file will be saved in `/_data/users/<username>/path/file.yml` and a Pull request will be performed.
+When done in a forked repository, the file will be saved in `/_data/users/<username>/path/file.json` and a Pull request will be performed.
 ```js
 storage.get("repository.fork") = true
 ```
@@ -221,32 +248,47 @@ storage.get("repository.fork") = true
       </div>
       <div data-type="textarea">
         <label for="textarea">Title textarea</label>
-        <textarea id="textarea" name="textarea" placeholder="1"></textarea>
+        <textarea id="textarea" name="textarea" placeholder="T" data-skip-falsy="true"></textarea>
         <span>Description</span>
       </div>
       <div data-type="number">
         <label for="number">Title number</label>
-        <input type="number" name="number" placeholder="1">
+        <input type="number" name="number" placeholder="1" data-value-type="number">
         <span>Description</span>
       </div>
       <div data-type="range">
         <label for="range">Title Range</label>
-        <input type="range" name="range"><output name="range_output" for="range">12</output>
+        <input type="range" name="range" data-value-type="number"><output name="range_output" for="range"></output>
         <span>Description</span>
+      </div>
+      <div data-type="array">
+        <div>
+          <label>Array <a href="#array" data-index="0" data-add="array" class="prevent-default">add</a></label>
+        </div>
+        <template>
+          <div class="array-item">
+            <div>
+              <label for="array[]">
+                array[] <a href="#array[]" title="Remove item" data-remove="array[]" data-prevent="true">Remove</a>
+            </label>
+            <input type="text" id="array[]" name="array[]" aria-label="array[]">
+            </div>
+          </div>
+        </template>
       </div>
     </div>
     <div>
       <div data-type="select">
         <label for="select">Selector</label>
-        <select name="select">
-          <option value="1">Option 1</option>
-          <option value="2">Option 2</option>
+        <select name="select" data-value-type="boolean">
+          <option value="true">True</option>
+          <option value="false">False</option>
         </select>
         <span>Notes selectors</span>
       </div>
       <div data-type="select multiple">
         <label for="select">Selector multiple</label>
-        <select name="select" multiple>
+        <select name="select_multiple[]" multiple> 
           <option value="1">Option 1</option>
           <option value="2">Option 2</option>
           <option value="3">Option 3</option>
@@ -257,8 +299,8 @@ storage.get("repository.fork") = true
         <span>Notes multiple selectors</span>
       </div>
       <div data-type="color">
-        <label for="string[color]">Color picker</label>
-        <input type="color" id="string[color]" name="string[color]" aria-label="color" value="#151ce6" />
+        <label for="nested[color]">Color picker</label>
+        <input type="color" id="nested[color]" name="nested[color]" aria-label="color" value="#151ce6" />
         <span>Notes colors</span>
       </div>
     </div>
@@ -269,3 +311,18 @@ storage.get("repository.fork") = true
     <input type="button" value="Button">
   </div>
 </form>
+
+## Create schema
+
+{% include form/schema.html %}
+
+**To do**
+
+- `$def` property definitions and reuse
+- `default` keyword
+- `enum` and `const` as types
+- `enum` as select input
+- `items` tuple validation
+- Conditional property definition `if`, `then`, `else`
+- Logical subschema definition `allOf`, `anyOf`, `oneOf`, `not`
+- Properties dependent required `dependentRequired`

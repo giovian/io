@@ -7,22 +7,33 @@
 .fg-secondary
   color: var(--fg-secondary)
 
+// Display
 .hidden, [hidden], template
   display: none
+.show
+  display: initial
+.inline-block
+  display: inline-block
+.block
+  display: block
 
 .wrapper
   max-width: $max-width
   margin: 0 auto
 
+// PADDINGS
 .p-around
   padding: $space*.7 $space
+.pbz
+  padding-bottom: 0 !important
 
+// BUTTONS
 .button
   cursor: pointer
 .disabled
   cursor: not-allowed
 
-// Margins
+// MARGINS
 // Margin vertical full
 .mv
   margin-block: $space
@@ -32,16 +43,19 @@
 // Margin horizontal half
 .mhh
   margin-inline: $space/2
+// Margin bottom zero
+.mbz
+  margin-bottom: 0
 
-// Border
+// BORDERS
 .border
   border: $border-small solid var(--border)
-// Border bottom
 .border-bottom
   border-bottom: $border-small solid var(--border)
-// Border top
 .border-top
   border-top: $border-small solid var(--border)
+.border-right
+  border-right: $border-small solid var(--border)
 // Rounded
 .rounded
   border-radius: $border-big
@@ -60,7 +74,7 @@
   background: var(--bg)
   color: var(--fg)
 
-// Footnotes
+// FOOTNOTES
 .footnotes
   color: var(--fg-secondary)
   background: var(--bg-secondary)

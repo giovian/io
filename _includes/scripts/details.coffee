@@ -1,4 +1,3 @@
-# Check and store details status
 $('details').each ->
 
   # Prepare

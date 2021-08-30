@@ -1,21 +1,24 @@
-details summary
+details
 
-  // Colors
-  &::marker
-    color: var(--fg)
-
-  // Cursor and outline
-  cursor: pointer
-  outline: none
+  margin-bottom: $space/2
 
   // Clear both
   &::after
     display: table
     clear: both
     content: ""
-    margin-bottom: $space/2
+  
+  summary
 
-  // Headers on summray
-  h1, h2, h3, h4, h5, h6
-    display: inline
-    padding: 0
+    // Cursor and outline
+    cursor: pointer
+    outline: none
+    // Colors
+
+    &::marker
+      color: var(--fg)
+
+    // Headers on summray
+    h1, h2, h3, h4, h5, h6
+      display: inline
+      padding: 0

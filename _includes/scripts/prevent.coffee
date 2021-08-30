@@ -1,5 +1,9 @@
-$("a.prevent-default").on "click", (e) -> e.preventDefault()
-$("form.prevent-default").on "submit", (e) -> e.preventDefault()
+$("a.prevent-default").on "click", (e) ->
+  e.preventDefault()
+  return
+$("form.prevent-default").on "submit", (e) ->
+  e.preventDefault()
+  return
 {%- capture api -%}
 ## Prevent default
 

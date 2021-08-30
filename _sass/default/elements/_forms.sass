@@ -1,8 +1,5 @@
 form
-  @extend .border, .mv, .rounded
-  
-  // Width as needed
-  display: inline-block
+  @extend .border, .mv, .rounded, .inline-block
   
   // Do not clip rounded corners
   overflow: hidden
@@ -12,7 +9,8 @@ form
     gap: 0
 
   // Spacing
-  div[data-type], & > h3, & > p
+  div[data-type], & > h3, & > p,
+  details summary
     padding: $space/2 $space*.7
     margin: 0
 
@@ -21,7 +19,7 @@ form
     font-family: inherit
     font-size: inherit
     line-height: inherit
-    outline: none
+    // outline: none
 
   //
   // LABELS & SPANS
@@ -29,47 +27,55 @@ form
   span
     font-size: 85%
     @extend .fg-secondary
-  [data-type=range]
-    label, span
-      display: block
 
   //
-  // BORDERS and BLOCK
+  // BORDERS MARGINS and BLOCK
   // --------------------------------------
   input:not([type=range]), textarea, select
-    display: block
     @extend .border
     margin-top: $space*.2
     margin-bottom: $space*.1
-    border-radius: $border-small
+    border-radius: $border-medium
+  & > h3, & > p
+    @extend .border-bottom
+  div.grid > div:not(:last-child)
+    @extend .border-right
+  div[data-type=array]
+    @extend .border-top
+  details
+    @extend .mbz
 
   //
   // BUTTONS
   // --------------------------------------
   div[data-type=button]
-    padding: $space
+    padding: $space/2
+    @extend .border-top
   // Enabled
   button:enabled, input[type=button], input[type=reset], input[type=submit]
     @extend .button
-    display: inline-block
     margin: 0
   // Disabled
   input:disabled, input[readonly], button:disabled
     @extend .disabled
+  // FONT SIZE and BORDER
   .button
     font-size: 92%
     @extend .border, .p-around, .rounded
 
-  // Reset appearance
+  // RESET and PADDINGS
   input:not([type=range]), textarea, select
     appearance: none
     -webkit-appearance: none
+    padding: 1px 5px
+  input[type=color]
+    padding: 0
 
   //
   // COLORS
   // --------------------------------------
 
-  // Secondary
+  // BG Secondary
   input, textarea, select,
   & > h3, & > h4,
   [data-type=button], .button:hover
@@ -86,6 +92,24 @@ form
     @extend .color-green
   input[type=reset]
     @extend .color-red
+
+  // Sections colors
+  [schema-inject]
+    @extend .color-blue
+  [items-type-inject]
+    @extend .color-orange
+  [property-inject]
+    @extend .color-pink
+
+  //
+  // DISPLAY
+  // --------------------------------------
+  [data-type=range]
+    label, span
+      display: block
+  input:not([type=range], [type=button], [type=submit], [type=reset], .button),
+  textarea, select:not(.inline)
+    @extend .block
 
   //
   // TWEAKS
@@ -110,3 +134,11 @@ form
     position: relative
     top: $space*-.5
     left: $space*.3
+
+  // RANGE cursor
+  input[type=range]
+    cursor: pointer !important
+
+  // Empty multiple select min-width
+  select[multiple] option[value=""]:only-of-type
+    min-width: $space*5
