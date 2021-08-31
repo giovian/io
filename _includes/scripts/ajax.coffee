@@ -1,6 +1,15 @@
 # Ajax prefilter
-$.ajaxPrefilter (options) ->
+$.ajaxPrefilter (options, ajaxIotions, jqXHR) ->
+
+  # Never cache
   options.cache = false
+
+  # Fail function
+  jqXHR.fail (request, status, error) ->
+    notification "#{status}, #{error}", 'red'
+    console.log request, status, error
+    return # end Fail
+
   # Check request url
   if options.url.startsWith '{{ site.github.api_url }}'
     # Check personal token
@@ -12,7 +21,9 @@ $.ajaxPrefilter (options) ->
       }
     else
       options.headers = { "Accept": "application/vnd.github.v3+json" }
-  return
+
+  return # end Prefilter
+
 {%- capture api -%}
 ## Ajax prefilter
 
