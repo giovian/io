@@ -1,5 +1,5 @@
 # Ajax prefilter
-$.ajaxPrefilter (options, ajaxIotions, jqXHR) ->
+$.ajaxPrefilter (options, ajaxOptions, jqXHR) ->
 
   # Never cache
   options.cache = false
@@ -7,7 +7,7 @@ $.ajaxPrefilter (options, ajaxIotions, jqXHR) ->
   # Fail function
   jqXHR.fail (request, status, error) ->
     notification "#{status}, #{error}", 'red'
-    console.log request, status, error
+    console.log request.getAllResponseHeaders(), status, error
     return # end Fail
 
   # Check request url
