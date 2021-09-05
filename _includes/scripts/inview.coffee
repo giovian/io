@@ -6,8 +6,8 @@ config_default = {
     element: '#markdown-toc a'
     attribute: 'href'
 }
-inview = (config = {}, options = {}) ->
-  $.extend config, config_default
+inview = (configuration = {}, options = {}) ->
+  config = $.extend {}, config_default, configuration
   if 'IntersectionObserver' of window
     callback = (entries) ->
       entries.forEach (entry) ->
@@ -21,7 +21,7 @@ inview = (config = {}, options = {}) ->
     # start observing
     $(config.in.element).each -> new IntersectionObserver(callback, options).observe @
 
-  return # end observe
+  return # end inview
 
 {%- capture api -%}
 ## In view
