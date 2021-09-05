@@ -131,9 +131,9 @@ To add custom content, create a `_includes/widgets/sidebar.html` file and includ
 
 To choose sidebar side add `$sidebar-side: left/right`{:.language-sass} in the {% include widgets/github_link.html path='_sass/variabiles.sass' %} file (default is `right`).
 
-The sidebar width is the minimum to hold its content, customize with `$sidebar-width`{:.language-sass} and a fraction of the SECTION width (e.g. 1 is same width).
+The default sidebar width is `0.3` times the main content, customize with `$sidebar-width`{:.language-sass}.
 
-If the sidebar is empty (no widgets) it will collapse `flex: initial`{:.language-sass}.
+If the sidebar is empty (no widgets) it will collapse.
 
 {% include widgets/api.html include='page/navigation' %}
 {% include widgets/api.html include='page/footer' %}
