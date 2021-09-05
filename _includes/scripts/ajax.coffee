@@ -1,14 +1,11 @@
 # Ajax prefilter
-$.ajaxPrefilter (options, ajaxOptions, jqXHR) ->
+$.ajaxPrefilter (options, ajaxOptions, request) ->
 
   # Never cache
   options.cache = false
 
   # Fail function
-  jqXHR.fail (request, status, error) ->
-    notification "#{status}, #{error}", 'red'
-    console.log request.getAllResponseHeaders(), status, error
-    return # end Fail
+  request.fail (request, status, error) -> notification "#{status}: #{request.status} #{error}", 'red'
 
   # Check request url
   if options.url.startsWith '{{ site.github.api_url }}'

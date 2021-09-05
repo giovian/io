@@ -2,7 +2,7 @@ update = -> setTimeout check_update, 60 * 1000
 
 check_update = ->
 
-  if true #"{{ site.github.environment }}" is "dotcom"
+  if "{{ site.github.environment }}" is "dotcom"
 
     # Check again i 1 or 10 minutes depending on logged or unauthenticated
     if $('html').hasClass 'logged' then timer = 60 * 1000 else timer = 10 * 60 * 1000
@@ -20,8 +20,6 @@ check_update = ->
         location.reload true
 
       return # end ajax done
-
-    #latest.fail (request, status, error) -> notification "#{status}, #{error}", 'red'
 
   return # end check_update
 

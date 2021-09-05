@@ -15,16 +15,12 @@ login.login_link.on 'click', (e) ->
     storage.assign 'login', {'user': data.login, 'logged': new Date()}
     login.permissions()
     return
-  auth.fail (request, status, error) ->
-    notification "Login #{status}, #{error}", 'red'
-    login.setLogin()
-    return
+  auth.fail (request, status, error) -> login.setLogin()
   true
 
 login.permissions = ->
   notification 'Checking permissions'
   repo = $.get '{{ site.github.api_url }}/repos/{{ site.github.repository_nwo }}'
-  repo.fail (request, status, error) -> notification "Permissions #{status}, #{error}", 'red'
   repo.done (data, status) ->
     storage.assign('login', {
       'role': (if data.permissions.admin then 'admin' else 'guest')
