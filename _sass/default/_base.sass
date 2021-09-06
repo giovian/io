@@ -16,6 +16,10 @@ hgroup, form, blockquote, section, aside, article
 [title],
 abbr
   cursor: default
+// Not for clickable elements
+a, button, summary
+  &[title]
+    cursor: pointer
 
 // Inserted and deleted
 ins

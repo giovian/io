@@ -42,25 +42,23 @@ Primitive types of an instance are `string, number, array, object, boolean, null
   In the `array` case, will have the `multiple` attribute
 - `const`: restrict the value to a single value (like enum with one item)
 
-Every instance can have a `default` pre-filled value (must be valid)
+Every instance can have a `default` pre-filled value (must be valid).
 
 ### String
 
 **Validation keywords**
 - `minLength` and `maxLength`: integers > 0
-- `pattern`: ECMA-262 regular expression  
-  `^(\\([0-9]{3}\\))?[0-9]{3}-[0-9]{4}$` North American telephone number with optional area code e.g. `(888)555-1212`
+- `pattern`: ECMA-262 regular expression e.g. `^(\\([0-9]{3}\\))?[0-9]{3}-[0-9]{4}$` North American telephone number with optional area code e.g. `(888)555-1212`
 
 **Format attributes**
 
-- `date-time`: Date and time together, for example,` 2018-11-13T20:20:39+00:00`.
-- `time`: New in draft 7 Time, for example, `20:20:39+00:00`
-- `date`: New in draft 7 Date, for example, `2018-11-13`.
-- `duration`: `P{n}Y{n}M{n}W{n}DT{n}H{n}M{n}S` New in draft 2019-09 A duration as defined by the ISO 8601 ABNF for “duration”.  
-  For example, P3D expresses a duration of 3 days.  
-  `P3Y6M4DT12H30M5S` Represents a duration of three years, six months, four days, twelve hours, thirty minutes, and five seconds.
+- `date-time`: Date and time together, e.g. `2018-11-13T20:20:39+00:00`.
+- `time`: e.g. `20:20:39+00:00`
+- `date`: e.g. `2018-11-13`.
+- `duration`: `P{n}Y{n}M{n}W{n}DT{n}H{n}M{n}S` A duration as defined by the ISO 8601 ABNF for “duration” e.g. P3D expresses a duration of 3 days.  
+  `P3Y6M4DT12H30M5S` represents a duration of three years, six months, four days, twelve hours, thirty minutes, and five seconds.
 - `email`: Internet email address, see RFC 5322, section 3.4.1.
-- `uri`: universal resource identifier
+- `uri`: Universal Resource Identifier
 
 **Custom formats attributes**
 - `textarea`: use TEXTAREA for input
@@ -73,7 +71,7 @@ Every instance can have a `default` pre-filled value (must be valid)
 ### Numbers
 
 - `number`
-- `integer` (negative and zero fractional are ok)  
+- `integer`: negative and zero fractional are ok)  
   `<input>`{:.language-html} use `step="1" pattern="\d+"` attributes
 
 **Validation keywords**
@@ -82,8 +80,8 @@ Every instance can have a `default` pre-filled value (must be valid)
 - `exclusiveMinimum` and `exclusiveMaximum`: exclusive limits (numbers)
 
 **Custom formats attributes**
-- `range`: use a INPUT `type="range"`, need `minimum` and `maximum` and optionally `multipleOf`  
-  current value will use OUTPUT element
+- `range`: use a INPUT `type="range"`, need `minimum` and `maximum` and optionally `multipleOf`.  
+  Current value will use OUTPUT element
 
 **Custom keywords**
 - `tooltip`: text visualized on mousehover (string)
@@ -236,6 +234,8 @@ storage.get("repository.fork") = true
 
 - Schema and instance path
 
+## Form preview
+
 <form class="prevent-default">
   <h3>Form</h3>
   <p>Description</p>
@@ -312,8 +312,7 @@ storage.get("repository.fork") = true
   </div>
 </form>
 
-## Create schema
-
+{% include widgets/api.html include="form/schema" %}
 {% include form/schema.html %}
 
 **To do**

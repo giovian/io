@@ -31,7 +31,7 @@ Observer for elements inside viewport.
 inview(config, options)
 ```
 
-Will check if an `config.in.element` is inside the viewport and apply an `.config`{:.language-sass} class to the `config.out.element` whom `config.out.attribute` contains `config.in.attribute`.
+Will check if an `config.in.element` is inside the viewport and apply an `.inview`{:.language-sass} class to the `config.out.element` whom `config.out.attribute` contains `config.in.attribute`.
 
 **Default `config` object**
 ```js

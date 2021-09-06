@@ -257,26 +257,26 @@
 </template>
 
 {%- capture api -%}
-## Create schema FORM
+## Create schema
 
 Form to create a schema, need {% include widgets/github_link.html path='_includes/scripts/form.coffee' %} engine.
 
 **Form**
 
-- `[name=path]` field
-- `[schema-inject]` for property injection
+- `path` string field: required and ends with `.json`
+- `[schema-inject]` DIV for annotations and `#template-type` injection
 - `data-type="button"` section
 
 **Templates**
 
-- `template-type`  
+- `#template-type`  
   - Annotations
   - Type selector
   - `[type-inject]` for schema injection
-- `template-string`
-- `template-number`
-- `template-array`  
-  - `[array-inject]` for property injection
-- `template-object`  
-  - `.property-items` for property injection with name
+- `#template-string`
+- `#template-number`
+- `#template-array`  
+  - `[items-type-inject]` for items type injection
+- `#template-object`  
+  - `[property-inject]` for property injection with name
 {%- endcapture -%}

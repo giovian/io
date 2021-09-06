@@ -94,8 +94,8 @@ form
     @extend .color-red
 
   // Sections colors
-  [schema-inject]
-    @extend .color-blue
+  // [schema-inject]
+  //   @extend .color-blue
   [items-type-inject]
     @extend .color-orange
   [property-inject]
@@ -135,8 +135,8 @@ form
     top: $space*-.5
     left: $space*.3
 
-  // RANGE cursor
-  input[type=range]
+  // RANGE and SELECT cursor
+  input[type=range], select
     cursor: pointer !important
 
   // Empty multiple select min-width
