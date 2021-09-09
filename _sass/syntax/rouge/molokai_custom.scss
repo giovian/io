@@ -155,11 +155,12 @@
 }
 .highlight .na,
 .highlight .nv, .highlight .vm, .highlight .nl {
-  color: #a6e22e;
+  // color: #a6e22e;
+  color: hsl(80, 58.6%, 55.3%);
 }
 .highlight .nc {
   // color: #a6e22e;
-  color: hsl(80, 70%, 60%);
+  color: hsl(80, 58.6%, 55.3%);
   font-weight: bold;
 }
 .highlight .nd {
@@ -215,6 +216,6 @@
 }
 .highlight {
   color: #f8f8f2;
-  background-color: #1b1d1e;
-  // background-color: var(--bg-secondary)
+  // background-color: #1b1d1e;
+  background-color: var(--bg-secondary)
 }
