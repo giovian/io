@@ -82,10 +82,12 @@ Possible themes are in {% include widgets/github_link.html path='_sass/syntax' %
 The main page content use `flexbox` to show an optional sidebar.
 
 ```html
-<div class="wrapper">
-  <aside><!-- Sidebar --></aside>
-  <section><!-- Page content --></section>
-</dov>
+<main>
+  <div class="wrapper">
+    <aside><!-- Sidebar --></aside>
+    <section><!-- Page content --></section>
+  </div>
+</main>
 ```
 
 The sidebar will be populated with widgets included from the folder `_includes/widgets/`.

@@ -43,12 +43,14 @@ Check [toc widget]({{ 'docs/widgets#table-of-contents' | absolute_url }}) to put
 
 `` `<nav>`{:.language-html}`` render `<nav>`{:.language-html}
 
-**Code blocks
+**Code blocks**
 
 <div class="grid">
 {%- assign code_files = 'fenced,liquid,kramdown,indented' | split: "," -%}
 {% for code in code_files %}{% include code/{{ code }}.html %}{% endfor %}
 </div>
+
+To limit code block width to the content, use the `.minimal`{:.language-css} class appending `{: .minimal}` to the block.
 
 ## Tables
 
@@ -124,13 +126,14 @@ Default TABLES have a border, rounded corners and shaded headers. A class color 
 
 ## Abbreviations
 
-Text is written normally and below the text add `*[abbr text]: Abbreviation`
+Abbreviated text is written normally and below the text add  
+`*[normally]: Abbreviation`
 
-*[normally]: No mark whatsoever
+*[normally]: Abbreviation
 
 ## Footnotes
 
-Text is followed[^1] by `[^1]` and below the text there add `[^1]: Footnote`.  
+Text is followed[^1] by `[^1]` and below the text add `[^1]: Footnote`.  
 The note will be added at the end[^where] of the document.
 
 ```html
