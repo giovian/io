@@ -137,13 +137,19 @@ Text is followed[^1] by `[^1]` and below the text add `[^1]: Footnote`.
 The note will be added at the end[^where] of the document.
 
 ```html
+<sup id="fnref:1" role="doc-noteref">
+  <a href="#fn:1" class="footnote" rel="footnote">1</a>
+</sup>
+```
+
+```html
 <div class="footnotes" role="doc-endnotes">
-<ol>
-  <li id="fn:1" role="doc-endnote">
-    <p>... <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
-  </li>
-  ...
-</ol>
+  <ol>
+    <li id="fn:1" role="doc-endnote">
+      <p>... <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    ...
+  </ol>
 </div>
 ```
 
