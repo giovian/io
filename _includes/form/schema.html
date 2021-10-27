@@ -3,7 +3,7 @@
   <div data-type="string">
     <label for="path" markdown=1>File path (extension `.json`)</label>
     <input type="text" autocomplete="off" name="path" required pattern="(.*)(\.json)$" minlength=6 value="asd.json">
-    <span markdown=1>Schema file path inside `_data/` folder</span>
+    <span markdown=1>Schema file path inside `_data` folder</span>
   </div>
 
 <!-- SCHEMA INJECT -->
@@ -259,7 +259,7 @@
 {%- capture api -%}
 ## Create schema
 
-Form to create a schema, need {% include widgets/github_link.html path='_includes/scripts/form.coffee' %} engine.
+Form to create a schema, require {% include widgets/github_link.html path='_includes/scripts/form.coffee' %} engine.
 
 **Form**
 
@@ -279,4 +279,8 @@ Form to create a schema, need {% include widgets/github_link.html path='_include
   - `[items-type-inject]` for items type injection
 - `#template-object`  
   - `[property-inject]` for property injection with name
+
+```liquid
+{% raw %}{% include form/schema.html %}{% endraw %}
+```
 {%- endcapture -%}

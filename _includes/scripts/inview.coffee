@@ -46,7 +46,7 @@ config = {
 ```
 If a table of contents is present, when an `h2` title is inside the viewport, the corresponding TOC link will have an `.inview`{:.language-sass} class.
 
-**Example `options` object**
+**Example `options` object (default `{}`)**
 ```js
 options = {
   root: document

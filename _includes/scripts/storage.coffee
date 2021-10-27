@@ -32,7 +32,7 @@ storage =
 Hashed localStorage object with key `owner/repository`.
 
 If unlogged is empty or store the DETAILS state:
-```js
+```json
 {
   details: {
     "page-title-1|detail-summary-1": false,
@@ -42,7 +42,7 @@ If unlogged is empty or store the DETAILS state:
 ```
 
 If logged:
-```js
+```json
 {
   details: {
     "page-title-1|detail-summary-1": false,
@@ -56,7 +56,7 @@ If logged:
   },
   repository: {
     fork: boolean,
-    parent: false or repository_object,
+    parent: <false or repository_object>,
     sha: "<sha>"
 }
 ```

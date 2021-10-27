@@ -32,3 +32,5 @@ Description
 {%- endcapture -%}
 {% endif %}
 {{ api | mardowify }}
+
+File: {% assign absolute_path = include_file | prepend: '_includes/' %}{% include widgets/github_link.html path=absolute_path %}

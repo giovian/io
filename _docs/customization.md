@@ -1,5 +1,5 @@
 ---
-order: 1
+order: 10
 ---
 
 # Customization
@@ -37,9 +37,9 @@ Theme list: `dark`, `light`
 
 The theme {% include widgets/github_link.html path='_sass/default/_variabiles.sass' text='variabiles' %} can be overridden in the (empty) file `_sass/variabiles.sass`.  
 
-To create a new theme, add a file `_sass/theme-name.sass`. To change only the color scheme, include in the file the colors and lightness variabiles and `@import default`{:.language-sass}.
-
 Custom sass can be included in the (empty) file `_sass/custom.sass`.
+
+To create a new theme, add a file `_sass/theme-name.sass`. To change only the color scheme, include in the file the colors and lightness variabiles and `@import default`{:.language-sass}.
 
 ## Colors
 
@@ -53,7 +53,7 @@ For every colors there are five shades defined in the lightness SASS list for ba
 $lightness: (bg: 4%, fg: 83%, bg_secondary: 9%, fg_secondary: 57%, border: 21%)
 ```
 
-Colors are appied to elements with the classes `.color-(blue/red/green/orange/pink)`.
+Colors are applied to elements with the classes `.color-(blue/red/green/orange/pink)`.
 <div class="grid">
 {%- assign colors = "blue,green,red,orange,pink,default" | split: "," -%}
 {% for color in colors %}
