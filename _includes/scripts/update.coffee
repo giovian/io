@@ -30,5 +30,10 @@ Every pageload wait 1 minute and compare website build_revision SHA with reposit
 
 Subsequent checks are every 10 minutes for unauthenticated users and evry minute for logged ones.  
 
-Active only in production: `{%raw%}{{ site.github.environment }}{%endraw%}`{:.language-liquid} is `dotcom`.
+```js
+update();
+```
+{:.minimal}
+
+Active only in production: `{%raw%}{{ site.github.environment }}{%endraw%}=dotcom`.
 {%- endcapture -%}

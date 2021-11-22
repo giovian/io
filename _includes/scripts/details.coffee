@@ -28,4 +28,11 @@ $('details').each ->
 ## Details
 
 Store the state of the DETAILS elements (open/close) in every page.
+
+```js
+details: {
+  "forms|Table of contents": false
+}
+```
+{:.minimal}
 {%- endcapture -%}

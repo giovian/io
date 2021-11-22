@@ -91,6 +91,7 @@ span = $("<span/>", {
 })
 dateTime(span)
 ```
+{:.minimal}
 
 **Options**
 
