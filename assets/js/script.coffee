@@ -8,6 +8,7 @@
 {% include scripts/toc.coffee %}            # Move toc to sidebar
 {% include scripts/apply_family.coffee %}   # Apply classes to parents/childrens
 {% include scripts/binary.coffee %}         # Unicode strings to binary data (1 byte)
+{% include scripts/slugify.coffee %}        # Function for string slug
 
 # WIDGETS
 

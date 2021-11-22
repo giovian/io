@@ -88,18 +88,10 @@ form
     color: var(--fg)
 
   // Special
-  input[type=submit]
+  input[type=submit]:not([disabled])
     @extend .color-green
-  input[type=reset]
+  input[type=reset]:not([disabled])
     @extend .color-red
-
-  // Sections colors
-  // [schema-inject]
-  //   @extend .color-blue
-  [items-type-inject]
-    @extend .color-orange
-  [property-inject]
-    @extend .color-pink
 
   //
   // DISPLAY
@@ -142,3 +134,11 @@ form
   // Empty multiple select min-width
   select[multiple] option[value=""]:only-of-type
     min-width: $space*5
+
+  //
+  // SCHEMA ARRAY
+  // --------------------------------------
+
+  // Links align right
+  [data-add], [data-remove]
+    float: right
