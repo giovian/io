@@ -4,10 +4,24 @@
 $.serializeJSON.defaultOptions.skipFalsyValuesForTypes = "string,number,boolean,date".split ","
 
 #
+# TEMPLATE helper function
+# --------------------------------------
+get_template = (e, prepend) ->
+  if prepend
+    template = $ $(e).clone().prop "content"
+    # Update labels [for]
+    template.find('label[for]').each -> $(@).attr "for", (i, val) -> "#{prepend}[#{val}]"
+    # Update inputs [name]
+    template.find(':input[name]').attr 'name', (i, val) -> "#{prepend}[#{val}]"
+    return template
+  else
+    return $ $(e).clone().prop "content"
+
+#
 # ACTIVATION function
 # --------------------------------------
-activate_form = (element) ->
-  form = $ element
+$('form').each ->
+  form = $ @
 
   # Update range output
   form.find("input[type=range]").each ->
@@ -24,24 +38,40 @@ activate_form = (element) ->
   #
   # CREATE SCHEMA
   # --------------------------------------
-  if form.hasClass 'create-schema'
-    # Insert type schema
-    form.find('[schema-inject]').append get_template('#template-type')
-    # Bind onChange event to Schema type
-    form.on 'change', '[name=type]', ->
-      form.find('[type-inject]').empty().append get_template "#template-#{$(@).val()}"
-      # First call append items-type
-      if form.find("[name='items[type]']").length
-        item_type = nest(get_template("#template-#{form.find("[name='items[type]']").val()}"), 'items')
-        form.find('[items-type-inject]').empty().append item_type
-      return
-    # Bind onChange event to array Items type
-    form.on 'change', "[name='items[type]']", ->
-      item_type = nest(get_template("#template-#{$(@).val()}"), 'items')
-      form.find('[items-type-inject]').empty().append item_type
-      return
-    # First call append type
-    form.find('[type-inject]').empty().append get_template "#template-#{form.find('[name=type]').val()}"
+
+  # ADD PROPERTY
+  form.on 'click', 'a[data-add="property"]', ->
+
+    # Prompt property name
+    property_name = prompt 'Property name'
+
+    if property_name
+      prepend = "items[properties][#{slugify property_name}]"
+      template_property = get_template '#template-property', prepend
+
+      # Update property title
+      template_property.find('summary').prepend document.createTextNode "#{property_name} "
+
+      # Get string type
+      selected_template = get_template "#template-string", prepend
+      template_property.find('[type-inject]').append selected_template
+
+      # Append
+      form.find('[properties-inject]').prepend template_property
+
+    return # End add-property
+
+  # REMOVE PROPERTY
+  form.on 'click', 'a[data-remove="property"]', -> $(@).parents('.border-top').remove()
+
+  # Change property type
+  form.on 'change', 'select[name*="type"]', ->
+    # Get parent
+    parent = $(@).attr('name').replace "[type]", ''
+    selected_template = get_template "#template-#{$(@).val()}", parent
+    # Append
+    form.find('[type-inject]').empty().append selected_template
+    return # End property type change
 
   #
   # FORM EVENTS
@@ -55,33 +85,44 @@ activate_form = (element) ->
   form.on "reset", ->
     # Remove array items and reset index
     # form.find("[array-item]").remove()
-    # setTimeout -> form.find("input[type=range]").trigger "input"
-    form.find('[type-inject]').empty().append get_template "#template-string"
+
+    # Reset range output value
+    # Default delay is 0ms, "immediately" i.e. next event cycle, actual delay may be longer
+    setTimeout -> form.find("input[type=range]").trigger "input"
+
+    # Reset .create-schema forms
+    form.find('[properties-inject]').empty()
+
     return # end Reset
 
   # Submit
-  form.on "submit", -> console.dir form.serializeJSON()
+  form.on "submit", ->
+    console.dir jsyaml.dump form.serializeJSON()
+
+    if $('html').hasClass 'logged'
+      $(@).find(":input").prop "disabled", true
+      url = "{{ site.github.api_url }}/repos/{{ site.github.repository_nwo }}/contents/_data/#{form.find('[name="path"]').val()}"
+      get_schema = $.get url
+      get_schema.fail (request, status, error) ->
+        # Schema not found
+        if error == 'Not Found'
+          load =
+            message: "Create schema-array"
+            content: btoa_utf16 jsyaml.dump form.serializeJSON()
+          put = $.put url, data: JSON.stringify load
+          put.done -> notification 'Created', 'green'
+        return
+      # File present, overwrite with sha reference
+      get_schema.done (data,status) ->
+        load =
+          message: "Edit schema-array"
+          sha: data.sha
+          content: btoa_utf16 jsyaml.dump form.serializeJSON()
+        put = $.put url, data: JSON.stringify load
+        put.done -> notification 'Edited', 'green'
+        return
+    else notification 'You need to login', 'red'
+
+    return # End submit handler
 
   return # end FORM loop
-
-#
-# NEST
-# --------------------------------------
-nest = (element, father) ->
-  element.find(':input').attr 'name', (i, val) -> "#{father}[#{val}]"
-  # element.find('[show-if-value]').attr 'show-if-value', (i, val) ->
-  #   [selector, value] = val.split '|'
-  #   selector_array = selector.split("=")
-  #   return "#{selector_array[0]}='items[#{selector_array[1]}']|#{value}"
-  return element
-
-#
-# TEMPLATE helper function
-# --------------------------------------
-get_template = (e) -> $ $(e).clone().prop "content"
-
-#
-# STARTUP
-# --------------------------------------
-# Activate every FORM
-$('form').each -> activate_form @

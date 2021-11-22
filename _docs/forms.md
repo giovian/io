@@ -312,8 +312,8 @@ storage.get("repository.fork") = true
   </div>
 </form>
 
-{% include widgets/api.html include="form/schema" %}
-{% include form/schema.html %}
+{% include widgets/api.html include="form/schema-array" %}
+{% include form/schema-array.html %}
 
 **To do**
 
