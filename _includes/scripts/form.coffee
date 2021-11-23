@@ -108,7 +108,7 @@ $('form').each ->
         if error == 'Not Found'
           load =
             message: "Create schema-array"
-            content: btoa_utf16 file_content
+            content: btoa file_content
           put = $.ajax url,
             method: 'PUT'
             data: JSON.stringify load
@@ -116,11 +116,11 @@ $('form').each ->
           put.always -> $(@).find(":input").prop "disabled", false
         return
       # File present, overwrite with sha reference
-      get_schema.done (data,status) ->
+      get_schema.done (data, status) ->
         load =
           message: "Edit schema-array"
           sha: data.sha
-          content: btoa_utf16 file_content
+          content: btoa file_content
         put = $.put url,
           method: 'PUT'
           data: JSON.stringify load
