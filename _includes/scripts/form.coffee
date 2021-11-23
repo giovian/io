@@ -97,6 +97,7 @@ $('form').each ->
 
   # Submit
   form.on "submit", ->
+    file_content = jsyaml.dump(form.serializeJSON())
 
     if $('html').hasClass 'logged'
       $(@).find(":input").prop "disabled", true
@@ -107,7 +108,7 @@ $('form').each ->
         if error == 'Not Found'
           load =
             message: "Create schema-array"
-            content: btoa_utf16 jsyaml.dump form.serializeJSON()
+            content: btoa_utf16 file_content
           put = $.ajax url,
             method: 'PUT'
             data: JSON.stringify load
@@ -119,7 +120,7 @@ $('form').each ->
         load =
           message: "Edit schema-array"
           sha: data.sha
-          content: btoa_utf16 jsyaml.dump form.serializeJSON()
+          content: btoa_utf16 file_content
         put = $.put url,
           method: 'PUT'
           data: JSON.stringify load
