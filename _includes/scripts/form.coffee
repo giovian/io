@@ -97,7 +97,6 @@ $('form').each ->
 
   # Submit
   form.on "submit", ->
-    console.dir jsyaml.dump form.serializeJSON()
 
     if $('html').hasClass 'logged'
       $(@).find(":input").prop "disabled", true
@@ -109,8 +108,11 @@ $('form').each ->
           load =
             message: "Create schema-array"
             content: btoa_utf16 jsyaml.dump form.serializeJSON()
-          put = $.put url, data: JSON.stringify load
+          put = $.ajax url,
+            method: 'PUT'
+            data: JSON.stringify load
           put.done -> notification 'Created', 'green'
+          put.always -> $(@).find(":input").prop "disabled", false
         return
       # File present, overwrite with sha reference
       get_schema.done (data,status) ->
@@ -118,8 +120,11 @@ $('form').each ->
           message: "Edit schema-array"
           sha: data.sha
           content: btoa_utf16 jsyaml.dump form.serializeJSON()
-        put = $.put url, data: JSON.stringify load
+        put = $.put url,
+          method: 'PUT'
+          data: JSON.stringify load
         put.done -> notification 'Edited', 'green'
+        put.always -> $(@).find(":input").prop "disabled", false
         return
     else notification 'You need to login', 'red'
 
