@@ -4,7 +4,7 @@
 # HELPERS
 
 {% include scripts/prevent.coffee %}        # Prevent default events for links and forms
-{% include scripts/ajax.coffee %}           # Prefilter for Ajax calls
+{% include scripts/prefilter.coffee %}           # Prefilter for Ajax calls
 {% include scripts/toc.coffee %}            # Move toc to sidebar
 {% include scripts/apply_family.coffee %}   # Apply classes to parents/childrens
 {% include scripts/binary.coffee %}         # Unicode strings to binary data (1 byte)

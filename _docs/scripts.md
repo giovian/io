@@ -10,7 +10,7 @@ order: 40
 > <https://coffeescript-cookbook.github.io/>
 
 {% include widgets/api.html include='scripts/prevent.coffee' %}
-{% include widgets/api.html include='scripts/ajax.coffee' %}
+{% include widgets/api.html include='scripts/prefilter.coffee' %}
 {% include widgets/api.html include='scripts/toc.coffee' %}
 {% include widgets/api.html include='scripts/apply_family.coffee' %}
 {% include widgets/api.html include='scripts/datetime.coffee' %}
