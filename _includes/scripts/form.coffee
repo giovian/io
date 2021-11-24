@@ -23,6 +23,40 @@ get_template = (e, prepend) ->
 $('form').each ->
   form = $ @
 
+  #
+  # PROPERTY inject helper function
+  # --------------------------------------
+  inject_property = (property_name) ->
+    prepend = "items[properties][#{slugify property_name}]"
+    template_property = get_template '#template-property', prepend
+
+    # Update property title
+    template_property.find('summary').prepend document.createTextNode "#{property_name} "
+
+    # Get string type
+    selected_template = get_template "#template-string", prepend
+    template_property.find('[type-inject]').append selected_template
+
+    # Append
+    form.find('[properties-inject]').prepend template_property
+
+    return # End property inject
+
+  # Populate form
+  if form.attr 'data-schema'
+    schema_url = "{{ site.github.api_url }}/repos/{{ site.github.repository_nwo }}/contents/_data/#{form.attr 'data-schema'}"
+    get_schema = $.get schema_url
+    get_schema.done (data, status) ->
+      # Get schema: decode from base 64 and parse as yaml
+      schema = jsyaml.load Base64.decode data.content
+      # Populate fields
+      form.find('[name="title"]').val schema.title
+      form.find('[name="path"]').val schema.path
+      form.find('[name="description"]').val schema.description
+      schema.items.properties?.each ->
+        console.log @
+      return
+
   # Update range output
   form.find("input[type=range]").each ->
     $(@).on "input", (e) -> $(e.target).next("output").val $(e.target).val()
@@ -41,24 +75,10 @@ $('form').each ->
 
   # ADD PROPERTY
   form.on 'click', 'a[data-add="property"]', ->
-
     # Prompt property name
     property_name = prompt 'Property name'
-
-    if property_name
-      prepend = "items[properties][#{slugify property_name}]"
-      template_property = get_template '#template-property', prepend
-
-      # Update property title
-      template_property.find('summary').prepend document.createTextNode "#{property_name} "
-
-      # Get string type
-      selected_template = get_template "#template-string", prepend
-      template_property.find('[type-inject]').append selected_template
-
-      # Append
-      form.find('[properties-inject]').prepend template_property
-
+    # Inject property
+    if property_name then inject_property property_name
     return # End add-property
 
   # REMOVE PROPERTY
@@ -93,22 +113,27 @@ $('form').each ->
     # Reset .create-schema forms
     form.find('[properties-inject]').empty()
 
-    return # end Reset
+    return # end Reset handler
 
   # Submit
   form.on "submit", ->
-    file_content = jsyaml.dump(form.serializeJSON())
 
+    # Check user is logged
     if $('html').hasClass 'logged'
-      $(@).find(":input").prop "disabled", true
+      # Prepare variabiles
+      encoded_file_content = Base64.encode jsyaml.dump(form.serializeJSON())
       url = "{{ site.github.api_url }}/repos/{{ site.github.repository_nwo }}/contents/_data/#{form.find('[name="path"]').val()}"
+      # Disable form
+      $(@).find(":input").prop "disabled", true
+      # Check if file already exist
       get_schema = $.get url
       get_schema.fail (request, status, error) ->
         # Schema not found
         if error == 'Not Found'
           load =
             message: "Create schema-array"
-            content: Base64.encode file_content
+            content: encoded_file_content
+          # Commit new file
           put = $.ajax url,
             method: 'PUT'
             data: JSON.stringify load
@@ -120,7 +145,8 @@ $('form').each ->
         load =
           message: "Edit schema-array"
           sha: data.sha
-          content: Base64.encode file_content
+          content: encoded_file_content
+        # Commit edited file
         put = $.put url,
           method: 'PUT'
           data: JSON.stringify load

@@ -1,4 +1,4 @@
-<form class="prevent-default">
+<form class="prevent-default"{% if include.schema %} data-schema="{{ include.schema }}"{% endif %}>
   <h3>Create schema</h3>
   <div data-type="string">
     <label for="path" markdown=1>File path (extension `.yml`)</label>
@@ -34,7 +34,7 @@
 </form>
 
 <!--
-          PROPERTY
+          PROPERTY TEMPLATE
 -->
 <template id="template-property">
   <details class="border-top" open>
@@ -190,6 +190,9 @@
   </div>
 </template>
 
+<!--
+          BOOLEAN TEMPLATE
+-->
 <template id="template-boolean"></template>
 
 {%- capture api -%}
@@ -199,26 +202,22 @@ Form to create an array schema, require {% include widgets/github_link.html path
 
 **Form sections**
 
-- `path` string field: required and ends with `.json`
-- `[schema-inject]` DIV for annotations and `#template-type` injection
+- `path`, `title` and `description` fileds
+- `[properties-inject]` DIV for items properties
 - `data-type="button"` section
 
 **Templates**
 
-- `#template-type`  
-  - Annotations
-  - Type selector
-  - `[type-inject]` for schema injection
+- `#template-property`
 - `#template-string`
 - `#template-number`
-- `#template-array`  
-  - `[items-type-inject]` for items type injection
-- `#template-object`  
-  - `[property-inject]` for property injection with name
+- `#template-integer`
+- `#template-boolean`
 
 ```liquid
 {% raw %}{% include form/schema-array.html %}{% endraw %}
 ```
+{:.minimal}
 
 **Properties**
 
