@@ -108,7 +108,7 @@ $('form').each ->
         if error == 'Not Found'
           load =
             message: "Create schema-array"
-            content: btoa file_content
+            content: Base64.encode file_content
           put = $.ajax url,
             method: 'PUT'
             data: JSON.stringify load
@@ -120,7 +120,7 @@ $('form').each ->
         load =
           message: "Edit schema-array"
           sha: data.sha
-          content: btoa file_content
+          content: Base64.encode file_content
         put = $.put url,
           method: 'PUT'
           data: JSON.stringify load

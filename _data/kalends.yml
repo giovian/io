@@ -1,5 +1,0 @@
-path: kalends.yml
-title: Kalends
-type: array
-items:
-  type: object
