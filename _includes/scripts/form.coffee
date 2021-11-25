@@ -26,12 +26,12 @@ $('form').each ->
   #
   # PROPERTY inject helper function
   # --------------------------------------
-  inject_property = (property_name) ->
-    prepend = "items[properties][#{slugify property_name}]"
+  inject_property = (key, value) ->
+    prepend = "items[properties][#{slugify key}]"
     template_property = get_template '#template-property', prepend
 
     # Update property title
-    template_property.find('summary').prepend document.createTextNode "#{property_name} "
+    template_property.find('summary').prepend document.createTextNode "#{key} "
 
     # Get string type
     selected_template = get_template "#template-string", prepend
@@ -45,6 +45,8 @@ $('form').each ->
   # Populate form
   if form.attr 'data-schema'
     schema_url = "{{ site.github.api_url }}/repos/{{ site.github.repository_nwo }}/contents/_data/#{form.attr 'data-schema'}"
+    # Disable form
+    form.find(":input").prop "disabled", true
     get_schema = $.get schema_url
     get_schema.done (data, status) ->
       # Get schema: decode from base 64 and parse as yaml
@@ -53,9 +55,12 @@ $('form').each ->
       form.find('[name="title"]').val schema.title
       form.find('[name="path"]').val schema.path
       form.find('[name="description"]').val schema.description
-      schema.items.properties?.each ->
-        console.log @
+      # schema.items.properties?.each ->
+      for own key, value of schema.items.properties
+        console.log key, value
+        inject_property key, value
       return
+    get_schema.always -> form.find(":input").prop "disabled", false
 
   # Update range output
   form.find("input[type=range]").each ->
@@ -147,7 +152,7 @@ $('form').each ->
           sha: data.sha
           content: encoded_file_content
         # Commit edited file
-        put = $.put url,
+        put = $.ajax url,
           method: 'PUT'
           data: JSON.stringify load
         put.done -> notification 'Edited', 'green'
