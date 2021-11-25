@@ -33,8 +33,11 @@ $('form').each ->
     # Update property title
     template_property.find('summary').prepend document.createTextNode "#{key} "
 
-    # Get string type
-    selected_template = get_template "#template-string", prepend
+    # Get property type
+    property_type = value?.type || 'string'
+    selected_template = get_template "#template-#{property_type}", prepend
+    for own key, property of value
+      selected_template.find("[name$='[#{key}]']").val property
     template_property.find('[type-inject]').append selected_template
 
     # Append
@@ -45,8 +48,8 @@ $('form').each ->
   # Populate form
   if form.attr 'data-schema'
     schema_url = "{{ site.github.api_url }}/repos/{{ site.github.repository_nwo }}/contents/_data/#{form.attr 'data-schema'}"
-    # Disable form
-    form.find(":input").prop "disabled", true
+    wait form
+    notification 'Reading schema file'
     get_schema = $.get schema_url
     get_schema.done (data, status) ->
       # Get schema: decode from base 64 and parse as yaml
@@ -55,12 +58,10 @@ $('form').each ->
       form.find('[name="title"]').val schema.title
       form.find('[name="path"]').val schema.path
       form.find('[name="description"]').val schema.description
-      # schema.items.properties?.each ->
       for own key, value of schema.items.properties
-        console.log key, value
         inject_property key, value
       return
-    get_schema.always -> form.find(":input").prop "disabled", false
+    get_schema.always -> dewait form
 
   # Update range output
   form.find("input[type=range]").each ->
@@ -128,8 +129,7 @@ $('form').each ->
       # Prepare variabiles
       encoded_file_content = Base64.encode jsyaml.dump(form.serializeJSON())
       url = "{{ site.github.api_url }}/repos/{{ site.github.repository_nwo }}/contents/_data/#{form.find('[name="path"]').val()}"
-      # Disable form
-      $(@).find(":input").prop "disabled", true
+      wait $(@)
       # Check if file already exist
       get_schema = $.get url
       get_schema.fail (request, status, error) ->
@@ -143,7 +143,7 @@ $('form').each ->
             method: 'PUT'
             data: JSON.stringify load
           put.done -> notification 'Created', 'green'
-          put.always -> $(@).find(":input").prop "disabled", false
+          put.always -> dewait $(@)
         return
       # File present, overwrite with sha reference
       get_schema.done (data, status) ->
@@ -156,7 +156,7 @@ $('form').each ->
           method: 'PUT'
           data: JSON.stringify load
         put.done -> notification 'Edited', 'green'
-        put.always -> $(@).find(":input").prop "disabled", false
+        put.always -> dewait $(@)
         return
     else notification 'You need to login', 'red'
 
