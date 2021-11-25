@@ -3,3 +3,7 @@ title: Kalends
 type: array
 items:
   type: object
+  properties:
+    date:
+      type: string
+      format: date
