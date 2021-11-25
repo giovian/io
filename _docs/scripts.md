@@ -21,4 +21,5 @@ order: 40
 {% include widgets/api.html include='scripts/focus.coffee' %}
 {% include widgets/api.html include='scripts/inview.coffee' %}
 {% include widgets/api.html include='scripts/update.coffee' %}
+{% include widgets/api.html include='scripts/wait.coffee' %}
 

@@ -7,7 +7,7 @@ login =
 login.login_link.on 'click', (e) ->
   e.preventDefault()
   token = prompt "Paste a GitHub personal token"
-  if !token then return
+  if !token then return else wait()
   storage.set 'login', {'token': token}
   notification 'Verifying'
   auth = $.get '{{ site.github.api_url }}/user'
@@ -45,6 +45,7 @@ login.setLogin = ->
   $('html').removeClass 'role-admin role-guest logged'
   storage.clear('login').clear 'repository'
   apply_family()
+  dewait()
   true
 
 login.setLogout = ->
@@ -52,6 +53,7 @@ login.setLogout = ->
   login.logout_link.attr 'title', login.text()
   storage.assign 'repository', {'sha': '{{ site.github.build_revision }}'}
   apply_family()
+  dewait()
   true
 
 # Immediately Invoked Function Expressions

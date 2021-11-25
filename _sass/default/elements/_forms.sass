@@ -56,7 +56,7 @@ form
     @extend .button
     margin: 0
   // Disabled
-  input:disabled, input[readonly], button:disabled
+  input:disabled, button:disabled, select:disabled, input[readonly]
     @extend .disabled
   // FONT SIZE and BORDER
   .button
@@ -83,7 +83,7 @@ form
     color: var(--fg)
 
   // Normal
-  div, .button, .button:active
+  .button, .button:active
     background: var(--bg)
     color: var(--fg)
 
@@ -142,3 +142,18 @@ form
   // Links align right
   [data-add], [data-remove]
     float: right
+
+//
+// LOADING STATE
+// --------------------------------------
+
+form.wait
+
+  div, input, textarea, select,
+  & > h3, & > h4,
+  [data-type=button], .button:hover
+    color: var(--fg-secondary)
+
+  a
+    pointer-events: none
+    color: var(--fg-secondary) !important

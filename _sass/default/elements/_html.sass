@@ -6,6 +6,10 @@ html
   background: var(--bg)
   color: var(--fg)
 
+  // Loading state
+  &.wait
+    cursor: wait
+
   // Sticky scroll
   @if $nav-sticky
     \:target
