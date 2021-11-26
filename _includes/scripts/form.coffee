@@ -36,8 +36,10 @@ $('form').each ->
     # Get property type
     property_type = value?.type || 'string'
     selected_template = get_template "#template-#{property_type}", prepend
+    # Set property values
     for own key, property of value
       selected_template.find("[name$='[#{key}]']").val property
+    # Append property
     template_property.find('[type-inject]').append selected_template
 
     # Append

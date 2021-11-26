@@ -35,5 +35,5 @@ update();
 ```
 {:.minimal}
 
-Active only in production: `{%raw%}{{ site.github.environment }}{%endraw%}=dotcom`.
+Active only in production: `{%raw%}{{ site.github.environment }}{%endraw%}=dotcom`{:.language-liquid}.
 {%- endcapture -%}
