@@ -16,4 +16,4 @@ defaults:
     values:
       layout: default
       login: true
-      sidebar: [ toc, navigation, notifications ]
+      sidebar: [ toc, navigation ]

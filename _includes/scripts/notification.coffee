@@ -1,33 +1,21 @@
 notification = (text, cls) ->
-  color = if cls then "color-#{cls}" else 'bg-secondary'
-  widget = $('#widget-notifications')
-  # Check if notifications widget is present
-  if widget.length
-    # Open widget and check for equal notifications
-    widget.attr 'open', ''
-    span = $('#widget-notifications').find("span:contains(#{text}):first")
-    if span.length
-      # Update old notification SPAN
-      span.attr 'datetime', new Date()
-      dateTime span
-    else
-      # Create notification SPAN
-      span = $('<span/>', {datetime: new Date(), text: text})
-      dateTime span
-      # Append DIV with classes and SPAN
-      $('#widget-notifications').append $('<div/>', {
-          class: "#{color} p-around mvh rounded"
-        }).append span
-  else
-    # Output to console
-    console.log "#{text}, #{color}, #{new Date()}"
+  # Create notification SPAN
+  span = $('<span/>', {datetime: new Date(), text: text})
+  dateTime span
+  # Create DIV and append elements to overlay
+  div = $('<div/>', {class: "#{if cls then "color-#{cls}" else 'bg-secondary'} p-around border-inline"})
+  $('#notifications').empty().append(div.append span)
+  # Timer to fade and expire
+  div.delay(3000).fadeOut('slow', -> div.remove())
+  # Output in console
+  console.log [text, cls || 'default', new Date()].join ', '
   return # end notification
 {%- capture api -%}
 ## Notification
 
-Render a notification inside the notifications widget with custom text, color and countdown/countup on hover.
+Render a notification on the navigation bar with custom text, color and elapsed time on hover.
 
-If the widget is not present the notification will be shown on console.
+The notification will be shown on console as well.
 
 ```coffee
 notification('text', 'color')
