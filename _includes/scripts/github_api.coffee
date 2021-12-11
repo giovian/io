@@ -24,9 +24,11 @@ request = (event) ->
   list = link.parents 'ul'
   # Send request
   $('html').addClass 'wait'
+  notification 'Requesting'
   api = $.ajax "{{ site.github.api_url }}/#{link.attr('href').replace '#', ''}",
     method: link.attr 'github-api-method'
   api.done (data, status) ->
+    notification 'Response received', 'green'
     # Loop out properties
     for out in link.attr('github-api-out').split(',')
       property = out.trim()
@@ -36,7 +38,7 @@ request = (event) ->
     return
   api.always -> $('html').removeClass 'wait'
   # Output error
-  api.fail (request, status, error)-> list.append "<li>#{status}: <code>#{request.status}</code> #{request.responseJSON?.message || ''} #{error}</li>"
+  api.fail (request, status, error)-> list.append "<li>#{status}: <code>#{request.status}</code> #{request.responseJSON?.message || error}</li>"
   return
 {%- capture api -%}
 ## GitHub API REST requests interface
