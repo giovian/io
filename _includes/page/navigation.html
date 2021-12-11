@@ -1,7 +1,7 @@
 {%- assign html_pages = site.html_pages | sort: "order" -%}
 {%- assign sorted_collections = site.collections | sort: "order" -%}
 <ul>
-  {% if html_pages.size > 1 or site.documents.size > 0 %}{% for link in html_pages %}<li><a href="{{ link.url | absolute_url }}"{% if page.url == link.url %} class="active"{% endif %}>{{ link.title }}</a></li>
+  {% if html_pages.size > 1 or site.documents.size > 0 %}{% for link in html_pages %}{% if link.title != 'Help' %}<li><a href="{{ link.url | absolute_url }}"{% if page.url == link.url %} class="active"{% endif %}>{{ link.title }}</a></li>{% endif %}
   {% endfor %}{% endif %}
   {% if site.documents.size > 0 %}{%- for collection in sorted_collections -%}{% if collection.docs.size > 0 %}
   <li>
