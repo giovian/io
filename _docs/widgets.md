@@ -63,8 +63,9 @@ order: 30
 
 ## Version
 
-The file {% include widgets/github_link.html path='_includes/version.html' %} contains only an hardcoded version string for when the repository is used as `remote_theme`.
+The file {% include widgets/github_link.html path='_includes/version.html' %} contains only an hardcoded version string. When the repository is used as `remote_theme` this string can be included.
 
 ```liquid
 {% raw %}{% include version.html %}{% endraw %}
 ```
+{:.minimal}

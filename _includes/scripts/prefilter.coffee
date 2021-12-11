@@ -5,7 +5,7 @@ $.ajaxPrefilter (options, ajaxOptions, request) ->
   options.cache = false
 
   # Fail function
-  request.fail (request, status, error) -> notification "#{status}: #{request.status} #{error}", 'red'
+  request.fail (request, status, error) -> notification "#{status}: #{request.status} #{request.responseJSON?.message || ''} #{error}", 'red'
 
   # Check request url
   if options.url.startsWith '{{ site.github.api_url }}'

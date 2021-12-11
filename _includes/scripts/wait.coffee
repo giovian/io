@@ -1,25 +1,27 @@
-wait = (form) ->
-  if form
-    form.find(":input").prop "disabled", true
-    form.addClass "wait"
+wait = (element) ->
+  if $(element)
+    $(element).attr "disabled", true
+    $(element).find(":input").prop "disabled", true
+    $('html').addClass "wait"
   $('html').addClass "wait"
   return
 
-dewait = (form) ->
-  if form
-    form.find(":input").prop "disabled", false
-    form.removeClass "wait"
+dewait = (element) ->
+  if $(element)
+    $(element).removeAttr "disabled"
+    $(element).find(":input").prop "disabled", false
+    $(element).removeClass "wait"
   $('html').removeClass "wait"
   return
 
 {%- capture api -%}
 ## Wait
 
-Apply or remove `.wait`{:.language-css} class to HTML and an optional FORM.
+Apply or remove `.wait`{:.language-css} class to HTML and an optional ELEMENT.
 
 ```js
-wait(form); // form is optional
-dewait(form); // form is optional
+wait(element);
+dewait(element);
 ```
 {:.minimal}
 {%- endcapture -%}
