@@ -24,6 +24,7 @@
 {% include scripts/inview.coffee %}         # In view Observer
 {% include scripts/update.coffee %}         # Check website is updated with repository
 {% include scripts/form.coffee %}           # Form engine
+{% include scripts/github_api.coffee %}     # Perform GitHub API REST requests
 
 # CUSTOM
 

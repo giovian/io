@@ -75,6 +75,47 @@ dateTime = (e) ->
   return # end dateTime
 
 $("[datetime]").each -> dateTime @
+
+timeDiff = (date) ->
+  second = 1000
+  minute = second * 60
+  hour = minute * 60
+  day = hour * 24
+  week = day * 7
+  month = day * 30.42
+  year = week * 52.14
+  diff = new Date().getTime() - (new Date(Date.parse date).getTime())
+  absolute = Math.abs diff
+
+  # Define functions
+  s = (value) -> if value > 1 then 's' else ''
+  get_value = (unit) -> Math.round absolute / unit
+
+  switch
+    when !get_value second
+      moment = "now"
+    when absolute < minute
+      value = get_value second
+      moment = "#{value} second#{s value}"
+    when absolute < hour - minute
+      value = get_value minute
+      moment = "#{value} minute#{s value}"
+    when absolute < day
+      value = get_value hour
+      moment = "#{value} hour#{s value}"
+    when absolute < week * 2
+      value = get_value day
+      moment = "#{value} day#{s value}"
+    when absolute < week * 3.5
+      value = get_value week
+      moment = "#{value} week#{s value}"
+    when absolute < year - month
+      value = get_value month
+      moment = "#{value} month#{s value}"
+    else
+      value = get_value year
+      moment = "#{value} year#{s value}"
+  return if moment is "now" then "now" else if diff > 0 then "#{moment} ago" else "in #{moment}"
 {%- capture api -%}
 ## Datetime
 
