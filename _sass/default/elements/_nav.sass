@@ -8,14 +8,12 @@ nav
 
   // COLORS
   background: var(--bg)
-  box-shadow: 0 5px 10px var(--bg)
-  @extend .border-bottom
+  @extend .border-bottom, .shadow
 
   .wrapper
 
     // FLEX
     display: flex
-    justify-content: space-between
 
     & > span
       @extend .p-around
@@ -26,7 +24,7 @@ nav
       display: flex
 
       // RESET LIST
-      margin: 0
+      margin: 0 0 0 auto
       padding-left: 0
       list-style: none
 

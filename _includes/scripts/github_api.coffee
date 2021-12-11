@@ -1,8 +1,10 @@
 $('ul[github-api-url]').each ->
+  # Variabiles
   ul = $ @
   url = ul.attr('github-api-url').replace 'repos', 'repos/{{ site.github.repository_nwo }}'
   out = ul.attr('github-api-out') || 'created_at'
   method = ul.attr('github-api-method') || 'GET'
+  # Create link
   link = $('<a/>',
     text: ul.attr('github-api-text') || url
     href: "##{url}"
@@ -11,24 +13,29 @@ $('ul[github-api-url]').each ->
     'title': "#{method}: #{url} [#{out}]"
     'class': 'prevent-default'
   )
+  # Link event and append
   link.on 'click', (e) -> request e
   ul.append $('<li/>').append(link)
-  return
+  return # end widgets loop
 
 request = (event) ->
+  # Variabiles
   link = $ event.target
   list = link.parents 'ul'
-  wait()
+  # Send request
+  $('html').addClass 'wait'
   api = $.ajax "{{ site.github.api_url }}/#{link.attr('href').replace '#', ''}",
     method: link.attr 'github-api-method'
   api.done (data, status) ->
+    # Loop out properties
     for out in link.attr('github-api-out').split(',')
       property = out.trim()
       raw_value = data[property] || 'ok'
       value = if Date.parse raw_value then timeDiff raw_value else raw_value
       list.append "<li>#{property} <code>#{value}</code></li>"
     return
-  api.always -> dewait()
+  api.always -> $('html').removeClass 'wait'
+  # Output error
   api.fail (request, status, error)-> list.append "<li>#{status}: <code>#{request.status}</code> #{request.responseJSON?.message || ''} #{error}</li>"
   return
 {%- capture api -%}

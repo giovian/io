@@ -8,7 +8,6 @@
 {% include scripts/toc.coffee %}            # Move toc to sidebar
 {% include scripts/apply_family.coffee %}   # Apply classes to parents/childrens
 {% include scripts/slugify.coffee %}        # Function for string slug
-{% include scripts/wait.coffee %}           # Wait and dewait functions
 
 # WIDGETS
 

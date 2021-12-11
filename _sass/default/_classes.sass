@@ -1,3 +1,4 @@
+// COLORS
 .bg
   background: var(--bg)
 .bg-secondary
@@ -6,6 +7,11 @@
   color: var(--fg)
 .fg-secondary
   color: var(--fg-secondary)
+[class*='color-']
+  background: var(--bg)
+  color: var(--fg)
+.shadow
+  box-shadow: 0 5px 10px var(--bg)
 
 // Display
 .hidden, [hidden], template
@@ -17,10 +23,6 @@
 .block
   display: block
 
-.wrapper
-  max-width: $max-width
-  margin: 0 auto
-
 // PADDINGS
 .p-around
   padding: $space*.7 $space
@@ -30,8 +32,6 @@
 // BUTTONS
 .button
   cursor: pointer
-.disabled
-  cursor: not-allowed
 
 // MARGINS
 // Margin vertical full
@@ -56,6 +56,12 @@
   border-top: $border-small solid var(--border)
 .border-right
   border-right: $border-small solid var(--border)
+.border-left
+  border-left: $border-small solid var(--border)
+.border-block
+  @extend .border-top, .border-bottom
+.border-inline
+  @extend .border-left, .border-right
 // Rounded
 .rounded
   border-radius: $border-big
@@ -68,8 +74,3 @@
 .flex
   display: flex
   flex-direction: row
-
-// COLORS
-[class*='color-']
-  background: var(--bg)
-  color: var(--fg)

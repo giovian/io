@@ -6,7 +6,7 @@ login =
 
 login.login_link.on 'click', (e) ->
   token = prompt "Paste a GitHub personal token"
-  if !token then return else wait()
+  if !token then return else $('html').addClass 'wait'
   storage.set 'login', {'token': token}
   notification 'Verifying'
   auth = $.get '{{ site.github.api_url }}/user'
@@ -44,7 +44,7 @@ login.setLogin = ->
   $('html').removeAttr 'user'
   storage.clear('login').clear 'repository'
   apply_family()
-  dewait()
+  $('html').removeClass 'wait'
   true
 
 login.setLogout = ->
@@ -53,7 +53,7 @@ login.setLogout = ->
   login.logout_link.attr 'title', login.text()
   storage.assign 'repository', {'sha': '{{ site.github.build_revision }}'}
   apply_family()
-  dewait()
+  $('html').removeClass "wait"
   true
 
 # Immediately Invoked Function Expressions

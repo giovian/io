@@ -5,6 +5,10 @@ section
   // Prevent overflow
   width: 100%
 
+.wrapper
+  max-width: $max-width
+  margin: 0 auto
+
 // Remove top and bottom margins of the first and last elements
 hgroup, form, blockquote, section, aside, article
   & > *:first-child
@@ -13,8 +17,7 @@ hgroup, form, blockquote, section, aside, article
     margin-bottom: 0
 
 // Cursor on title attribute
-[title],
-abbr
+[title], abbr
   cursor: default
 // Not for clickable elements
 a, button, summary

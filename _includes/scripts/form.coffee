@@ -50,7 +50,7 @@ $('form').each ->
   # Populate form
   if form.attr 'data-schema'
     schema_url = "{{ site.github.api_url }}/repos/{{ site.github.repository_nwo }}/contents/_data/#{form.attr 'data-schema'}"
-    wait form
+    $('html').addClass 'wait'
     notification 'Reading schema file'
     get_schema = $.get schema_url
     get_schema.done (data, status) ->
@@ -63,7 +63,7 @@ $('form').each ->
       for own key, value of schema.items.properties
         inject_property key, value
       return
-    get_schema.always -> dewait form
+    get_schema.always -> $('html').removeClass 'wait'
 
   # Update range output
   form.find("input[type=range]").each ->
@@ -131,7 +131,7 @@ $('form').each ->
       # Prepare variabiles
       encoded_file_content = Base64.encode jsyaml.dump(form.serializeJSON())
       url = "{{ site.github.api_url }}/repos/{{ site.github.repository_nwo }}/contents/_data/#{form.find('[name="path"]').val()}"
-      wait $(@)
+      $('html').addClass 'wait'
       # Check if file already exist
       get_schema = $.get url
       get_schema.fail (request, status, error) ->
@@ -145,7 +145,7 @@ $('form').each ->
             method: 'PUT'
             data: JSON.stringify load
           put.done -> notification 'Created', 'green'
-          put.always -> dewait $(@)
+          put.always -> $('html').removeClass 'wait'
         return
       # File present, overwrite with sha reference
       get_schema.done (data, status) ->
@@ -158,7 +158,7 @@ $('form').each ->
           method: 'PUT'
           data: JSON.stringify load
         put.done -> notification 'Edited', 'green'
-        put.always -> dewait $(@)
+        put.always -> $('html').removeClass 'wait'
         return
     else notification 'You need to login', 'red'
 
