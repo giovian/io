@@ -5,7 +5,6 @@ login =
   text: -> "Logged as #{login.storage()['user']} (#{login.storage()['role']})"
 
 login.login_link.on 'click', (e) ->
-  e.preventDefault()
   token = prompt "Paste a GitHub personal token"
   if !token then return else wait()
   storage.set 'login', {'token': token}
@@ -36,13 +35,13 @@ login.permissions = ->
   true
 
 login.logout_link.on 'click', (e) ->
-  e.preventDefault()
   login.setLogin()
   notification 'Logged out'
   true
 
 login.setLogin = ->
   $('html').removeClass 'role-admin role-guest logged'
+  $('html').removeAttr 'user'
   storage.clear('login').clear 'repository'
   apply_family()
   dewait()
@@ -50,6 +49,7 @@ login.setLogin = ->
 
 login.setLogout = ->
   $('html').addClass "role-#{login.storage()['role']} logged"
+  $('html').attr 'user', login.storage()['user']
   login.logout_link.attr 'title', login.text()
   storage.assign 'repository', {'sha': '{{ site.github.build_revision }}'}
   apply_family()
