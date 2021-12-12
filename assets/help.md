@@ -28,12 +28,12 @@ sidebar: []
 </ul>
 <div apply-if-parent='hidden|html:not(.role-admin)'>
   <strong>Builds</strong>
-  <ul github-api-url='repos/pages/builds/latest' github-api-text='Latest' github-api-out='status, created_at'></ul>
+  <ul github-api-url='repos/pages/builds/latest' github-api-text='Latest' github-api-out='status, created_at, duration'></ul>
   <strong>Request a build</strong>
   <ul github-api-url='repos/pages/builds' github-api-method='POST' github-api-out='status'></ul>
-  <strong>Functions</strong>
-  <ul>
-    <li switch-boolean='functions|check_build'></li>
-    <li switch-boolean='functions|check_remote'></li>
-  </ul>
 </div>
+<strong>Functions</strong>
+<ul>
+  <li switch-boolean='functions|check_build'></li>
+  <li apply-if-parent='hidden|html:not(.role-admin)' switch-boolean='functions|check_remote'></li>
+</ul>
