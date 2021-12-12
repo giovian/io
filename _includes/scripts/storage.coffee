@@ -7,10 +7,12 @@ storage =
   concat: (key, array) -> storage.set key, (storage.get(key) || []).concat array
   assign: (key, object) -> storage.set key, Object.assign(storage.get(key) || {}, object)
   set: (key, value) ->
-    if key and value
-      obj = storage.get_object()
-      obj[key] = value
-      storage.set_object obj
+    if key
+      if value and not jQuery.isEmptyObject value
+        obj = storage.get_object()
+        obj[key] = value
+        storage.set_object obj
+      else storage.clear key
     return storage
   clear: (key) ->
     if key
