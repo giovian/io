@@ -31,4 +31,9 @@ sidebar: []
   <ul github-api-url='repos/pages/builds/latest' github-api-text='Latest' github-api-out='status, created_at'></ul>
   <strong>Request a build</strong>
   <ul github-api-url='repos/pages/builds' github-api-method='POST' github-api-out='status'></ul>
+  <strong>Functions</strong>
+  <ul>
+    <li switch-boolean='functions|check_build'></li>
+    <li switch-boolean='functions|check_remote'></li>
+  </ul>
 </div>
