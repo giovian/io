@@ -1,3 +1,64 @@
+// FONTS
+input, select, textarea, button, option
+  font-family: inherit
+  font-size: inherit
+  line-height: inherit
+
+// BORDERS MARGINS and BLOCK
+// --------------------------------------
+input:not([type=range]), textarea, select
+  @extend .border
+  margin-top: $space*.2
+  margin-bottom: $space*.1
+  border-radius: $border-medium
+
+// RESET and PADDINGS
+input:not([type=range]), textarea, select
+  appearance: none
+  -webkit-appearance: none
+  padding: 1px 5px
+input[type=color]
+  padding: 0
+
+// BG Secondary
+input, textarea, select,
+  background: var(--bg-secondary)
+  color: var(--fg)
+
+// TWEAKS
+// --------------------------------------
+
+// COLOR swatch border hack
+input[type="color"]
+  &::-moz-color-swatch
+    border: none
+  &::-webkit-color-swatch
+    border: none
+
+// Hide number ARROWS
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button
+  -webkit-appearance: none !important
+input[type=number]
+  -moz-appearance: textfield !important
+
+// Range OUTPUT
+output
+  position: relative
+  top: $space*-.5
+  left: $space*.3
+
+// RANGE and SELECT cursor
+input[type=range], select
+  cursor: pointer !important
+
+// Empty multiple select min-width
+select[multiple] option[value=""]:only-of-type
+  min-width: $space*5
+
+//
+// Inside FORMS
+// --------------------------------------
 form
   @extend .border, .mv, .rounded, .inline-block
   
@@ -14,13 +75,6 @@ form
     padding: $space/2 $space*.7
     margin: 0
 
-  // Fonts and Outline
-  input, select, textarea, button, option
-    font-family: inherit
-    font-size: inherit
-    line-height: inherit
-    // outline: none
-
   //
   // LABELS & SPANS
   // --------------------------------------
@@ -31,11 +85,6 @@ form
   //
   // BORDERS MARGINS and BLOCK
   // --------------------------------------
-  input:not([type=range]), textarea, select
-    @extend .border
-    margin-top: $space*.2
-    margin-bottom: $space*.1
-    border-radius: $border-medium
   & > h3, & > p
     @extend .border-bottom
   div.grid > div:not(:last-child)
@@ -63,20 +112,11 @@ form
     font-size: 92%
     @extend .border, .p-around, .rounded
 
-  // RESET and PADDINGS
-  input:not([type=range]), textarea, select
-    appearance: none
-    -webkit-appearance: none
-    padding: 1px 5px
-  input[type=color]
-    padding: 0
-
   //
   // COLORS
   // --------------------------------------
 
   // BG Secondary
-  input, textarea, select,
   & > h3, & > h4,
   [data-type=button], .button:hover
     background: var(--bg-secondary)
@@ -104,56 +144,9 @@ form
     @extend .block
 
   //
-  // TWEAKS
-  // --------------------------------------
-
-  // COLOR swatch border hack
-  input[type="color"]
-    &::-moz-color-swatch
-      border: none
-    &::-webkit-color-swatch
-      border: none
-
-  // Hide number ARROWS
-  input::-webkit-outer-spin-button,
-  input::-webkit-inner-spin-button
-    -webkit-appearance: none !important
-  input[type=number]
-    -moz-appearance: textfield !important
-
-  // Range OUTPUT
-  output
-    position: relative
-    top: $space*-.5
-    left: $space*.3
-
-  // RANGE and SELECT cursor
-  input[type=range], select
-    cursor: pointer !important
-
-  // Empty multiple select min-width
-  select[multiple] option[value=""]:only-of-type
-    min-width: $space*5
-
-  //
   // SCHEMA ARRAY
   // --------------------------------------
 
   // Links align right
   [data-add], [data-remove]
     float: right
-
-//
-// LOADING STATE
-// --------------------------------------
-
-form.wait
-
-  div, input, textarea, select,
-  & > h3, & > h4,
-  [data-type=button], .button:hover
-    color: var(--fg-secondary)
-
-  a
-    pointer-events: none
-    color: var(--fg-secondary) !important
