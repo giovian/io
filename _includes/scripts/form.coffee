@@ -27,7 +27,7 @@ $('form').each ->
   # PROPERTY inject helper function
   # --------------------------------------
   inject_property = (key, value) ->
-    prepend = "items[properties][#{slugify key}]"
+    prepend = "items[properties][#{slug key}]"
     template_property = get_template '#template-property', prepend
 
     # Update property title

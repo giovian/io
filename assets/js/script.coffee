@@ -7,7 +7,7 @@
 {% include scripts/prefilter.coffee %}      # Prefilter for Ajax calls
 {% include scripts/toc.coffee %}            # Move toc to sidebar
 {% include scripts/apply_family.coffee %}   # Apply classes to parents/childrens
-{% include scripts/slugify.coffee %}        # Function for string slug
+{% include scripts/slug.coffee %}        # Function for string slug
 
 # WIDGETS
 
@@ -24,6 +24,7 @@
 {% include scripts/update.coffee %}         # Check website is updated with repository
 {% include scripts/form.coffee %}           # Form engine
 {% include scripts/github_api.coffee %}     # Perform GitHub API REST requests
+{% include scripts/switch.coffee %}         # Function for string slug
 
 # CUSTOM
 
