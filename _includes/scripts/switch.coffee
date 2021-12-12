@@ -10,16 +10,18 @@ $('[switch-boolean]').each ->
       obj = storage.get(property) || {}
       if e.target.value is 'true' then obj[value] = true else delete obj[value]
       storage.set property, obj
-      notification "#{property} #{value} set to <strong>#{e.target.value}</strong>"
+      notification "#{property} #{value} set to <strong>#{e.target.value}</strong>", 'green'
       return
     element.empty().text("#{property} #{value}: ").append select
   return
 {%- capture api -%}
 ## Switch
 
-Manage on/off switches and store a `value` in the browser local storage `property`. It is an HTML element with a `switch` attribute in the format `property|value`.
+Manage boolean switches of a `value` in the browser local storage `property`. It is an HTML element with a `switch` attribute in the format `property|value`.
 
 ```html
-<span switch='property|value'><span>
+<span switch-boolean='property|value'><span>
 ```
+
+Will inject a select element with `True` and `False` options: the selected option is saved in the `storage`.
 {%- endcapture -%}

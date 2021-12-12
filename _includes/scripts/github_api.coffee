@@ -41,9 +41,9 @@ request = (event) ->
   api.fail (request, status, error)-> list.append "<li>#{status}: <code>#{request.status}</code> #{request.responseJSON?.message || error}</li>"
   return
 {%- capture api -%}
-## GitHub API REST requests interface
+## GitHub API
 
-A LIST element `<ul>`{:.language-html} with `github-api-url` attribute.
+The GitHub API REST requests interface is a LIST element `<ul>`{:.language-html} with `github-api-url` attribute.
 
 ```html
 <ul github-api-url='repos/pages/builds'></ul>
@@ -51,8 +51,10 @@ A LIST element `<ul>`{:.language-html} with `github-api-url` attribute.
 
 **Attributes**
 
-- `github-api-url`: the endpoint for the request. `repos` will be replaced with the repository full name.
+- `github-api-url`: the endpoint for the request.  
+  `repos` will be replaced with the repository full name.
 - `github-api-method`: default to `GET`
-- `github-api-out`: comma separated list of response properties to show. Default to `created_at`
+- `github-api-out`: comma separated list of response properties to show.  
+  Default to `created_at`
 - `github-api-text`: optional text for the link. Default to the endpoint
 {%- endcapture -%}

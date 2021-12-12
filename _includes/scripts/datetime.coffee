@@ -134,12 +134,5 @@ dateTime(span)
 ```
 {:.minimal}
 
-**Options**
-
-- `datetime`: the datetime, default "now"
-- `time`: hour time in the for "hh:mm" or "hh:mm:ss"
-- `text`: text to show, default is datetime in the form yyyy-mm-ddThh:mm:ss+hh:mm
-- `title`: title attribute on hover, default to datetime in the form yyyy-mm-ddThh:mm:ss+hh:mm
-- `embed`: append countdown or countup to the text
-- `replace`: will replace the date with countdown/countup
+Include a function `timeDiff(datetime)`{:.language-coffee} returning the countdown/countup.
 {%- endcapture -%}

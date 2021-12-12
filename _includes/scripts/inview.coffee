@@ -27,7 +27,7 @@ inview = (configuration = {}, options = {}) ->
 ## In view
 
 Observer for elements inside viewport.
-```cs
+```coffee
 inview(config, options)
 ```
 

@@ -6,11 +6,11 @@ window.onblur = -> focus = false
 
 Boolean variabile `focus` indicate browser page focus status.
 
-```cs
+```coffee
 if focus
-  // window is focused
+  # window is focused
 else
-  // window is blurred
+  # window is blurred
 ```
 {:.minimal}
 {%- endcapture -%}

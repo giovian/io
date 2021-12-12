@@ -22,7 +22,7 @@ The notification will be shown on console as well.
 notification('text', 'color')
 ```
 
-**Options**
+**Arguments**
 
 - `text`: text to show
 - `color`: added as class with prepended `.color-`{:.language-sass}.  

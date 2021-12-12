@@ -65,47 +65,47 @@ If logged:
 
 **GET**
 
-```cs
-// Return whole object { ... }
+```coffee
+# Return whole object { ... }
 storage.get()
-// Return value (can be number, string, array, object), key is a dot notation
+# Return value (can be number, string, array, object), key is a dot notation
 storage.get("key")
 storage.get("key.nested.property")
-// Return object's property
+# Return object's property
 storage.get("object")["property"]
-// Return index element of array
+# Return index element of array
 storage.get("array")[index]
 ```
 **SET**
-```cs
-// Store { key: value } (can be number, string, array, object)
+```coffee
+# Store { key: value } (can be number, string, array, object)
 storage.set("key", value)
 ```
 **PUSH**
-```cs
-// Push element to array
+```coffee
+# Push element to array
 storage.push("array", element)
 ```
 **CONCAT**
-```cs
-// Store array's merge
+```coffee
+# Store array's merge
 storage.concat("array", [array])
 ```
 **ASSIGN**
-```cs
-// Store merged objects
+```coffee
+# Store merged objects
 storage.assign("object", object)
 ```
 **CLEAR**
-```cs
-// Return storage, remove localStorage key
+```coffee
+# Return storage, remove localStorage key
 storage.clear()
-// Return storage, remove { key: value, ... }
+# Return storage, remove { key: value, ... }
 storage.clear("key")
 ```
 **CONSOLE**
-```cs
-// Show storage objects in web console
+```coffee
+# Show storage objects in web console
 storage.console()
 ```
 {%- endcapture -%}
