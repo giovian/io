@@ -12,10 +12,9 @@ $.ajaxPrefilter (options, ajaxOptions, request) ->
     # Check personal token
     if login.storage()["token"]
       # Set GitHub headers
-      options.headers = {
+      options.headers =
         "Authorization": "token #{login.storage()['token']}"
         "Accept": "application/vnd.github.v3+json"
-      }
     else
       options.headers = { "Accept": "application/vnd.github.v3+json" }
 
