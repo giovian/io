@@ -16,8 +16,8 @@ check_update = ->
       if data[0].sha is $('meta[name=repository_sha]').attr('content')
         notification 'Build is updated', 'green'
       else
-        # Refresh no cache
-        location.reload true
+        # Refresh with the new SHA as hash
+        window.location.assign "#{location.origin}#{location.pathname}##{data[0].sha}"
 
       return # end ajax done
 
