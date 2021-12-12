@@ -24,11 +24,11 @@ request = (event) ->
   list = link.parents 'ul'
   # Send request
   $('html').addClass 'wait'
-  notification 'Requesting'
+  notification 'Requesting API'
   api = $.ajax "{{ site.github.api_url }}/#{link.attr('href').replace '#', ''}",
     method: link.attr 'github-api-method'
   api.done (data, status) ->
-    notification 'Response received', 'green'
+    notification 'API response received', 'green'
     # Loop out properties
     for out in link.attr('github-api-out').split(',')
       property = out.trim()
