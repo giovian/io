@@ -3,9 +3,10 @@ title: Help
 permalink: help/
 sidebar: []
 ---
-{% include page/init.html %}
+{%- include page/init.html -%}
 # Help
-
+<div class="grid">
+  <div markdown="1">
 **Repository**
 - <https://github.com/{{ gh.repository_nwo }}>
 - Owner type `{{ repo.owner.type }}`
@@ -26,14 +27,18 @@ sidebar: []
   <li><span apply-if-parent='hidden|html:not(.logged)'>Logged as <span apply-if-parent='hidden|html:not(.role-admin)'>admin</span><span apply-if-parent='hidden|html:not(.role-guest)'>guest</span></span><span apply-if-parent='hidden|.logged'>Not logged</span></li>
   {% include widgets/login.html %}
 </ul>
-<div apply-if-parent='hidden|html:not(.role-admin)'>
-  <strong>Builds</strong>
-  <ul github-api-url='repos/pages/builds/latest' github-api-text='Latest' github-api-out='status, created_at'></ul>
-  <strong>Request a build</strong>
-  <ul github-api-url='repos/pages/builds' github-api-method='POST' github-api-out='status'></ul>
+  </div>
+  <div markdown="1">
+{% if site.github.environment == 'dotcom' %}<div apply-if-parent='hidden|html:not(.role-admin)' markdown="1">
+**Builds**
+<ul github-api-url='repos/pages/builds/latest' github-api-text='Latest' github-api-out='status, created_at'></ul>
+**Request a build**
+<ul github-api-url='repos/pages/builds' github-api-method='POST' github-api-out='status'></ul>
 </div>
-{% if site.github.environment == 'dotcom' %}<strong>Functions</strong>
+**Functions**
 <ul>
   <li switch-boolean='functions|check_build'></li>
   {% if site.remote_theme %}<li apply-if-parent='hidden|html:not(.role-admin)' switch-boolean='functions|check_remote'></li>{% endif %}
 </ul>{% endif %}
+  </div>
+</div>
