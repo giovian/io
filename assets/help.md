@@ -35,5 +35,5 @@ sidebar: []
 <strong>Functions</strong>
 <ul>
   <li switch-boolean='functions|check_build'></li>
-  <li apply-if-parent='hidden|html:not(.role-admin)' switch-boolean='functions|check_remote'></li>
+  {% if site.remote_theme %}<li apply-if-parent='hidden|html:not(.role-admin)' switch-boolean='functions|check_remote'></li>{% endif %}
 </ul>

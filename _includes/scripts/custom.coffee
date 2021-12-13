@@ -1,1 +1,1 @@
-update()
+storage.console()

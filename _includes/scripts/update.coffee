@@ -1,5 +1,3 @@
-update = -> setTimeout check_update, 60 * 1000
-
 check_update = ->
 
   if "{{ site.github.environment }}" is "dotcom"
@@ -23,6 +21,8 @@ check_update = ->
 
   return # end check_update
 
+# Start updates
+update = -> setTimeout check_update, 60 * 1000
 {%- capture api -%}
 ## Update
 
