@@ -9,7 +9,8 @@ check_build = ->
       # Update SHA on storage
       storage.assign 'repository', {sha: data[0].sha}
       # Refresh with the new SHA as hash
-      window.location.assign "#{location.origin}#{location.pathname}##{data[0].sha}"
+      location.assign "#{location.origin}#{location.pathname}##{data[0].sha}"
+      location.reload true
     return
   return # end Build check
 
@@ -48,4 +49,4 @@ checks = ->
   return # end checks
 
 # Start checks
-if '{{ site.github.environment }}' is 'development' then setTimeout checks, 60 * 1000
+if '{{ site.github.environment }}' is 'dotcom' then setTimeout checks, 60 * 1000
