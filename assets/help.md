@@ -28,12 +28,12 @@ sidebar: []
 </ul>
 <div apply-if-parent='hidden|html:not(.role-admin)'>
   <strong>Builds</strong>
-  <ul github-api-url='repos/pages/builds/latest' github-api-text='Latest' github-api-out='status, created_at, duration'></ul>
+  <ul github-api-url='repos/pages/builds/latest' github-api-text='Latest' github-api-out='status, created_at'></ul>
   <strong>Request a build</strong>
   <ul github-api-url='repos/pages/builds' github-api-method='POST' github-api-out='status'></ul>
 </div>
-<strong>Functions</strong>
+{% if site.github.environment == 'dotcom' %}<strong>Functions</strong>
 <ul>
   <li switch-boolean='functions|check_build'></li>
   {% if site.remote_theme %}<li apply-if-parent='hidden|html:not(.role-admin)' switch-boolean='functions|check_remote'></li>{% endif %}
-</ul>
+</ul>{% endif %}

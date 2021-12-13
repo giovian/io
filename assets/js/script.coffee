@@ -21,7 +21,7 @@
 
 {% include scripts/focus.coffee %}          # Check website browser tab is focused
 {% include scripts/inview.coffee %}         # In view Observer
-{% include scripts/checks.coffee %}         # Check website is updated with repository and remote theme
+{% include scripts/checks.coffee %}         # Check repository and remote theme updates
 {% include scripts/form.coffee %}           # Form engine
 {% include scripts/github_api.coffee %}     # Perform GitHub API REST requests
 {% include scripts/switch.coffee %}         # Interface for storage switches

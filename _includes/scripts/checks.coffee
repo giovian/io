@@ -37,8 +37,8 @@ check_remote = ->
 # Dispatch
 checks = ->
   # Check again i 1 or 10 minutes depending on logged or unauthenticated
+  minutes = 1
   if $('html').hasClass 'logged'
-    minutes = 1
     # Check remote_theme
     if storage.get('functions.check_remote') and $('meta[name=remote_theme]').attr 'content' then check_remote()
   else minutes = 10
