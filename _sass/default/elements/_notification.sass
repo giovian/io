@@ -1,2 +1,9 @@
-#notifications > div
-  @extend .p-around, .border-inline
+#notifications
+  position: fixed
+  width: 100%
+  z-index: 2000
+  & > div
+    @extend .shadow, .p-around, .border-bottom
+    span
+      @extend .block
+      text-align: center
