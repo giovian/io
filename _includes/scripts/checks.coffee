@@ -50,3 +50,16 @@ checks = ->
 
 # Start checks
 if '{{ site.github.environment }}' is 'dotcom' then setTimeout checks, 60 * 1000
+{%- capture api -%}
+## Checks
+
+Include the functions `check_build` and (if the site use a remote theme) `check_remote`. The functions can be activated in the Help page.  
+
+`check_build`: every pageload wait 1 minute and compare website `build_revision` SHA with repository latest commit: if they are different, reload the page with the SHA as hash.  
+
+`check_remote`: every pageload wait 1 minute and compare the remote theme latest commit and compare with previous stored SHA: if they are different, request a new pages build.  
+
+Subsequent checks are every 10 minutes for unauthenticated users and every minute for logged ones.  
+
+This script is active only in production: `{%raw%}{{ site.github.environment }}{%endraw%}=dotcom`{:.language-liquid}.
+{%- endcapture -%}
