@@ -23,6 +23,18 @@
       scroll-snap-margin-top: 0
 
   //
+  // NOTIFICATION
+  // --------------------------------------
+  #notifications
+    position: fixed
+    width: 100%
+    & > div
+      box-shadow: 0 5px 10px var(--bg)
+      border-bottom: $border-small solid var(--border)
+      border-left: 0
+      border-right: 0
+
+  //
   // NAV
   // --------------------------------------
   nav
@@ -36,6 +48,7 @@
 
       & > ul
         display: block
+        margin-left: 0
         padding-left: $space
         padding-bottom: $space
         li

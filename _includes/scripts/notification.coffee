@@ -4,7 +4,7 @@ notification = (code, cls) ->
   dateTime span
   # Create DIV and append elements to overlay
   div = $ '<div/>',
-    class: "#{if cls then "color-#{cls}" else 'bg-secondary'} p-around border-inline"
+    class: "#{if cls then "color-#{cls}" else 'bg-secondary'}"
   $('#notifications').empty().append(div.append span)
   # Timer to fade and expire
   div.delay(3000).fadeOut('slow', -> div.remove())
