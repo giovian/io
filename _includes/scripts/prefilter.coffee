@@ -18,12 +18,13 @@ $.ajaxPrefilter (options, ajaxOptions, request) ->
     else
       options.headers = { "Accept": "application/vnd.github.v3+json" }
 
-  # Wait and dewait
-  request.beforeSend -> $('html').addClass 'wait'
+  # Dewait
   request.always -> $('html').removeClass 'wait'
 
   return # end Prefilter
 
+# Ajax send (wait)
+$( document ).ajaxSend -> $('html').addClass 'wait'
 {%- capture api -%}
 ## Ajax prefilter
 
