@@ -14,7 +14,7 @@ sidebar: []
 - Created {% include widgets/datetime.html datetime=repo.created_at replace=true %}
 - Modified {% include widgets/datetime.html datetime=repo.modified_at replace=true %}
 - Sha `{{ gh.build_revision | slice: 0, 7 }}`
-- Release `{{ gh.releases | first | map: 'tag_name' | default: '-' }}`
+- Release `{{ gh.releases | first | map: 'tag_name' | default: '-' }}` `{{ gh.releases | first | map: 'name' | default: '-' }}`
 {% if site.remote_theme %}
 
 **Remote**
