@@ -1,21 +1,21 @@
 #
 # Initialize serializeJSON
 # --------------------------------------
-$.serializeJSON.defaultOptions.skipFalsyValuesForTypes = "string,number,boolean,date".split ","
+$.serializeJSON.defaultOptions.skipFalsyValuesForTypes = 'string,number,boolean,date'.split ','
 
 #
 # TEMPLATE helper function
 # --------------------------------------
 get_template = (e, prepend) ->
   if prepend
-    template = $ $(e).clone().prop "content"
+    template = $ $(e).clone().prop 'content'
     # Update labels [for]
-    template.find('label[for]').each -> $(@).attr "for", (i, val) -> "#{prepend}[#{val}]"
+    template.find('label[for]').each -> $(@).attr 'for', (i, val) -> "#{prepend}[#{val}]"
     # Update inputs [name]
     template.find(':input[name]').attr 'name', (i, val) -> "#{prepend}[#{val}]"
     return template
   else
-    return $ $(e).clone().prop "content"
+    return $ $(e).clone().prop 'content'
 
 #
 # ACTIVATION function
@@ -93,12 +93,12 @@ $('form.schema-array').each ->
   # FORM EVENTS
   # --------------------------------------
   # FORM Change
-  form.on "change", ':input', (e) ->
+  form.on 'change', ':input', (e) ->
     # console.log $(e.target).attr 'name'
     return
 
   # Reset
-  form.on "reset", ->
+  form.on 'reset', ->
     # Remove array items and reset index
     # form.find("[array-item]").remove()s
 
@@ -108,13 +108,14 @@ $('form.schema-array').each ->
     return # end Reset handler
 
   # Submit
-  form.on "submit", ->
+  form.on 'submit', ->
 
     # Check user is logged
     if $('html').hasClass 'logged'
       # Prepare variabiles
       encoded_file_content = Base64.encode jsyaml.dump(form.serializeJSON())
       url = "{{ site.github.api_url }}/repos/{{ site.github.repository_nwo }}/contents/_data/#{form.find('[name="$id"]').val()}.yml"
+      notification 'Check if file exist'
       # Check if file already exist
       get_schema = $.get url
       get_schema.fail (request, status, error) ->
@@ -124,6 +125,7 @@ $('form.schema-array').each ->
             message: "Create schema-array"
             content: encoded_file_content
           # Commit new file
+          notification load.message
           put = $.ajax url,
             method: 'PUT'
             data: JSON.stringify load
@@ -135,10 +137,11 @@ $('form.schema-array').each ->
       # File present, overwrite with sha reference
       get_schema.done (data, status) ->
         load =
-          message: "Edit schema-array"
+          message: 'Edit schema-array'
           sha: data.sha
           content: encoded_file_content
         # Commit edited file
+        notification 'load.message'
         put = $.ajax url,
           method: 'PUT'
           data: JSON.stringify load
