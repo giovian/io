@@ -1,4 +1,4 @@
-<form class="prevent-default"{% if include.schema %} data-schema="{{ include.schema }}"{% endif %}>
+<form class="prevent-default schema-array"{% if include.schema %} data-schema="{{ include.schema }}"{% endif %}>
   <h3>Create schema</h3>
   <div data-type="string">
     <label for="path" markdown=1>File path (extension `.yml`)</label>
@@ -37,7 +37,7 @@
           PROPERTY TEMPLATE
 -->
 <template id="template-property">
-  <details class="border-top" open>
+  <details class="border-top">
     <summary><a href="#remove" data-remove="property" class="prevent-default">remove</a></summary>
     <div data-type="string">
       <label for="title">Title</label>
