@@ -6,35 +6,34 @@ login =
 
 login.login_link.on 'click', (e) ->
   token = prompt "Paste a GitHub personal token"
-  if !token then return else $('html').addClass 'wait'
+  if !token then return
   storage.set 'login', {'token': token}
   notification 'Verifying'
   auth = $.get '{{ site.github.api_url }}/user'
-  auth.done (data, status) ->
+  auth.done (data) ->
     storage.assign 'login', {'user': data.login, 'logged': new Date()}
     login.permissions()
-    return
-  auth.fail (request, status, error) -> login.setLogin()
+    return # End token check
+  auth.fail -> login.setLogin()
   true
 
 login.permissions = ->
   notification 'Checking permissions'
   repo = $.get '{{ site.github.api_url }}/repos/{{ site.github.repository_nwo }}'
-  repo.done (data, status) ->
-    storage.assign('login', {
+  repo.done (data) ->
+    storage.assign('login',
       'role': (if data.permissions.admin then 'admin' else 'guest')
-    }).assign 'repository', {
+    ).assign 'repository',
       'fork': data.fork
       'parent': data.parent?.full_name?
-    }
-    return
-  repo.always () ->
+    return # End permission check
+  repo.always ->
     login.setLogout()
     notification login.text(), 'green'
-    return
+    return # End login process
   true
 
-login.logout_link.on 'click', (e) ->
+login.logout_link.on 'click', ->
   login.setLogin()
   notification 'Logged out'
   true
@@ -44,7 +43,6 @@ login.setLogin = ->
   $('html').removeAttr 'user'
   storage.clear('login').clear 'repository'
   apply_family()
-  $('html').removeClass 'wait'
   true
 
 login.setLogout = ->
@@ -53,7 +51,6 @@ login.setLogout = ->
   login.logout_link.attr 'title', login.text()
   storage.assign 'repository', {'sha': '{{ site.github.build_revision }}'}
   apply_family()
-  $('html').removeClass "wait"
   true
 
 # Immediately Invoked Function Expressions

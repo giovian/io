@@ -30,7 +30,7 @@ check_remote = ->
       # Request a build
       request = $.ajax "{{ site.github.api_url }}/repos/{{ site.github.repository_nwo }}/pages/builds",
         method: 'POST'
-      request.done () -> notification 'New remote version: site build requested'
+      request.done -> notification 'New remote version: site build requested'
     return
   return # End Remote check
 

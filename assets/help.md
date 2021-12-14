@@ -14,12 +14,13 @@ sidebar: []
 - Created {% include widgets/datetime.html datetime=repo.created_at replace=true %}
 - Modified {% include widgets/datetime.html datetime=repo.modified_at replace=true %}
 - Sha `{{ gh.build_revision | slice: 0, 7 }}`
-- Version `{% include version.html %}`
 - Release `{{ gh.releases | first | map: 'tag_name' | default: '-' }}`
 {% if site.remote_theme %}
 
 **Remote**
 - Theme <{{ site.remote_theme | split: '@' | first | prepend: 'https://github.com/' }}>
+- Version `{% include version.html %}`
+- Plugin <https://github.com/benbalter/jekyll-remote-theme> {{ site.github.versions["jekyll-remote-theme"] }}
 {% endif %}
 
 **Auth**

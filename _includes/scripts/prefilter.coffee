@@ -7,7 +7,7 @@ $.ajaxPrefilter (options, ajaxOptions, request) ->
   # Fail function
   request.fail (request, status, error) -> notification "#{status}: #{request.status} #{request.responseJSON?.message || error}", 'red'
 
-  # Check request url
+  # Add header options
   if options.url.startsWith '{{ site.github.api_url }}'
     # Check personal token
     if login.storage()["token"]
@@ -17,6 +17,10 @@ $.ajaxPrefilter (options, ajaxOptions, request) ->
         "Accept": "application/vnd.github.v3+json"
     else
       options.headers = { "Accept": "application/vnd.github.v3+json" }
+
+  # Wait and dewait
+  request.beforeSend -> $('html').addClass 'wait'
+  request.always -> $('html').removeClass 'wait'
 
   return # end Prefilter
 

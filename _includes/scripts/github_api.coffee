@@ -23,23 +23,21 @@ request = (event) ->
   link = $ event.target
   list = link.parents 'ul'
   # Send request
-  $('html').addClass 'wait'
   notification "#{link.attr 'title'}"
   api = $.ajax "{{ site.github.api_url }}/#{link.attr('href').replace '#', ''}",
     method: link.attr 'github-api-method'
   api.done (data, status) ->
-    notification "API response: #{status}", 'green'
+    notification "API response: <code>#{status}</code>", 'green'
     # Loop out properties
-    for out in link.attr('github-api-out').split(',')
+    for out in link.attr('github-api-out').split ','
       property = out.trim()
       raw_value = data[property] || 'ok'
       value = if Date.parse raw_value then timeDiff raw_value else raw_value
       list.append "<li>#{property} <code>#{value}</code></li>"
-    return
-  api.always -> $('html').removeClass 'wait'
+    return # End API response process
   # Output error
   api.fail (request, status, error)-> list.append "<li>#{status}: <code>#{request.status}</code> #{request.responseJSON?.message || error}</li>"
-  return
+  return # End API request
 {%- capture api -%}
 ## GitHub API
 
