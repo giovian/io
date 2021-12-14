@@ -63,6 +63,7 @@ $('form.schema-array').each ->
       for own key, value of schema.items.properties
         inject_property key, value
       return # Form is populated
+    get_schema.fail -> form.find('[name="path"]').val form.attr('data-schema')
 
   #
   # CREATE SCHEMA
