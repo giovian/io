@@ -58,7 +58,7 @@ $('form.schema-array').each ->
       schema = jsyaml.load Base64.decode data.content
       # Populate fields
       form.find('[name="title"]').val schema.title
-      form.find('[name="$id"]').val schema.path
+      form.find('[name="$id"]').val schema['$id']
       form.find('[name="description"]').val schema.description
       for own key, value of schema.items.properties
         inject_property key, value
