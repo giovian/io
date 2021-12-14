@@ -9,14 +9,12 @@ $.ajaxPrefilter (options, ajaxOptions, request) ->
 
   # Add header options
   if options.url.startsWith '{{ site.github.api_url }}'
+    options.headers = { "Accept": "application/vnd.github.v3+json" }
     # Check personal token
     if login.storage()["token"]
       # Set GitHub headers
-      options.headers =
+      options.headers = Object.assign options.headers, 
         "Authorization": "token #{login.storage()['token']}"
-        "Accept": "application/vnd.github.v3+json"
-    else
-      options.headers = { "Accept": "application/vnd.github.v3+json" }
 
   # Dewait
   request.always -> $('html').removeClass 'wait'
