@@ -1,0 +1,11 @@
+$id: kalends.yml
+title: Kalends
+$schema: https://json-schema.org/draft/2020-12/schema
+type: array
+items:
+  type: object
+  properties:
+    value:
+      type: number
+    date:
+      type: string
