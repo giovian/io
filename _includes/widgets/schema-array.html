@@ -198,7 +198,7 @@
 {%- capture api -%}
 ## Schema array
 
-Form to create an array schema, require {% include widgets/github_link.html path='_includes/scripts/form.coffee' %} engine.
+Form to create an array schema, require {% include widgets/github_link.html path='_includes/scripts/form.coffee' %} and {% include widgets/github_link.html path='_includes/scripts/schema-array.coffee' %} scripts.
 
 **Form sections**
 
@@ -219,4 +219,7 @@ Form to create an array schema, require {% include widgets/github_link.html path
 ```
 {:.minimal}
 
+**Options**
+
+- `schema`: path to a schema to edit in `_data` folder
 {%- endcapture -%}
