@@ -313,7 +313,7 @@ storage.get("repository.fork") = true
 </form>
 
 {% include widgets/api.html include="widgets/schema-array" %}
-{% include widgets/schema-array.html schema="kalends.yml" %}
+{% include widgets/schema-array.html schema="kalends" %}
 
 **To do**
 

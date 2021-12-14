@@ -49,7 +49,7 @@ $('form.schema-array').each ->
 
   # Populate form
   if form.attr 'data-schema'
-    schema_url = "{{ site.github.api_url }}/repos/{{ site.github.repository_nwo }}/contents/_data/#{form.attr 'data-schema'}"
+    schema_url = "{{ site.github.api_url }}/repos/{{ site.github.repository_nwo }}/contents/_data/#{form.attr 'data-schema'}.yml"
     notification 'Reading schema file'
     get_schema = $.get schema_url
     get_schema.done (data, status) ->
@@ -114,7 +114,7 @@ $('form.schema-array').each ->
     if $('html').hasClass 'logged'
       # Prepare variabiles
       encoded_file_content = Base64.encode jsyaml.dump(form.serializeJSON())
-      url = "{{ site.github.api_url }}/repos/{{ site.github.repository_nwo }}/contents/_data/#{form.find('[name="path"]').val()}"
+      url = "{{ site.github.api_url }}/repos/{{ site.github.repository_nwo }}/contents/_data/#{form.find('[name="$id"]').val()}.yml"
       # Check if file already exist
       get_schema = $.get url
       get_schema.fail (request, status, error) ->
