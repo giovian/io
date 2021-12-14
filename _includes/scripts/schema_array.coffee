@@ -58,12 +58,12 @@ $('form.schema-array').each ->
       schema = jsyaml.load Base64.decode data.content
       # Populate fields
       form.find('[name="title"]').val schema.title
-      form.find('[name="path"]').val schema.path
+      form.find('[name="$id"]').val schema.path
       form.find('[name="description"]').val schema.description
       for own key, value of schema.items.properties
         inject_property key, value
       return # Form is populated
-    get_schema.fail -> form.find('[name="path"]').val form.attr('data-schema')
+    get_schema.fail -> form.find('[name="$id"]').val form.attr('data-schema')
 
   #
   # CREATE SCHEMA
