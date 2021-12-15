@@ -25,9 +25,9 @@ $('details').each ->
     return
   true
 {%- capture api -%}
-## Details
+## Detail
 
-Store the state of the DETAILS elements (open/close) in every page.
+Store the state of the DETAIL elements (open/close) in every page.
 
 ```js
 details: {

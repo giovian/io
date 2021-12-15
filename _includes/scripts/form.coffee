@@ -37,3 +37,8 @@ $('form').each ->
   form.on "submit", -> console.log jsyaml.dump form.serializeJSON()
 
   return # end FORM loop
+{%- capture api -%}
+## Form
+
+Basic functions of the FORM. Manage reset and submit events, range and required fields.
+{%- endcapture -%}

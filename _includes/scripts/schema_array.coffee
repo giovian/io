@@ -152,3 +152,16 @@ $('form.schema-array').each ->
     return # End submit handler
 
   return # end FORM loop
+{%- capture api -%}
+## Schema array
+
+Manage a schema of `type=array`.
+
+```liquid
+{% raw %}{% include schema-array.html %}{% endraw %}
+```
+
+**Includes**
+
+- `schema`: URI-reference of the schema to load (no extension)
+{%- endcapture -%}
