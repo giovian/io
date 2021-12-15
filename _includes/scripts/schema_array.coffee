@@ -48,7 +48,7 @@ $('form.schema-array').each ->
     get_schema.done (data, status) ->
       notification 'Schema acquired', 'green'
       # Get schema: decode from base 64 and parse as yaml
-      schema = jsyaml.load Base64.decode data.content
+      schema = JSON.parse Base64.decode(data.content) # jsyaml.load
       # Populate fields
       form.find('[name="title"]').val schema.title
       form.find('[name="$id"]').val schema['$id']
@@ -111,7 +111,7 @@ $('form.schema-array').each ->
     # Check user is logged
     if $('html').hasClass 'logged'
       # Prepare variabiles
-      encoded_file_content = Base64.encode form.serializeJSON()
+      encoded_file_content = Base64.encode JSON.stringify(form.serializeJSON())
       url = "{{ site.github.api_url }}/repos/{{ site.github.repository_nwo }}/contents/_data/#{form.find('[name="$id"]').val()}.schema.json"
       notification 'Check if file exist'
       # Check if file already exist
