@@ -111,7 +111,7 @@ $('form.schema-array').each ->
     # Check user is logged
     if $('html').hasClass 'logged'
       # Prepare variabiles
-      encoded_file_content = Base64.encode JSON.stringify(form.serializeJSON())
+      encoded_content = Base64.encode JSON.stringify(form.serializeJSON(), null, 2)
       url = "{{ site.github.api_url }}/repos/{{ site.github.repository_nwo }}/contents/_data/#{form.find('[name="$id"]').val()}.schema.json"
       notification 'Check if file exist'
       # Check if file already exist
@@ -121,7 +121,7 @@ $('form.schema-array').each ->
         if error == 'Not Found'
           load =
             message: "Create schema-array"
-            content: encoded_file_content
+            content: encoded_content
           # Commit new file
           notification load.message
           put = $.ajax url,
@@ -137,7 +137,7 @@ $('form.schema-array').each ->
         load =
           message: 'Edit schema-array'
           sha: data.sha
-          content: encoded_file_content
+          content: encoded_content
         # Commit edited file
         notification 'load.message'
         put = $.ajax url,
