@@ -5,11 +5,12 @@
   "items": {
     "type": "object",
     "properties": {
-      "date": {
-        "type": "string"
-      },
       "serie": {
         "type": "integer"
+      },
+      "date": {
+        "type": "string",
+        "format": "date"
       }
     }
   }
