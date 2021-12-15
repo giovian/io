@@ -42,7 +42,7 @@ $('form.schema-array').each ->
   form = $ @
 
   load_schema = ->
-    schema_url = "{{ site.github.api_url }}/repos/{{ site.github.repository_nwo }}/contents/_data/#{form.attr 'data-schema'}.yml"
+    schema_url = "{{ site.github.api_url }}/repos/{{ site.github.repository_nwo }}/contents/_data/#{form.attr 'data-schema'}.schema.json"
     notification 'Reading schema file'
     get_schema = $.get schema_url
     get_schema.done (data, status) ->
@@ -111,8 +111,8 @@ $('form.schema-array').each ->
     # Check user is logged
     if $('html').hasClass 'logged'
       # Prepare variabiles
-      encoded_file_content = Base64.encode jsyaml.dump(form.serializeJSON())
-      url = "{{ site.github.api_url }}/repos/{{ site.github.repository_nwo }}/contents/_data/#{form.find('[name="$id"]').val()}.yml"
+      encoded_file_content = Base64.encode form.serializeJSON()
+      url = "{{ site.github.api_url }}/repos/{{ site.github.repository_nwo }}/contents/_data/#{form.find('[name="$id"]').val()}.schema.json"
       notification 'Check if file exist'
       # Check if file already exist
       get_schema = $.get url
@@ -128,7 +128,7 @@ $('form.schema-array').each ->
             method: 'PUT'
             data: JSON.stringify load
           put.done (data, status)->
-            console.log data.commit.sha
+            storage.assign 'repository', {sha: data.commit.sha}
             notification 'Schema created', 'green'
             return # End commit
         return # End new file
@@ -144,7 +144,7 @@ $('form.schema-array').each ->
           method: 'PUT'
           data: JSON.stringify load
         put.done (data, status) ->
-          console.log data.commit.sha
+          storage.assign 'repository', {sha: data.commit.sha}
           notification 'Schema edited', 'green'
         return # End overwrite
     else notification 'You need to login', 'red'

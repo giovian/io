@@ -34,7 +34,7 @@ $('form').each ->
     return # end Reset handler
 
   # Submit
-  form.on "submit", -> console.log jsyaml.dump form.serializeJSON()
+  form.on "submit", -> console.log form.serializeJSON() # jsyaml.dump
 
   return # end FORM loop
 {%- capture api -%}
