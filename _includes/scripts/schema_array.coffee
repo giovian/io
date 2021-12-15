@@ -139,7 +139,7 @@ $('form.schema-array').each ->
           sha: data.sha
           content: encoded_content
         # Commit edited file
-        notification 'load.message'
+        notification load.message
         put = $.ajax url,
           method: 'PUT'
           data: JSON.stringify load
