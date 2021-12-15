@@ -18,37 +18,30 @@ get_template = (e, prepend) ->
     return $ $(e).clone().prop 'content'
 
 #
+# PROPERTY inject helper function
+# --------------------------------------
+get_property = (key, value) ->
+  prepend = "items[properties][#{slug key}]"
+  template_property = get_template '#template-property', prepend
+  # Update property title
+  template_property.find('summary').prepend document.createTextNode "#{key} "
+  # Get property type
+  property_type = value?.type || 'string'
+  selected_template = get_template "#template-#{property_type}", prepend
+  # Set property values
+  for own key, property of value
+    selected_template.find("[name$='[#{key}]']").val property
+  # Append property
+  template_property.find('[type-inject]').append selected_template
+  return template_property # End property inject
+
+#
 # ACTIVATION function
 # --------------------------------------
 $('form.schema-array').each ->
   form = $ @
 
-  #
-  # PROPERTY inject helper function
-  # --------------------------------------
-  inject_property = (key, value) ->
-    prepend = "items[properties][#{slug key}]"
-    template_property = get_template '#template-property', prepend
-
-    # Update property title
-    template_property.find('summary').prepend document.createTextNode "#{key} "
-
-    # Get property type
-    property_type = value?.type || 'string'
-    selected_template = get_template "#template-#{property_type}", prepend
-    # Set property values
-    for own key, property of value
-      selected_template.find("[name$='[#{key}]']").val property
-    # Append property
-    template_property.find('[type-inject]').append selected_template
-
-    # Append
-    form.find('[properties-inject]').prepend template_property
-
-    return # End property inject
-
-  # Populate form
-  if form.attr 'data-schema'
+  load_schema = ->
     schema_url = "{{ site.github.api_url }}/repos/{{ site.github.repository_nwo }}/contents/_data/#{form.attr 'data-schema'}.yml"
     notification 'Reading schema file'
     get_schema = $.get schema_url
@@ -61,9 +54,13 @@ $('form.schema-array').each ->
       form.find('[name="$id"]').val schema['$id']
       form.find('[name="description"]').val schema.description
       for own key, value of schema.items.properties
-        inject_property key, value
+        form.find('[properties-inject]').prepend get_property(key, value)
       return # Form is populated
     get_schema.fail -> form.find('[name="$id"]').val form.attr('data-schema')
+    return # End load_schema function
+
+  # Populate form
+  if form.attr 'data-schema' then load_schema()
 
   #
   # CREATE SCHEMA
@@ -74,7 +71,8 @@ $('form.schema-array').each ->
     # Prompt property name
     property_name = prompt 'Property name'
     # Inject property
-    if property_name then inject_property property_name
+    if property_name
+      form.find('[properties-inject]').prepend get_property(property_name)
     return # End add-property
 
   # REMOVE PROPERTY
@@ -99,8 +97,8 @@ $('form.schema-array').each ->
 
   # Reset
   form.on 'reset', ->
-    # Remove array items and reset index
-    # form.find("[array-item]").remove()s
+    # Load schema
+    if form.attr 'data-schema' then load_schema()
 
     # Reset .create-schema forms
     form.find('[properties-inject]').empty()

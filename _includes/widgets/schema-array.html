@@ -1,5 +1,5 @@
 <form class='prevent-default schema-array'{% if include.schema %} data-schema='{{ include.schema }}'{% endif %}>
-  <h3>Create schema</h3>
+  <h3>Schema type array</h3>
   <div data-type='string'>
     <label for='$id' markdown=1>`$id`: file path (no extension)</label>
     <input type='text' autocomplete='off' name='$id' required>
@@ -23,7 +23,7 @@
   <input type='hidden' name='items[type]' value='object'>
 
   <div data-type='array'>
-    <label class='fg-secondary'>Properties <a href='#add' data-add='property' class='prevent-default'>add</a></label>
+    <label class='fg-secondary'>Item properties <a href='#add' data-add='property' class='prevent-default'>add</a></label>
   </div>
 
   <div properties-inject></div>
