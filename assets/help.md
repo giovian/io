@@ -2,6 +2,7 @@
 title: Help
 permalink: help/
 sidebar: []
+order: 1000
 ---
 {%- include page/init.html -%}
 # Help
