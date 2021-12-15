@@ -5,12 +5,36 @@
   "items": {
     "type": "object",
     "properties": {
-      "serie": {
-        "type": "integer"
+      "range": {
+        "type": "number",
+        "format": "range"
+      },
+      "duration": {
+        "type": "string"
+      },
+      "datetime": {
+        "type": "string"
+      },
+      "time": {
+        "type": "string"
+      },
+      "email": {
+        "type": "string"
+      },
+      "uri": {
+        "type": "string"
+      },
+      "color": {
+        "type": "string"
+      },
+      "textarea": {
+        "type": "string"
       },
       "date": {
-        "type": "string",
-        "format": "date"
+        "type": "string"
+      },
+      "serie": {
+        "type": "integer"
       }
     }
   }
