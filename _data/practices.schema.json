@@ -5,43 +5,12 @@
   "items": {
     "type": "object",
     "properties": {
-      "boolean": {
-        "type": "boolean"
-      },
-      "range": {
-        "type": "number",
-        "format": "range"
-      },
-      "datetime": {
-        "type": "string",
-        "format": "date-time"
-      },
-      "time": {
-        "type": "string",
-        "format": "time"
-      },
-      "email": {
-        "type": "string",
-        "format": "email"
-      },
-      "uri": {
-        "type": "string",
-        "format": "uri"
-      },
-      "color": {
-        "type": "string",
-        "format": "color"
-      },
-      "textarea": {
-        "type": "string",
-        "format": "textarea"
+      "serie": {
+        "type": "integer"
       },
       "date": {
         "type": "string",
         "format": "date"
-      },
-      "serie": {
-        "type": "integer"
       }
     }
   }
