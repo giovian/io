@@ -83,7 +83,11 @@
     </select>
   </div>
   <details>
-    <summary>String length</summary>
+    <summary>Attributes</summary>
+    <div data-type='string'>
+      <label for='default'>Default</label>
+      <input type='text' name='default'>
+    </div>
     <div data-type='number'>
       <label for='minLength'>Minimun length</label>
       <input type='number' name='minLength' min='0' step='1' pattern='\d+' data-value-type='number'>
@@ -94,12 +98,12 @@
       <input type='number' name='maxLength' min='0' step='1' pattern='\d+' data-value-type='number'>
       <span>Positive integer</span>
     </div>
+    <div data-type='string'>
+      <label for='pattern'>Pattern</label>
+      <input type='text' autocomplete='off' name='pattern'>
+      <span>ECMA-262 regular expression</span>
+    </div>
   </details>
-  <div data-type='string'>
-    <label for='pattern'>Pattern</label>
-    <input type='text' autocomplete='off' name='pattern'>
-    <span>ECMA-262 regular expression</span>
-  </div>
 </template>
 
 <!--
@@ -114,7 +118,11 @@
     </select>
   </div>
   <details>
-    <summary>Numeric range</summary>
+    <summary>Attributes</summary>
+    <div data-type='string'>
+      <label for='default'>Default</label>
+      <input type='text' name='default'>
+    </div>
     <div data-type='number'>
       <label for='minimum'>Minimun</label>
       <input type='number' name='minimum' data-value-type='number'>
@@ -125,26 +133,11 @@
       <input type='number' name='maximum' data-value-type='number'>
       <span>Inclusive limit</span>
     </div>
-    <div data-type='number'>
-      <label for='exclusiveMinimum'>Exclusive minimum</label>
-      <input type='number' name='exclusiveMinimum' data-value-type='number'>
-      <span>Exclusive limit</span>
-    </div>
-    <div data-type='number'>
-      <label for='exclusiveMaximum'>Exclusive maximum</label>
-      <input type='number' name='exclusiveMaximum' data-value-type='number'>
-      <span>Exclusive limit</span>
+    <div data-type='string'>
+      <label for='units'>Units</label>
+      <input type='text' autocomplete='off' name='units'>
     </div>
   </details>
-  <div data-type='number'>
-    <label for='multipleOf'>Multiple of</label>
-    <input type='number' name='multipleOf' min='0' data-value-type='number'>
-    <span>Positive</span>
-  </div>
-  <div data-type='string'>
-    <label for='units'>Units</label>
-    <input type='text' autocomplete='off' name='units'>
-  </div>
 </template>
 
 <!--
@@ -159,7 +152,11 @@
     </select>
   </div>
   <details>
-    <summary>Integer range</summary>
+    <summary>Attributes</summary>
+    <div data-type='string'>
+      <label for='default'>Default</label>
+      <input type='text' name='default'>
+    </div>
     <div data-type='number'>
       <label for='minimum'>Minimun</label>
       <input type='number' name='minimum' data-value-type='number'>
@@ -170,32 +167,26 @@
       <input type='number' name='maximum' data-value-type='number'>
       <span>Inclusive limit</span>
     </div>
-    <div data-type='number'>
-      <label for='exclusiveMinimum'>Exclusive minimum</label>
-      <input type='number' name='exclusiveMinimum' data-value-type='number'>
-      <span>Exclusive limit</span>
-    </div>
-    <div data-type='number'>
-      <label for='exclusiveMaximum'>Exclusive maximum</label>
-      <input type='number' name='exclusiveMaximum' data-value-type='number'>
-      <span>Exclusive limit</span>
+    <div data-type='string'>
+      <label for='units'>Units</label>
+      <input type='text' autocomplete='off' name='units'>
     </div>
   </details>
-  <div data-type='number'>
-    <label for='multipleOf'>Multiple of</label>
-    <input type='number' name='multipleOf' min='0' data-value-type='number'>
-    <span>Positive</span>
-  </div>
-  <div data-type='string'>
-    <label for='units'>Units</label>
-    <input type='text' autocomplete='off' name='units'>
-  </div>
 </template>
 
 <!--
           BOOLEAN TEMPLATE
 -->
-<template id='template-boolean'></template>
+<template id='template-boolean'>
+  <div data-type='string'>
+    <label for='default'>Default</label>
+    <select name='default' class='inline'>
+      <option value=''></option>
+      <option value='true'>True</option>
+      <option value='false'>False</option>
+    </select>
+  </div>
+</template>
 
 {%- capture api -%}
 ## Schema array
