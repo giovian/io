@@ -5,44 +5,35 @@
   "items": {
     "type": "object",
     "properties": {
-      "serie": {
-        "type": "integer"
-      },
-      "date": {
-        "type": "string",
-        "format": "date"
-      },
-      "textarea": {
-        "type": "string",
-        "format": "textarea"
-      },
-      "color": {
-        "type": "string",
-        "format": "color"
-      },
-      "uri": {
-        "type": "string",
-        "format": "uri"
-      },
-      "email": {
-        "type": "string",
-        "format": "email"
-      },
-      "time": {
-        "type": "string",
-        "format": "time"
-      },
-      "datetime": {
-        "type": "string",
-        "format": "date-time"
-      },
-      "duration": {
-        "type": "string",
-        "format": "duration"
+      "boolean": {
+        "type": "boolean"
       },
       "range": {
-        "type": "number",
-        "format": "range"
+        "type": "number"
+      },
+      "datetime": {
+        "type": "string"
+      },
+      "time": {
+        "type": "string"
+      },
+      "email": {
+        "type": "string"
+      },
+      "uri": {
+        "type": "string"
+      },
+      "color": {
+        "type": "string"
+      },
+      "textarea": {
+        "type": "string"
+      },
+      "date": {
+        "type": "string"
+      },
+      "serie": {
+        "type": "integer"
       }
     }
   }
