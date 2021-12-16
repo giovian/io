@@ -1,3 +1,9 @@
+range_enable = (range) ->
+  $(range).on "input", (e) -> $(e.target).next("output").val $(e.target).val()
+  # Initial update
+  $(range).trigger "input"
+  return # end Range loop
+
 #
 # ACTIVATION function
 # --------------------------------------
@@ -5,15 +11,11 @@ $('form').each ->
   form = $ @
 
   # Update range output
-  form.find("input[type=range]").each ->
-    $(@).on "input", (e) -> $(e.target).next("output").val $(e.target).val()
-    # Initial update
-    $(@).trigger "input"
-    return # end Range loop
+  form.find("input[type=range]").each -> range_enable $(@)
 
   # Required asterix
   form.find('input[required]').each ->
-    $(@).prev('label').append('*')
+    $(@).prev('label').append '*'
     return # end Required loop
 
   #

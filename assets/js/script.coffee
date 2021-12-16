@@ -15,7 +15,8 @@
 {% include scripts/notification.coffee %}   # Use datetime
 {% include scripts/storage.coffee %}        # Hashed storage system for localStorage
 {% include scripts/login.coffee %}          # Use notification, apply_family, storage
-{% include scripts/detail.coffee %}        # Use storage
+{% include scripts/detail.coffee %}         # Use storage
+{% include scripts/github_api.coffee %}     # Perform GitHub API REST requests
 
 # FUNCTIONS
 
@@ -24,7 +25,7 @@
 {% include scripts/checks.coffee %}         # Check repository and remote theme updates
 {% include scripts/form.coffee %}           # Form engine
 {% include scripts/schema_array.coffee %}   # Manage array schema engine
-{% include scripts/github_api.coffee %}     # Perform GitHub API REST requests
+{% include scripts/document.coffee %}       # Manage document from schema
 {% include scripts/switch.coffee %}         # Interface for storage switches
 
 # CUSTOM

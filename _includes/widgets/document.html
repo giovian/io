@@ -1,0 +1,29 @@
+{% if include.schema-id %}
+<form class='prevent-default document'{% if include.schema-id %} data-schema='{{ include.schema-id }}'{% endif %}>
+  <h3>Document <i>{{ include.schema-id }}</i></h3>
+
+  <div inject></div>
+
+<!-- BUTTONS -->
+  <div data-type='button'>
+    <input type='submit' value='Save'>
+    <input type='reset'>
+  </div>
+</form>
+
+{% else %}
+Missing `schema-id` options in `{% raw %}{% include 'widgets/document.html' %}{% endraw %}`{:.language-liquid}
+{% endif %}
+{%- capture api -%}
+## Document
+
+Render a FORM to manage a document from a JSON schema.
+
+```liquid
+{% raw %}{% include widgets/document.html schema-id='schema-$id' %}{% endraw %}
+```
+
+**Includes**
+
+- `schema-id`: `$id` value of the JSON schema for the document
+{%- endcapture -%}

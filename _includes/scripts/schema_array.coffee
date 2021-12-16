@@ -6,16 +6,14 @@ $.serializeJSON.defaultOptions.skipFalsyValuesForTypes = 'string,number,boolean,
 #
 # TEMPLATE helper function
 # --------------------------------------
-get_template = (e, prepend) ->
+get_template = (id, prepend) ->
+  template = $ $(id).clone().prop('content')
   if prepend
-    template = $ $(e).clone().prop 'content'
     # Update labels [for]
     template.find('label[for]').each -> $(@).attr 'for', (i, val) -> "#{prepend}[#{val}]"
     # Update inputs [name]
     template.find(':input[name]').attr 'name', (i, val) -> "#{prepend}[#{val}]"
-    return template
-  else
-    return $ $(e).clone().prop 'content'
+  return template
 
 #
 # PROPERTY inject helper function
@@ -24,9 +22,10 @@ get_property = (key, value) ->
   prepend = "items[properties][#{slug key}]"
   template_property = get_template '#template-property', prepend
   # Update property title
-  template_property.find('summary').prepend document.createTextNode "#{key} "
+  template_property.find('summary').prepend document.createTextNode "#{key}"
   # Get property type
   property_type = value?.type || 'string'
+  template_property.find("[name='#{prepend}[type]']").val property_type
   selected_template = get_template "#template-#{property_type}", prepend
   # Set property values
   for own key, property of value
@@ -97,12 +96,10 @@ $('form.schema-array').each ->
 
   # Reset
   form.on 'reset', ->
-    # Load schema
-    if form.attr 'data-schema' then load_schema()
-
     # Reset .create-schema forms
     form.find('[properties-inject]').empty()
-
+    # Load schema
+    if form.attr 'data-schema' then load_schema()
     return # end Reset handler
 
   # Submit
