@@ -9,33 +9,8 @@
         "type": "integer"
       },
       "date": {
-        "type": "string"
-      },
-      "textarea": {
-        "type": "string"
-      },
-      "color": {
-        "type": "string"
-      },
-      "uri": {
-        "type": "string"
-      },
-      "email": {
-        "type": "string"
-      },
-      "time": {
-        "type": "string"
-      },
-      "datetime": {
         "type": "string",
-        "format": "date-time"
-      },
-      "range": {
-        "type": "number",
-        "format": "range"
-      },
-      "boolean": {
-        "type": "boolean"
+        "format": "date"
       }
     }
   }
