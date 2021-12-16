@@ -20,7 +20,7 @@ $.ajaxPrefilter (options, ajaxOptions, request) ->
 
   return # end Prefilter
 
-# Ajax Send wait effect before request
+# Wait effect before request and log request on console
 $(document).ajaxSend (options, request, ajaxOptions) ->
   $('html').addClass 'wait'
   console.log [ajaxOptions.type, ajaxOptions.url].join ' '
@@ -29,9 +29,9 @@ $(document).ajaxSend (options, request, ajaxOptions) ->
 {%- capture api -%}
 ## Ajax prefilter
 
-Remove `cache` for ajax requests and set `Accept` and `Authorization` headers for request to GitHub API.  
-
-Show a notification in case of error.  
-
-Apply Wait and dewait effect to HTML element.
+- Remove `cache` for ajax requests
+- Set `Accept` and `Authorization` headers for request to GitHub API.
+- Show a notification in case of error.
+- Apply Wait and dewait effect to HTML element.
+- Log request on console
 {%- endcapture -%}
