@@ -5,14 +5,12 @@
   "items": {
     "type": "object",
     "properties": {
-      "date": {
-        "type": "string",
-        "format": "date",
-        "minLength": 3,
-        "maxLength": 4
-      },
       "serie": {
         "type": "integer"
+      },
+      "date": {
+        "type": "string",
+        "format": "date"
       }
     }
   }
