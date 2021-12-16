@@ -8,7 +8,7 @@ check_build = ->
       storage.assign 'repository', {sha: data[0].sha}
       # Refresh with the new SHA as hash
       location.assign "#{location.origin}#{location.pathname}##{data[0].sha.slice 0, 7}"
-      $('#alerts').append "<a href='#' class='prevent-default' onclick='location.reload(true)'>New build</a>"
+      $('#alerts').empty().append "<a href='#' class='prevent-default' onclick='location.reload(true)'>New build</a>"
     return
   return # end Build check
 
