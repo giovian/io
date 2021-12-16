@@ -9,7 +9,7 @@ notification = (code, cls) ->
   # Timer to fade and expire
   div.delay(3000).fadeOut('slow', -> div.remove())
   # Output in console
-  console.log [span.text(), cls || 'default', new Date()].join ', '
+  # console.log [span.text(), cls || 'default', new Date()].join ', '
   return # end notification
 {%- capture api -%}
 ## Notification

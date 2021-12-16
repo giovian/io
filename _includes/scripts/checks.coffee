@@ -3,13 +3,11 @@ check_build = ->
   latest = $.get '{{ site.github.api_url }}/repos/{{ site.github.repository_nwo }}/commits'
   latest.done (data) ->
     # Compare online and built repository commit SHA
-    if data[0].sha is $('meta[name=repository_sha]').attr 'content'
-      notification 'Build is updated', 'green'
-    else
+    if data[0].sha isnt $('meta[name=repository_sha]').attr 'content'
       # Update SHA on storage
       storage.assign 'repository', {sha: data[0].sha}
       # Refresh with the new SHA as hash
-      $('#alerts').append "<a href='#{data[0].sha}' onclick='location.reload()'>New build</a>"
+      $('#alerts').append "<a href='##{data[0].sha}' onclick='location.reload()'>New build</a>"
     return
   return # end Build check
 

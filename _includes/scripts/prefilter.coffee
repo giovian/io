@@ -9,20 +9,23 @@ $.ajaxPrefilter (options, ajaxOptions, request) ->
 
   # Add header options
   if options.url.startsWith '{{ site.github.api_url }}'
-    options.headers = { 'Accept': 'application/vnd.github.v3+json' }
+    options.headers = {'Accept': 'application/vnd.github.v3+json'}
     # Check personal token
     if login.storage()['token']
       # Add GitHub token
-      options.headers = Object.assign options.headers, 
-        'Authorization': "token #{login.storage()['token']}"
+      options.headers['Authorization'] = "token #{login.storage()['token']}"
 
   # Dewait effect
   request.always -> $('html').removeClass 'wait'
 
   return # end Prefilter
 
-# Ajax send wait effect
-$( document ).ajaxSend -> $('html').addClass 'wait'
+# Ajax Send wait effect before request
+$(document).ajaxSend (options, request, ajaxOptions) ->
+  $('html').addClass 'wait'
+  console.log [ajaxOptions.type, ajaxOptions.url].join ' '
+  return # End ajax Send
+
 {%- capture api -%}
 ## Ajax prefilter
 

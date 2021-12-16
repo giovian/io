@@ -42,10 +42,8 @@ $('form.schema-array').each ->
 
   load_schema = ->
     schema_url = "{{ site.github.api_url }}/repos/{{ site.github.repository_nwo }}/contents/_data/#{form.attr 'data-schema'}.schema.json"
-    notification 'Reading schema file'
     get_schema = $.get schema_url
     get_schema.done (data, status) ->
-      notification 'Schema acquired', 'green'
       # Get schema: decode from base 64 and parse as yaml
       schema = JSON.parse Base64.decode(data.content) # jsyaml.load
       # Populate fields
