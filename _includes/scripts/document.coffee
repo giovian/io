@@ -3,10 +3,8 @@ $('form.document').each ->
 
   load_schema = ->
     schema_url = "{{ site.github.api_url }}/repos/{{ site.github.repository_nwo }}/contents/_data/#{form.attr 'data-schema'}.schema.json"
-    notification 'Reading schema file'
     get_schema = $.get schema_url
     get_schema.done (data, status) ->
-      notification 'Schema acquired', 'green'
       # Get schema: decode from base 64 and parse as yaml
       schema = JSON.parse Base64.decode(data.content) # jsyaml.load
       if schema.type is 'array'
@@ -45,10 +43,18 @@ $('form.document').each ->
               ]
             else console.log "type #{value.type} to do"
 
-          # Prepare elements
+          # Complete field attributes
           field.attr 'name', key
+          # String
+          if value.maxLength then field.attr 'maxlength', value.maxLength
+          if value.minLength then field.attr 'minlength', value.minLength
+          if value.pattern then field.attr 'pattern', value.pattern
+          # Number
+          if value.minimum then field.attr 'min', value.minimum
+          if value.maximum then field.attr 'max', value.maximum
+          # Prepare elements
           label = $ '<label/>', {text: value.title || key, for: key}
-          div = $('<div/>', {'data-type': data_type})
+          div = $ '<div/>', {'data-type': data_type}
           # Integer
           if value.type is 'integer' then field.attr 'step', 1
           div.append [label, field]
@@ -72,5 +78,17 @@ $('form.document').each ->
     # Load schema
     if form.attr 'data-schema' then load_schema()
     return # end Reset handler
+
+  # Submit
+  form.on 'submit', ->
+    load = form.serialize()
+    head = load.split('&').map((e) -> e.split('=')[0]).join ','
+    line = load.split('&').map((e) -> e.split('=')[1]).join ','
+    console.log load, head, line
+    # file don't exist
+      # create file head and line
+    # file exist
+      # append line
+    return # End SUBMIT
 
   return # End form loop
