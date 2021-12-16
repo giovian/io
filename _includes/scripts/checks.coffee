@@ -10,7 +10,7 @@ check_build = ->
       storage.assign 'repository', {sha: data[0].sha}
       # Refresh with the new SHA as hash
       new_url = "#{location.origin}#{location.pathname}##{data[0].sha}"
-      $('#alerts').append "<a href='#{new_url}'>#{data[0].sha.slice 0, 7}</a>"
+      $('#alerts').append "<a href='#{new_url}'>New build</a>"
     return
   return # end Build check
 
