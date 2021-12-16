@@ -176,7 +176,7 @@ A schema in the file `_data/schema.json` will have `$id: {{ site.github.reposito
   parse("1+2+3"); 
   ```
 
-## User interface (?)
+## Experimental UI
 
 **Columns**
 
@@ -191,6 +191,8 @@ A schema in the file `_data/schema.json` will have `$id: {{ site.github.reposito
 }
 ```
 
+Or simple attribute: `col: 2`
+
 **Colors**
 
 `colors` is an object, the properties are theme colors and are arrays of properties pertaining to that color.
@@ -203,6 +205,8 @@ A schema in the file `_data/schema.json` will have `$id: {{ site.github.reposito
   }
 }
 ```
+
+Or simple attributes: `ink: black, background: black`
 
 **To do**
 
