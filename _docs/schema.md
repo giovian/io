@@ -42,7 +42,7 @@ Primitive types of an instance are `string, number, array, object, boolean, null
   In the `array` case, will have the `multiple` attribute
 - `const`: restrict the value to a single value (like enum with one item)
 
-Every instance can have a `default` pre-filled value (must be valid).
+Every instance can have a `default` pre-filled value, should validate against the schema in which it resides, but that isn’t required.
 
 ### String
 
