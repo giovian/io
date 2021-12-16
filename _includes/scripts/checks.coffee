@@ -7,7 +7,7 @@ check_build = ->
       # Update SHA on storage
       storage.assign 'repository', {sha: data[0].sha}
       # Refresh with the new SHA as hash
-      $('#alerts').append "<a href='##{data[0].sha}' onclick='location.reload()'>New build</a>"
+      $('#alerts').append "<a href='##{data[0].sha.slice 0, 7}' onclick='location.reload()'>New build</a>"
     return
   return # end Build check
 
@@ -19,9 +19,7 @@ check_remote = ->
     data: data
   latest.done (data) ->
     # Compare online and stored remote commit SHA
-    if data[0].sha is storage.get 'repository.remote_sha'
-      notification 'Remote theme is updated', 'green'
-    else
+    if data[0].sha isnt storage.get 'repository.remote_sha'
       # Update SHA on storage
       storage.assign 'repository', {remote_sha: data[0].sha}
       # Request a build
