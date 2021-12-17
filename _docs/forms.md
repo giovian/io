@@ -8,7 +8,7 @@ order: 60
 {:toc}
 
 <form class="prevent-default">
-  <h3>Form</h3>
+  <h3>Preview</h3>
   <p>Description</p>
   <div class="grid">
     <div>

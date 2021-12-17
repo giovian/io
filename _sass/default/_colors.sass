@@ -20,6 +20,10 @@
     --fg-secondary: #{hsl($hue,  9%, map-get($color-lightness, fg_secondary))}
     --border:       #{hsl($hue, 12%, map-get($color-lightness, border))}
 
+[class*='color-']
+  background: var(--bg)
+  color: var(--fg)
+
 // prefers-color-scheme
 // --------------------------------------
 @media not all and (prefers-color-scheme)
