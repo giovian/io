@@ -46,7 +46,7 @@ checks = ->
   return # end checks
 
 # Start checks
-if '{{ site.github.environment }}' is 'dotcom' then setTimeout checks, 60 * 1000
+if '{{ site.github.environment }}' isnt 'development' then setTimeout checks, 60 * 1000
 {%- capture api -%}
 ## Checks
 

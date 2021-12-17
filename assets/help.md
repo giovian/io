@@ -31,7 +31,7 @@ order: 1000
 </ul>
   </div>
   <div markdown="1">
-{% if site.github.environment == 'dotcom' %}<div apply-if-parent='hidden|html:not(.role-admin)' markdown="1">
+{% if site.github.environment != 'development' %}<div apply-if-parent='hidden|html:not(.role-admin)' markdown="1">
 **Builds**
 <ul github-api-url='repos/pages/builds/latest' github-api-text='Latest' github-api-out='status, created_at'></ul>
 **Request a build**
