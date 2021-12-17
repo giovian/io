@@ -24,8 +24,9 @@ login.permissions = ->
     storage.assign('login',
       'role': (if data.permissions.admin then 'admin' else 'guest')
     ).assign 'repository',
-      'fork': data.fork
-      'parent': data.parent?.full_name?
+      fork: data.fork
+      parent: data.parent?.full_name?
+      updated_at_unix: new Date(data.updated_at).getTime() / 1000
     return # End permission check
   repo.always ->
     login.setLogout()
@@ -49,7 +50,7 @@ login.setLogout = ->
   $('html').addClass "role-#{login.storage()['role']} logged"
   $('html').attr 'user', login.storage()['user']
   login.logout_link.attr 'title', login.text()
-  storage.assign 'repository', {'sha': '{{ site.github.build_revision }}'}
+  storage.assign 'repository', {sha: '{{ site.github.build_revision }}'}
   apply_family()
   true
 

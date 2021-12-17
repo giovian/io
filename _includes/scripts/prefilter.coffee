@@ -23,7 +23,7 @@ $.ajaxPrefilter (options, ajaxOptions, request) ->
 # Wait effect before request and log request on console
 $(document).ajaxSend (options, request, ajaxOptions) ->
   $('html').addClass 'wait'
-  console.log [ajaxOptions.type, ajaxOptions.url].join ' '
+  console.count [ajaxOptions.type, ajaxOptions.url.split('?')[0]].join ' '
   return # End ajax Send
 
 {%- capture api -%}

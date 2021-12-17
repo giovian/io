@@ -1,15 +1,16 @@
 # Refresh page if repository changed
 check_build = ->
-  latest = $.get '{{ site.github.api_url }}/repos/{{ site.github.repository_nwo }}/commits'
+  latest = $.get '{{ site.github.api_url }}/repos/{{ site.github.repository_nwo }}'
   latest.done (data) ->
-    # Compare online and built repository commit SHA
-    if data[0].sha isnt $('meta[name=repository_sha]').attr 'content'
+    unixtime = new Date(data.updated_at).getTime() / 1000
+    # Compare repository update unixtime and built unixtime
+    if unixtime > Number $('meta[name=site_build_unixtime]').attr('content')
       # Update SHA on storage
-      storage.assign 'repository', {sha: data[0].sha}
+      storage.assign 'repository', {updated_at_unix: unixtime}
       # Refresh with the new SHA as hash
-      short_sha = data[0].sha.slice 0, 7
-      new_url = location.origin + location.pathname + '?sha=' + short_sha + location.hash
-      $('#alerts').empty().append "<a href='#{new_url}' title='#{short_sha}'>New build</a>"
+      short_sha = unixtime
+      new_url = location.origin + location.pathname + '?updated_at_unix=' + unixtime + location.hash
+      $('#alerts').empty().append "<a href='#{new_url}' title='#{unixtime}'>New build</a>"
     return
   return # end Build check
 
@@ -27,7 +28,7 @@ check_remote = ->
       # Request a build
       request = $.ajax "{{ site.github.api_url }}/repos/{{ site.github.repository_nwo }}/pages/builds",
         method: 'POST'
-      request.done -> notification 'New remote version: site build requested'
+      request.done (data, status) -> notification "Site build request: <code>#{data.status}</code>"
     return
   return # End Remote check
 
@@ -58,5 +59,5 @@ Include the functions `check_build` and (if the site use a remote theme) `check_
 
 Subsequent checks are every 10 minutes for unauthenticated users and every minute for logged ones.  
 
-This script is active only in production: `{%raw%}{{ site.github.environment }}{%endraw%}=dotcom`{:.language-liquid}.
+This script is not active in development: `{%raw%}{{ site.github.environment }}{%endraw%} != development`{:.language-liquid}.
 {%- endcapture -%}

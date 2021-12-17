@@ -12,8 +12,10 @@
 
 <!-- REPOSITORY -->
 <meta name="site_build" content="{{ build_time | date_to_rfc822 }}">
+<meta name="site_build_unixtime" content="{{ build_time_unix }}">
 <meta name="repository_created_at" content="{{ repo.created_at | date_to_rfc822 }}">
 <meta name="repository_updated_at" content="{{ repo.updated_at | date_to_rfc822 }}">
+<meta name="repository_updated_at_unixtime" content="{{ repo.updated_at | date: '%s' }}">
 <meta name="repository_sha" content="{{ gh.build_revision }}">
 <meta name="remote-theme-version" content="{% include version.html %}">
 {% if site.remote_theme %}<meta name="remote_theme" content="{{ site.remote_theme }}">
