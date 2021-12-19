@@ -1,41 +1,36 @@
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width">
+<meta charset='utf-8'>
+<meta name='viewport' content='width=device-width'>
 
 <!-- MANIFEST -->
-<link rel="manifest" href="{{ "/assets/manifest.json" | absolute_url }}" />
+<link rel='manifest' href='{{ "/assets/manifest.json" | absolute_url }}' />
 
 <!-- FAVICONS -->
-{% if static_files_paths contains '/assets/images/favicon.ico' %}<link rel="icon" href="{{ "/assets/images/favicon.ico" | absolute_url }}">{% elsif site.favicon.ico %}<link rel="icon" href="{{ site.favicon.ico | absolute_url }}">{% endif %}
-{% if static_files_paths contains '/assets/images/favicon.png' %}<link rel="apple-touch-icon" href="{{ "/assets/images/favicon.png" | absolute_url }}">
-<link rel="icon" type="image/png" href="{{ "/assets/images/favicon.png" | absolute_url }}">{% elsif site.favicon.png %}<link rel="apple-touch-icon" href="{{ site.favicon.png | absolute_url }}">
-<link rel="icon" type="image/png" href="{{ site.favicon.png | absolute_url }}">{% endif %}
+{%- assign static_files_paths = site.static_files | map: 'path' -%}{% if static_files_paths contains '/assets/images/favicon.ico' %}<link rel='icon' href='{{ "/assets/images/favicon.ico" | absolute_url }}'>{% elsif site.favicon.ico %}<link rel='icon' href='{{ site.favicon.ico | absolute_url }}'>{% endif %}
+{% if static_files_paths contains '/assets/images/favicon.png' %}<link rel='apple-touch-icon' href='{{ "/assets/images/favicon.png" | absolute_url }}'>
+<link rel='icon' type='image/png' href='{{ "/assets/images/favicon.png" | absolute_url }}'>{% elsif site.favicon.png %}<link rel='apple-touch-icon' href='{{ site.favicon.png | absolute_url }}'>
+<link rel='icon' type='image/png' href='{{ site.favicon.png | absolute_url }}'>{% endif %}
 
 <!-- REPOSITORY -->
-<meta name="site_build" content="{{ build_time | date_to_rfc822 }}">
-<meta name="site_build_unixtime" content="{{ build_time_unix }}">
-<meta name="repository_created_at" content="{{ repo.created_at | date_to_rfc822 }}">
-<meta name="repository_updated_at" content="{{ repo.updated_at | date_to_rfc822 }}">
-<meta name="repository_updated_at_unixtime" content="{{ repo.updated_at | date: '%s' }}">
-<meta name="repository_sha" content="{{ gh.build_revision }}">
-<meta name="remote-theme-version" content="{% include version.html %}">
-{% if site.remote_theme %}<meta name="remote_theme" content="{{ site.remote_theme }}">
+<meta name='site_build' content='{{ site.time }}'>
+<meta name='remote-theme-version' content='{% include version.html %}'>
+{% if site.remote_theme %}<meta name='remote_theme' content='{{ site.remote_theme }}'>
 {% endif %}
 <!-- SEO -->
 {% include page/seo.html %}
 
 <!-- CSS -->
-<link rel="stylesheet" href="{{ "/assets/css/stylesheet.css?v=" | append: build_time_unix | absolute_url }}">
+<link rel='stylesheet' href='{{ "/assets/css/stylesheet.css" | absolute_url }}?build={{ site.time | date: "%s" }}'>
 
 <!-- SCRIPTS -->
-<script src="{{ "/assets/js/jquery.3.6.0.min.js" | absolute_url }}"></script>
+<script src='{{ "/assets/js/jquery.3.6.0.min.js" | absolute_url }}'></script>
 
 <!-- base64.js 3.7.2 https://github.com/dankogai/js-base64 -->
-<script src="{{ "/assets/js/base64.js" | absolute_url }}"></script>
+<script src='{{ "/assets/js/base64.js" | absolute_url }}'></script>
 
 <!-- SerializeJSON jQuery plugin 3.2.1 https://github.com/marioizquierdo/jquery.serializeJSON -->
-<script src="{{ "/assets/js/jquery.serializeJSON.min.js" | absolute_url }}"></script>
+<script src='{{ "/assets/js/jquery.serializeJSON.min.js" | absolute_url }}'></script>
 
 <!-- js-yaml.js 4.1.0 https://github.com/nodeca/js-yaml -->
-<script src="{{ "assets/js/js-yaml.min.js" | absolute_url }}"></script>
+<script src='{{ "assets/js/js-yaml.min.js" | absolute_url }}'></script>
 
-<script src="{{ "/assets/js/script.js?v=" | append: build_time_unix | absolute_url }}" defer></script>
+<script src='{{ "/assets/js/script.js" | absolute_url }}?build={{ site.time | date: "%s" }}' defer></script>
