@@ -1,18 +1,17 @@
-# Refresh page if repository changed
+# Check latest build
 check_build = ->
-  latest = $.get '{{ site.github.api_url }}/repos/{{ site.github.repository_nwo }}'
+  latest = $.get '{{ site.github.api_url }}/repos/{{ site.github.repository_nwo }}/pages/builds/latest'
   latest.done (data) ->
-    unixtime = new Date(data.updated_at).getTime() / 1000
-    # Compare repository update unixtime and built unixtime
-    if unixtime > Number $('meta[name=site_build_unixtime]').attr('content')
-      # Update SHA on storage
-      storage.assign 'repository', {updated_at_unix: unixtime}
+    updated_at_unix = new Date(data.updated_at).getTime() / 1000
+    # Compare latest build and site.time
+    if updated_at_unix > {{ site.time | date: "%s" }}
       # Refresh with the new SHA as hash
-      short_sha = unixtime
-      new_url = location.origin + location.pathname + '?updated_at_unix=' + unixtime + location.hash
-      $('#alerts').empty().append "<a href='#{new_url}' title='#{unixtime}'>New build</a>"
-    return
-  return # end Build check
+      span = $('<span/>', {text: 'New build', datetime: data.updated_at})
+      new_url = location.origin + location.pathname + '?updated_at_unix=' + updated_at_unix + location.hash
+      datetime span
+      $('#alerts').empty().append("<a href='#{new_url}'></a>").append span
+    return # End latest callback
+  return # End build check
 
 # Request a new build if remote repository changed
 check_remote = ->

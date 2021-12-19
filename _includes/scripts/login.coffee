@@ -22,11 +22,11 @@ login.permissions = ->
   repo = $.get '{{ site.github.api_url }}/repos/{{ site.github.repository_nwo }}'
   repo.done (data) ->
     storage.assign('login',
-      'role': (if data.permissions.admin then 'admin' else 'guest')
+      role: (if data.permissions.admin then 'admin' else 'guest')
     ).assign 'repository',
       fork: data.fork
       parent: data.parent?.full_name?
-      updated_at_unix: new Date(data.updated_at).getTime() / 1000
+      build_unix: {{ site.time | date: "%s" }}
     return # End permission check
   repo.always ->
     login.setLogout()
@@ -50,12 +50,12 @@ login.setLogout = ->
   $('html').addClass "role-#{login.storage()['role']} logged"
   $('html').attr 'user', login.storage()['user']
   login.logout_link.attr 'title', login.text()
-  storage.assign 'repository', {sha: '{{ site.github.build_revision }}'}
+  storage.assign 'repository', {build_unix: {{ site.time | date: "%s" }}}
   apply_family()
   true
 
 # Immediately Invoked Function Expressions
-login.init = (-> if login.storage()["token"] then login.setLogout() else login.setLogin())()
+login.init = (-> if login.storage()['token'] then login.setLogout() else login.setLogin())()
 {%- capture api -%}
 ## Login
 
