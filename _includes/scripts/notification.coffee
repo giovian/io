@@ -1,7 +1,7 @@
 notification = (code, cls) ->
   # Create notification SPAN
   span = $('<span/>', {datetime: new Date()}).append code
-  dateTime span
+  datetime span
   # Create DIV and append elements to overlay
   div = $ '<div/>',
     class: "#{if cls then "color-#{cls}" else 'bg-secondary'}"

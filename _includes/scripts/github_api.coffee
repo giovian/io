@@ -32,7 +32,7 @@ request = (event) ->
     for out in link.attr('github-api-out').split ','
       property = out.trim()
       raw_value = data[property] || 'ok'
-      value = if Date.parse raw_value then timeDiff raw_value else raw_value
+      value = if Date.parse raw_value then time_diff raw_value else raw_value
       list.append "<li>#{property} <code>#{value}</code></li>"
     return # End API response process
   # Output error

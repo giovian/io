@@ -1,5 +1,5 @@
 # Delays larger than 2,147,483,647 ms (about 24.8 days) will result in the timeout being executed immediately.
-dateTime = (e) ->
+datetime = (e) ->
 
   # Settings
   names = 'second, minute, hour, day, week, month, year'.split(',')
@@ -70,13 +70,13 @@ dateTime = (e) ->
     $(e).attr "title", out moment
 
   # Return a setTimeout function
-  setTimeout dateTime, update, e
+  setTimeout datetime, update, e
   
-  return # end dateTime
+  return # end datetime
 
-$("[datetime]").each -> dateTime @
+$("[datetime]").each -> datetime @
 
-timeDiff = (date) ->
+time_diff = (date) ->
   second = 1000
   minute = second * 60
   hour = minute * 60
@@ -125,14 +125,14 @@ Countdown and countup can replace the element text, be appended or appear on hov
 
 Element will have an updated class `future` or `past`.
 
-```js
-span = $("<span/>", {
+```coffee
+span = $("<span/>",
   datetime: new Date(),
   text: text
-})
-dateTime(span)
+)
+datetime(span)
 ```
 {:.minimal}
 
-Include a function `timeDiff(datetime)`{:.language-coffee} returning the countdown/countup.
+Include a function `time_diff(datetime)`{:.language-coffee} returning the countdown/countup.
 {%- endcapture -%}
