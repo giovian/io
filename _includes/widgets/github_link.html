@@ -1,4 +1,4 @@
-[`{{ include.text | default: include.path | default: gh.repository_url }}`]({% include widgets/github_url.html path=include.path %})
+[`{{ include.text | default: include.path | default: site.github.repository_url }}`]({% include widgets/github_url.html path=include.path %})
 {%- capture api -%}
 ## GitHub link
 

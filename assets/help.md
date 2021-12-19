@@ -9,12 +9,12 @@ order: 1000
 <div class="grid">
   <div markdown="1">
 **Repository**
-- <https://github.com/{{ gh.repository_nwo }}>
+- <https://github.com/{{ site.github.repository_nwo }}>
 - Owner type `{{ repo.owner.type }}`
 - Page type `{% if site.github.is_user_page %}User{% endif %}{% if site.github.is_project_page %}Project{% endif %}`
 - Created {% include widgets/datetime.html datetime=repo.created_at replace=true %}
 - Modified {% include widgets/datetime.html datetime=repo.modified_at replace=true %}
-- Sha `{{ gh.build_revision | slice: 0, 7 }}`
+- Sha `{{ site.github.build_revision | slice: 0, 7 }}`
 - Release `{{ site.github.releases | first | map: 'tag_name' | default: '-' }}` `{{ site.github.releases | first | map: 'name' | default: '-' }}`
 {% if site.remote_theme %}
 
