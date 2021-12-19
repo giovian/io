@@ -8,7 +8,7 @@ check_build = ->
       # Refresh with the new build unix time
       loc = window.location
       new_url = loc.origin + loc.pathname + '?unix=' + unix + loc.hash
-      $('#alerts').empty().append "<a href='#{new_url}'>New build</a>"
+      $('#alert').empty().append "<a href='#{new_url}'>New build</a>"
     return # End latest callback
   return # End build check
 
