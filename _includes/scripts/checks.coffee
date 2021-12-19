@@ -2,14 +2,13 @@
 check_build = ->
   latest = $.get '{{ site.github.api_url }}/repos/{{ site.github.repository_nwo }}/pages/builds/latest'
   latest.done (data) ->
-    updated_at_unix = new Date(data.updated_at).getTime() / 1000
+    unix = new Date(data.updated_at).getTime() / 1000
     # Compare latest build and site.time
-    if updated_at_unix > {{ site.time | date: "%s" }}
-      # Refresh with the new SHA as hash
-      span = $('<span/>', {text: 'New build', datetime: data.updated_at})
-      new_url = location.origin + location.pathname + '?updated_at_unix=' + updated_at_unix + location.hash
-      datetime span
-      $('#alerts').empty().append("<a href='#{new_url}'></a>").append span
+    if unix > {{ site.time | date: "%s" }}
+      # Refresh with the new build unix time
+      loc = window.location
+      new_url = loc.origin + loc.pathname + '?unix=' + unix + loc.hash
+      $('#alerts').empty().append "<a href='#{new_url}'>New build</a>"
     return # End latest callback
   return # End build check
 
