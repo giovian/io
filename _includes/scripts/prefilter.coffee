@@ -16,13 +16,12 @@ $.ajaxPrefilter (options, ajaxOptions, request) ->
       options.headers['Authorization'] = "token #{login.storage()['token']}"
 
   # Dewait effect
-  request.always -> $('html').removeClass 'wait'
+  # request.always -> $('html').removeClass 'wait'
 
   return # end Prefilter
 
 # Wait effect before request and log request on console
 $(document).ajaxSend (options, request, ajaxOptions) ->
-  $('html').addClass 'wait'
   console.count [ajaxOptions.type, ajaxOptions.url.split('?')[0]].join ' '
   return # End ajax Send
 
@@ -32,6 +31,5 @@ $(document).ajaxSend (options, request, ajaxOptions) ->
 - Remove `cache` for ajax requests
 - Set `Accept` and `Authorization` headers for request to GitHub API.
 - Show a notification in case of error.
-- Apply Wait and dewait effect to HTML element.
 - Log request on console
 {%- endcapture -%}

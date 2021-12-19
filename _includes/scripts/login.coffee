@@ -9,6 +9,7 @@ login.login_link.on 'click', (e) ->
   if !token then return
   storage.set 'login', {'token': token}
   notification 'Verifying'
+  login.login_link.prop 'disabled', true
   auth = $.get '{{ site.github.api_url }}/user'
   auth.done (data) ->
     storage.assign 'login', {'user': data.login, 'logged': new Date()}
@@ -49,6 +50,7 @@ login.setLogin = ->
 login.setLogout = ->
   $('html').addClass "role-#{login.storage()['role']} logged"
   $('html').attr 'user', login.storage()['user']
+  login.login_link.prop 'disabled', false
   login.logout_link.attr 'title', login.text()
   storage.assign 'repository', {build_unix: {{ site.time | date: "%s" }}}
   apply_family()

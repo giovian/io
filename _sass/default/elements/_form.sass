@@ -149,3 +149,13 @@ form
   // Links align right
   [data-add], [data-remove]
     float: right
+
+  //
+  // DISABLED (Loading state)
+  // --------------------------------------
+  &[disabled]
+    cursor: wait
+    opacity: .5
+    input, button, select
+      pointer-events: none
+      @extend .disabled

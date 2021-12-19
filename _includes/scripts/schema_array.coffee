@@ -42,6 +42,7 @@ $('form.schema-array').each ->
 
   load_schema = ->
     schema_url = "{{ site.github.api_url }}/repos/{{ site.github.repository_nwo }}/contents/_data/#{form.attr 'data-schema'}.schema.json"
+    form.attr 'disabled', ''
     get_schema = $.get schema_url
     get_schema.done (data, status) ->
       # Get schema: decode from base 64 and parse as yaml
@@ -54,6 +55,7 @@ $('form.schema-array').each ->
         form.find('[properties-inject]').prepend get_property(key, value)
       return # Form is populated
     get_schema.fail -> form.find('[name="$id"]').val form.attr('data-schema')
+    get_schema.always -> form.removeAttr 'disabled'
     return # End load_schema function
 
   # Populate form
@@ -104,45 +106,48 @@ $('form.schema-array').each ->
   form.on 'submit', ->
 
     # Check user is logged
-    if $('html').hasClass 'logged'
-      # Prepare variabiles
-      encoded_content = Base64.encode JSON.stringify(form.serializeJSON(), null, 2)
-      url = "{{ site.github.api_url }}/repos/{{ site.github.repository_nwo }}/contents/_data/#{form.find('[name="$id"]').val()}.schema.json"
-      notification 'Check if file exist'
-      # Check if file already exist
-      get_schema = $.get url
-      get_schema.fail (request, status, error) ->
-        # Schema not found
-        if error == 'Not Found'
-          load =
-            message: "Create schema-array"
-            content: encoded_content
-          # Commit new file
-          notification load.message
-          put = $.ajax url,
-            method: 'PUT'
-            data: JSON.stringify load
-          put.done (data, status)->
-            storage.assign 'repository', {sha: data.commit.sha}
-            notification 'Schema created', 'green'
-            return # End commit
-        return # End new file
-      # File present, overwrite with sha reference
-      get_schema.done (data, status) ->
+    if !$('html').hasClass 'logged'
+      notification 'You need to login', 'red'
+      return
+
+    # Write data
+    encoded_content = Base64.encode JSON.stringify(form.serializeJSON(), null, 2)
+    url = "{{ site.github.api_url }}/repos/{{ site.github.repository_nwo }}/contents/_data/#{form.find('[name="$id"]').val()}.schema.json"
+    notification 'Check if file exist'
+    form.prop 'disabled', true
+
+    # Check if file already exist
+    get_schema = $.get url
+    get_schema.fail (request, status, error) ->
+      # Schema not found
+      if error == 'Not Found'
         load =
-          message: 'Edit schema-array'
-          sha: data.sha
+          message: "Create schema-array"
           content: encoded_content
-        # Commit edited file
+        # Commit new file
         notification load.message
         put = $.ajax url,
           method: 'PUT'
           data: JSON.stringify load
-        put.done (data, status) ->
-          storage.assign 'repository', {sha: data.commit.sha}
-          notification 'Schema edited', 'green'
-        return # End overwrite
-    else notification 'You need to login', 'red'
+        put.done -> notification 'Schema created', 'green'
+        put.always -> form.prop 'disabled', false
+      else form.prop 'disabled', false
+      return # End new file
+
+    # File present, overwrite with sha reference
+    get_schema.done (data, status) ->
+      load =
+        message: 'Edit schema-array'
+        sha: data.sha
+        content: encoded_content
+      # Commit edited file
+      notification load.message
+      put = $.ajax url,
+        method: 'PUT'
+        data: JSON.stringify load
+      put.done -> notification 'Schema edited', 'green'
+      put.always -> form.prop 'disabled', false
+      return # End overwrite
 
     return # End submit handler
 

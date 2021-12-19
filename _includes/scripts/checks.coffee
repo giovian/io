@@ -5,7 +5,7 @@ check_build = ->
     created_at = new Date(data.created_at).getTime() / 1000
     # Compare latest build created_at and site.time
     if data.status is 'built' and created_at > {{ site.time | date: "%s" }}
-      # Refresh with the new build unix time
+      # Refresh with the latest built creation unix time
       loc = window.location
       new_url = loc.origin + loc.pathname + '?created_at=' + created_at + loc.hash
       $('#alert').empty().append "<a href='#{new_url}'>New build</a>"
@@ -51,7 +51,7 @@ if '{{ site.github.environment }}' isnt 'development' then setTimeout checks, 60
 
 Include the functions `check_build` and (if the site use a remote theme) `check_remote`. The functions can be activated in the Help page.  
 
-`check_build`: every pageload wait 1 minute and compare website `build_revision` SHA with repository latest commit: if they are different, reload the page with the SHA as hash.  
+`check_build`: every pageload wait 1 minute and compare Jekyll `site.time` with GitHub latest built creation time: if they are different, show a link in the `#alert` box.  
 
 `check_remote`: every pageload wait 1 minute and compare the remote theme latest commit and compare with previous stored SHA: if they are different, request a new pages build.  
 
