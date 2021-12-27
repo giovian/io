@@ -114,7 +114,7 @@ $('form.schema-array').each ->
     encoded_content = Base64.encode JSON.stringify(form.serializeJSON(), null, 2)
     url = "{{ site.github.api_url }}/repos/{{ site.github.repository_nwo }}/contents/_data/#{form.find('[name="$id"]').val()}.schema.json"
     notification 'Check if file exist'
-    form.prop 'disabled', true
+    form.attr 'disabled', ''
 
     # Check if file already exist
     get_schema = $.get url
@@ -130,8 +130,8 @@ $('form.schema-array').each ->
           method: 'PUT'
           data: JSON.stringify load
         put.done -> notification 'Schema created', 'green'
-        put.always -> form.prop 'disabled', false
-      else form.prop 'disabled', false
+        put.always -> form.removeAttr 'disabled'
+      else form.removeAttr 'disabled'
       return # End new file
 
     # File present, overwrite with sha reference
@@ -146,7 +146,7 @@ $('form.schema-array').each ->
         method: 'PUT'
         data: JSON.stringify load
       put.done -> notification 'Schema edited', 'green'
-      put.always -> form.prop 'disabled', false
+      put.always -> form.removeAttr 'disabled'
       return # End overwrite
 
     return # End submit handler
