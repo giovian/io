@@ -1,29 +1,17 @@
-{%- assign html_pages = site.html_pages | sort: "order" -%}
-{%- assign sorted_collections = site.collections | sort: "order" -%}
+{% assign navigation_default = 'pages,collections,login' | split: ',' %}
+{%- assign navigation = page.navigation | default: navigation_default -%}
 <ul>
-  {% if html_pages.size > 2 or site.documents.size > 0 %}{% for link in html_pages %}<li><a href="{{ link.url | absolute_url }}"{% if page.url == link.url %} class="active"{% endif %}>{{ link.title }}</a></li>
-  {% endfor %}{% endif %}
-  {% if site.documents.size > 0 %}{%- for collection in sorted_collections -%}{% if collection.docs.size > 0 %}
-  <li>
-    <span{% if page.collection == collection.label %} class="active"{% endif %}>
-      {{ collection.title | default: collection.label }} &#x25BE;</span>
-    <ul>
-      {%- assign collection_docs = collection.docs | sort: "order" -%}
-      {% for link in collection_docs %}<li><a href="{{ link.url | absolute_url }}"{% if page.url == link.url %} class="active"{% endif %}>{{ link.title }}</a></li>
-      {% endfor %}
-    </ul>
-  </li>
-  {% endif %}{%- endfor -%}{% endif %}
-  {% if page.login %}{% include widgets/login.html %}{% endif %}
+  {% for item in navigation %}{% include page/navigation/{{ item }}.html %}{% endfor %}
 </ul>
 {%- capture api -%}
 ## Navigation
 
-If the website has more than 2 pages (index and help), render the website navigation as unordered list with dropdowns.  
+Render the website navigation as unordered list with dropdowns.  
 
-- Site pages `{% raw %}{{ site.html_pages }}{% endraw %}`{:.language-liquid} sorted by `order` liquid variabile.
-- Collections `{% raw %}{{ site.collections }}{% endraw %}`{:.language-liquid} dropdowns sorted by `order` liquid variabile.
-- Login links, if `{% raw %}{{ page.login }}{% endraw %}`{:.language-liquid} is `true`.
+- `pages`: `{% raw %}{{ site.html_pages }}{% endraw %}`{:.language-liquid} sorted by `order` liquid variabile
+- `collections`: `{% raw %}{{ site.collections }}{% endraw %}`{:.language-liquid} dropdowns sorted by `order` liquid variabile
+- `login`: links
+- `help`: link to Help page
 
 ```liquid
 {% raw %}{% include page/navigation.html %}{% endraw %}
