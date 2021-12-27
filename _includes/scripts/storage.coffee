@@ -52,14 +52,13 @@ If logged:
   },
   login: {
     token: "...",
-    user: "<username>",
+    user: "username",
     logged: "2021-08-18T16:06:38.559Z",
-    role: "<admin/guest>"
+    role: "admin"/"guest"
   },
   repository: {
-    fork: boolean,
-    parent: <false or repository_object>,
-    sha: "<sha>"
+    fork: true/false,
+    parent: false/repository_object
 }
 ```
 

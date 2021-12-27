@@ -132,7 +132,6 @@ span = $("<span/>",
 )
 datetime(span)
 ```
-{:.minimal}
 
 Include a function `time_diff(datetime)`{:.language-coffee} returning the countdown/countup.
 {%- endcapture -%}

@@ -12,5 +12,4 @@ if focus
 else
   # window is blurred
 ```
-{:.minimal}
 {%- endcapture -%}

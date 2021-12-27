@@ -7,5 +7,6 @@ else
 {%- capture api -%}
 ## Table of contents
 
-Will move the [markdown table of contents]({{ 'docs/kramdown/#table-of-contents' | absolute_url }}) inside the [toc widget]({{ 'docs/widgets/#table-of-contents' | absolute_url }}). If it is not present, will remove the widget.
+Will move the [markdown table of contents]({{ 'docs/kramdown/#table-of-contents' | absolute_url }}) inside the [toc widget]({{ 'docs/widgets/#table-of-contents' | absolute_url }}).  
+If the markdown toc is not present, will remove the widget.
 {%- endcapture -%}

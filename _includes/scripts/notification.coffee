@@ -13,7 +13,8 @@ notification = (code, cls, persist = false) ->
 {%- capture api -%}
 ## Notification
 
-Render a notification on the navigation bar with custom text and color.
+Render a notification on the navigation bar with custom text and color.  
+Will fadeout after 3 seconds.
 
 ```coffee
 notification('text', 'color', persist)

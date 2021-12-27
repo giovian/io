@@ -34,5 +34,4 @@ details: {
   "forms|Table of contents": false
 }
 ```
-{:.minimal}
 {%- endcapture -%}
