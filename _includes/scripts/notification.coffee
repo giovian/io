@@ -1,15 +1,13 @@
 notification = (code, cls) ->
   # Create notification SPAN
-  span = $('<span/>', {datetime: new Date()}).append code
-  datetime span
-  # Create DIV and append elements to overlay
-  div = $ '<div/>',
-    class: "#{if cls then "color-#{cls}" else 'bg-secondary'}"
-  $('#notification').empty().append(div.append span)
+  span = $('<span/>').append code
+  color_class = "#{if cls then "color-#{cls}" else 'bg-secondary'}"
+  $('#notification').empty().addClass(color_class).append span
   # Timer to fade and expire
-  div.delay(3000).fadeOut('slow', -> div.remove())
-  # Output in console
-  # console.log [span.text(), cls || 'default', new Date()].join ', '
+  span.delay(3000).fadeOut 'slow', ->
+    span.remove()
+    $('#notification').removeClass color_class
+    return # End fadeout delay
   return # end notification
 {%- capture api -%}
 ## Notification
