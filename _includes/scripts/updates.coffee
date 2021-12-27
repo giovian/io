@@ -10,7 +10,7 @@ checks = ->
       # Refresh with the latest built creation unix time
       loc = window.location
       new_url = loc.origin + loc.pathname + '?created_at=' + created_at + loc.hash
-      $('#alert').empty().append "<a href='#{new_url}'>New build</a>"
+      notification "<a href='#{new_url}'>New build</a>", '', true
     return # End latest callback
 
   # Check remote theme, if used
@@ -25,7 +25,7 @@ checks = ->
         # Update SHA on storage
         storage.assign 'repository', {remote_sha: data[0].sha}
         # Request a build
-        $('#alert').empty().append "New remote theme SHA"
+        notification 'New remote theme SHA', '', true
       return # End remote SHA check
 
   # Schedule next check
