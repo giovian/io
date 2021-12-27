@@ -22,11 +22,10 @@
 
 {% include scripts/focus.coffee %}          # Check website browser tab is focused
 {% include scripts/inview.coffee %}         # In view Observer
-{% include scripts/checks.coffee %}         # Check repository and remote theme updates
+{% include scripts/updates.coffee %}        # Check repository and remote theme updates
 {% include scripts/form.coffee %}           # Form engine
 {% include scripts/schema_array.coffee %}   # Manage array schema engine
 {% include scripts/document.coffee %}       # Manage document from schema
-{% include scripts/switch.coffee %}         # Interface for storage switches
 
 # CUSTOM
 
