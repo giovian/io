@@ -44,11 +44,11 @@ Updates are checked every minute after pageload, only if the user is logged as `
 
 **Latest build**  
 Compare Jekyll `site.time` with GitHub latest built creation time.  
-If they are different, show a link in the `#alert` box.  
+If they are different, show a notification link.  
 
 **Remote theme SHA**  
 Compare the remote theme latest commit with previous stored SHA.  
-If they are different, show a message in the `#alert` box.  
+If they are different, show a notification.  
 
 This script is not active in `development` environment.
 {%- endcapture -%}

@@ -13,12 +13,10 @@ notification = (code, cls, persist = false) ->
 {%- capture api -%}
 ## Notification
 
-Render a notification on the navigation bar with custom text, color and elapsed time on hover.
-
-The notification will be shown on console as well.
+Render a notification on the navigation bar with custom text and color.
 
 ```coffee
-notification('text', 'color')
+notification('text', 'color', persist)
 ```
 
 **Arguments**
@@ -26,4 +24,5 @@ notification('text', 'color')
 - `text`: text to show
 - `color`: added as class with prepended `.color-`{:.language-sass}.  
   Default to `.bg-secondary`{:.language-sass}
+- `persist`: boolean, if `true` the notification will not fade out
 {%- endcapture -%}
