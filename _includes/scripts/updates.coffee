@@ -9,7 +9,7 @@ checks = ->
     if data.status is 'built' and created_at > {{ site.time | date: "%s" }}
       # Refresh with the latest built creation unix time
       loc = window.location
-      new_url = loc.origin + loc.pathname + '?created_at=' + created_at + loc.hash
+      new_url = loc.origin + loc.pathname + '?created_at=' + data.created_at + loc.hash
       notification "<a href='#{new_url}'>New build</a>", '', true
     return # End latest callback
 
