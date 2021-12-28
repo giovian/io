@@ -36,7 +36,7 @@ checks = ->
 # Start checks
 if '{{ site.github.environment }}' isnt 'development' and $('html').hasClass 'role-admin'
   setTimeout checks, 60 * 1000
-  return
+
 {%- capture api -%}
 ## Updates
 
