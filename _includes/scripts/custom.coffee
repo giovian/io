@@ -1,0 +1,1 @@
+$('form').each -> console.log @

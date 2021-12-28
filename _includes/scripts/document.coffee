@@ -1,9 +1,7 @@
 $('form.document').each ->
   form = $ @
-  console.log form
 
   load_schema = ->
-    console.log "ok",form
     schema_url = "{{ site.github.api_url }}/repos/{{ site.github.repository_nwo }}/contents/_data/#{form.attr 'data-schema'}.schema.json"
     form.attr 'disabled', ''
     get_schema = $.get schema_url
