@@ -1,2 +1,2 @@
-console.log try $().jquery catch e then ''
+console.log try $().jquery catch e then e
 $('form').each -> console.log @
