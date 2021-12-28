@@ -2,7 +2,7 @@ notification = (code, cls, persist = false) ->
   # Create notification SPAN
   span = $('<span/>').append code
   color_class = "#{if cls then "color-#{cls}" else 'bg-secondary'}"
-  $('#notification').empty().addClass(color_class).append span
+  $('#notification').empty().attr('class','').addClass(color_class).append span
   # Timer to fade and expire
   if persist then return
   span.delay(3000).fadeOut 'slow', ->
