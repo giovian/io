@@ -1,3 +1,3 @@
 $ ->
-  console.log try $().jquery catch e then e
+  console.log $().jquery || 'no'
   $('form').each -> console.log @
