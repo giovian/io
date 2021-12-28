@@ -1,6 +1,5 @@
-<form class='prevent-default schema-array'{% if include.schema %} data-schema='{{ include.schema }}'{% endif %}>
-  <h3>Schema type array</h3>{% if include.schema %}
-  <p>Schema <i>{{ include.schema }}</i></p>{% endif %}
+<form class='prevent-default schema'{% if include.schema %} data-schema='{{ include.schema }}'{% endif %}>
+  <h3>Schema{% if include.schema %} <code>{{ include.schema }}</code>{% endif %}</h3>
   <div data-type='string'>
     <label for='$id' markdown=1>`$id`: file path (no extension)</label>
     <input type='text' autocomplete='off' name='$id' required>
@@ -17,11 +16,23 @@
     <input type='text' autocomplete='off' name='description'>
   </div>
 
+  <div data-type='select'>
+    <label for='type'>Type</label>
+    <select name='type' class='inline'>
+      <option value='array'>Array</option>
+    </select>
+  </div>
+
+  <div data-type='select'>
+    <label for='items[type]'>Items type</label>
+    <select name='items[type]' class='inline'>
+      <option value='object'>Object</option>
+    </select>
+  </div>
+
   <!-- HIDDEN -->
 
   <input type='hidden' name='$schema' value='https://json-schema.org/draft/2020-12/schema'>
-  <input type='hidden' name='type' value='array'>
-  <input type='hidden' name='items[type]' value='object'>
 
   <div data-type='array'>
     <label class='fg-secondary'>Item properties <a href='#add' data-add='property' class='prevent-default'>add</a></label>

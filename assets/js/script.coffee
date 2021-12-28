@@ -24,7 +24,7 @@
 {% include scripts/inview.coffee %}         # In view Observer
 {% include scripts/updates.coffee %}        # Check repository and remote theme updates
 {% include scripts/form.coffee %}           # Form engine
-{% include scripts/schema_array.coffee %}   # Manage array schema engine
+{% include scripts/schema.coffee %}   # Manage array schema engine
 {% include scripts/document.coffee %}       # Manage document from schema
 
 # CUSTOM

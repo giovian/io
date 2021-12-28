@@ -37,7 +37,7 @@ get_property = (key, value) ->
 #
 # ACTIVATION function
 # --------------------------------------
-$('form.schema-array').each ->
+$('form.schema').each ->
   form = $ @
 
   load_schema = ->
@@ -122,7 +122,7 @@ $('form.schema-array').each ->
       # Schema not found
       if error == 'Not Found'
         load =
-          message: "Create schema-array"
+          message: "Create schema"
           content: encoded_content
         # Commit new file
         notification load.message
@@ -137,7 +137,7 @@ $('form.schema-array').each ->
     # File present, overwrite with sha reference
     get_schema.done (data, status) ->
       load =
-        message: 'Edit schema-array'
+        message: 'Edit schema'
         sha: data.sha
         content: encoded_content
       # Commit edited file

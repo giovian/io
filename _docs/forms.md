@@ -115,7 +115,7 @@ storage.get("repository.fork") = true
 
 ## Schema array
 
-{% include widgets/schema-array.html schema="practices" %}
+{% include widgets/schema.html schema="practices" %}
 
 ## Array document
 

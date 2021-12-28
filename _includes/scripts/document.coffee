@@ -9,7 +9,7 @@ $('form.document').each ->
       # Get schema: decode from base 64 and parse as yaml
       schema = JSON.parse Base64.decode(data.content) # jsyaml.load
       if schema.type isnt 'array'
-        console.log "schema type: #{schema.type} not found"
+        notification "schema type `#{schema.type}` to do", 'red', true
       # Loop items properties
       for own key, value of schema.items.properties
         # Default variabiles
@@ -43,7 +43,7 @@ $('form.document').each ->
               $ '<option/>', {value: true, text: 'True'}
               $ '<option/>', {value: false, text: 'False'}
             ]
-          else console.log "type #{value.type} to do"
+          else notification "Property type `#{value.type}` to do", 'red', true
 
         # Complete field attributes
         field.attr 'name', key
