@@ -1,17 +1,19 @@
 {
   "$id": "practices",
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "array",
   "items": {
     "type": "object",
     "properties": {
-      "serie": {
-        "type": "integer"
-      },
       "date": {
         "type": "string",
-        "format": "date"
+        "format": "date",
+        "default": "today"
+      },
+      "serie": {
+        "type": "integer",
+        "default": 1
       }
     }
-  }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
 }
