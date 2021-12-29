@@ -116,22 +116,23 @@ $('form.document').each ->
       notification 'You need to login', 'red'
       return
 
+    # Parse FORM
     # Check empty object
     if !Object.keys(form.serializeJSON()) then return
     # Loop fields
     head = []
     rows = []
-    # Item DIVS
+    # Item DIVs
     form.find('.item').each (i, row) ->
       rows[i] = []
       # Item FIELDS
       $(@).find(':input').each (j, field) ->
         head[j] = $(field).attr 'name'
         rows[i].push $(field).val()
-        return
-      return
-    # Encode csv file
-    encoded_content = Base64.encode [head.join(','), (row.join(',') for row in rows).join('\n')].join('\n')
+        return # End FIELDS loop
+      head_csv = head.join(',')
+      rows_csv = (row.join(',') for row in rows).join('\n')
+      return # End item DIVs loop
 
     # Prepare for requests
     path = form.attr('data-document') || form.attr('data-schema')
@@ -141,7 +142,11 @@ $('form.document').each ->
     # Check if document exist
     get_document = $.get document_url
     get_document.fail (request, status, error) ->
+      # File don't exist
       if error is 'Not Found'
+        # Encode csv file
+        encoded_content = Base64.encode [head_csv, rows_csv].join('\n')
+        # Prepare commit
         load =
           message: 'Create document'
           content: encoded_content
@@ -160,6 +165,9 @@ $('form.document').each ->
 
     # File present, ovwrwrite with SHA reference
     get_document.done (data, status) ->
+      # Encode csv file
+      encoded_content = Base64.encode [Base64.decode(data.content), rows_csv].join('\n')
+      # Prepare commit
       load =
         message: 'Edit document'
         sha: data.sha
@@ -173,7 +181,7 @@ $('form.document').each ->
       put.always ->
         form.removeAttr 'disabled'
         form.trigger 'reset'
-        return
+        return # End request finished
       return # End update file
 
     return # End SUBMIT
