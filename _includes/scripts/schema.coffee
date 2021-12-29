@@ -121,7 +121,7 @@ $('form.schema').each ->
           content: encoded_content
         # Commit new file
         notification load.message
-        put = $.ajax url,
+        put = $.ajax schema_url,
           method: 'PUT'
           data: JSON.stringify load
         put.done -> notification 'Schema created', 'green'

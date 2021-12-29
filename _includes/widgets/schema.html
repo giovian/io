@@ -132,9 +132,9 @@
   </div>
   <details>
     <summary>Attributes</summary>
-    <div data-type='string'>
+    <div data-type='number'>
       <label for='default'>Default</label>
-      <input type='text' name='default'>
+      <input type='number' name='default' data-value-type='number'>
     </div>
     <div data-type='number'>
       <label for='minimum'>Minimun</label>
@@ -166,9 +166,9 @@
   </div>
   <details>
     <summary>Attributes</summary>
-    <div data-type='string'>
+    <div data-type='number'>
       <label for='default'>Default</label>
-      <input type='text' name='default'>
+      <input type='number' name='default' data-value-type='number'>
     </div>
     <div data-type='number'>
       <label for='minimum'>Minimun</label>
@@ -193,7 +193,7 @@
 <template id='template-boolean'>
   <div data-type='string'>
     <label for='default'>Default</label>
-    <select name='default' class='inline'>
+    <select name='default' class='inline' data-value-type='boolean'>
       <option value=''></option>
       <option value='true'>True</option>
       <option value='false'>False</option>
