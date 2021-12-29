@@ -151,7 +151,10 @@ $('form.document').each ->
           method: 'PUT'
           data: JSON.stringify load
         put.done -> notification 'Document created', 'green'
-        put.always -> form.removeAttr 'disabled'
+        put.always ->
+          form.removeAttr 'disabled'
+          form.trigger 'reset'
+          return
       else form.removeAttr 'disabled'
       return # End file don't exist case
 
@@ -167,7 +170,10 @@ $('form.document').each ->
         method: 'PUT'
         data: JSON.stringify load
       put.done -> notification 'Document edited', 'green'
-      put.always -> form.removeAttr 'disabled'
+      put.always ->
+        form.removeAttr 'disabled'
+        form.trigger 'reset'
+        return
       return # End update file
 
     return # End SUBMIT
