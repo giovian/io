@@ -33,6 +33,7 @@
   <!-- HIDDEN -->
 
   <input type='hidden' name='$schema' value='https://json-schema.org/draft/2020-12/schema'>
+  <input type='hidden' name='items[type]' value='object'>
 
   <div data-type='array'>
     <label class='fg-secondary'>Item properties <a href='#add' data-add='property' class='prevent-default'>add</a></label>
@@ -201,15 +202,15 @@
 </template>
 
 {%- capture api -%}
-## Schema array
+## Schema
 
-Form to create an array schema, require {% include widgets/github_link.html path='_includes/scripts/form.coffee' %} and {% include widgets/github_link.html path='_includes/scripts/schema-array.coffee' %} scripts.
+Form to create an array schema, require [form]({{ 'docs/scripts/#form' | absolute_url }}) and [schema]({{ 'docs/scripts/#schema' | absolute_url }}) scripts.
 
 **Form sections**
 
 - `path`, `title` and `description` fileds
-- `[properties-inject]` DIV for items properties
-- `data-type='button'` section
+- `[properties-inject]`: DIV for items properties
+- `data-type='button'`: `Save` and `Reset` buttons
 
 **Templates**
 
@@ -220,10 +221,11 @@ Form to create an array schema, require {% include widgets/github_link.html path
 - `#template-boolean`
 
 ```liquid
-{% raw %}{% include form/schema-array.html %}{% endraw %}
+{% raw %}{% include form/schema.html %}{% endraw %}
 ```
 
-**Options**
+**Includes**
 
-- `schema`: path to a schema to edit in `_data` folder
+- `schema`: URI-reference of the schema to load (no extension)  
+  Optional
 {%- endcapture -%}

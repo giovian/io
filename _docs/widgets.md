@@ -59,6 +59,7 @@ order: 30
 {% include widgets/api.html include='widgets/login' %}
 {% include widgets/api.html include='widgets/navigation' %}
 {% include widgets/api.html include='widgets/schema' %}
+{% include widgets/api.html include='widgets/document' %}
 {% include widgets/api.html include='widgets/toc' %}
 
 ## Version

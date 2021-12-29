@@ -1,9 +1,4 @@
 #
-# Initialize serializeJSON
-# --------------------------------------
-$.serializeJSON.defaultOptions.skipFalsyValuesForTypes = 'string,number,boolean,date'.split ','
-
-#
 # TEMPLATE helper function
 # --------------------------------------
 get_template = (id, prepend) ->
@@ -112,17 +107,17 @@ $('form.schema').each ->
 
     # Write data
     encoded_content = Base64.encode JSON.stringify(form.serializeJSON(), null, 2)
-    url = "{{ site.github.api_url }}/repos/{{ site.github.repository_nwo }}/contents/_data/#{form.find('[name="$id"]').val()}.schema.json"
+    schema_url = "{{ site.github.api_url }}/repos/{{ site.github.repository_nwo }}/contents/_data/#{form.find('[name="$id"]').val()}.schema.json"
     notification 'Check if file exist'
     form.attr 'disabled', ''
 
     # Check if file already exist
-    get_schema = $.get url
+    get_schema = $.get schema_url
     get_schema.fail (request, status, error) ->
       # Schema not found
-      if error == 'Not Found'
+      if error is 'Not Found'
         load =
-          message: "Create schema"
+          message: 'Create schema'
           content: encoded_content
         # Commit new file
         notification load.message
@@ -153,15 +148,13 @@ $('form.schema').each ->
 
   return # end FORM loop
 {%- capture api -%}
-## Schema array
+## Schema
 
-Manage a schema of `type=array`.
+Manage a schema FORM of `type=array`.  
+Needs [schema]({{ 'docs/widgets/#schema' | absolute_url }}) widget.
 
-```liquid
-{% raw %}{% include schema-array.html %}{% endraw %}
-```
+**FORM**
 
-**Includes**
-
-- `schema`: URI-reference of the schema to load (no extension)
+- Class `schema`
+- Attribute `data-schema`: URI-reference of the schema to load (no extension)
 {%- endcapture -%}

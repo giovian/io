@@ -1,3 +1,11 @@
+#
+# Initialize serializeJSON
+# --------------------------------------
+$.serializeJSON.defaultOptions.skipFalsyValuesForTypes = 'string,number,boolean,date'.split ','
+
+#
+# Enable RANGE OUTPUT
+# --------------------------------------
 range_enable = (range) ->
   $(range).on "input", (e) -> $(e.target).next("output").val $(e.target).val()
   # Initial update
