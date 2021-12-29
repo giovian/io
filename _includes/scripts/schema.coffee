@@ -137,7 +137,7 @@ $('form.schema').each ->
         content: encoded_content
       # Commit edited file
       notification load.message
-      put = $.ajax url,
+      put = $.ajax schema_url,
         method: 'PUT'
         data: JSON.stringify load
       put.done -> notification 'Schema edited', 'green'
