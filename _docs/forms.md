@@ -113,11 +113,11 @@ storage.get("repository.fork") = true
 
 - Schema and instance path
 
-## Schema array
+## Schema
 
 {% include widgets/schema.html schema='practices' %}
 
-## Array document
+## Document
 
 {% include widgets/document.html schema='practices' %}
 {% include widgets/api.html include='widgets/document' %}

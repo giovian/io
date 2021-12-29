@@ -157,11 +157,12 @@ $('form.document').each ->
 
     # File present, ovwrwrite with SHA reference
     get_document.done (data, status) ->
-      load:
+      load =
         message: 'Edit document'
         sha: data.sha
         content: encoded_content
       # Commit edited file
+      notification load.message
       put = $.ajax document_url,
         method: 'PUT'
         data: JSON.stringify load
