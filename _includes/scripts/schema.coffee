@@ -47,7 +47,7 @@ $('form.schema').each ->
       form.find('[name="$id"]').val schema['$id']
       form.find('[name="description"]').val schema.description
       for own key, value of schema.items.properties
-        form.find('[properties-inject]').prepend get_property(key, value)
+        form.find('[properties-inject]').append get_property(key, value)
       return # Form is populated
     get_schema.fail -> form.find('[name="$id"]').val form.attr('data-schema')
     get_schema.always -> form.removeAttr 'disabled'

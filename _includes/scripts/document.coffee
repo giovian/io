@@ -52,8 +52,8 @@ $('form.document').each ->
       if value.default
         if value.format is 'date' and value.default is 'today'
           # Today date with leading zeros
-          field.value = new Date().toLocaleDateString 'en-CA'
-        else field.value = value.default
+          field.val new Date().toLocaleDateString('en-CA')
+        else field.val value.default
       # Prepare elements
       label = $ '<label/>', {text: value.title || key, for: "#{key}"}
       div = $ '<div/>', {'data-type': data_type}
