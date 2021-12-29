@@ -130,9 +130,9 @@ $('form.document').each ->
         head[j] = $(field).attr 'name'
         rows[i].push $(field).val()
         return # End FIELDS loop
-      head_csv = head.join(',')
-      rows_csv = (row.join(',') for row in rows).join('\n')
       return # End item DIVs loop
+    head_csv = head.join(',')
+    rows_csv = (row.join(',') for row in rows).join('\n')
 
     # Prepare for requests
     path = form.attr('data-document') || form.attr('data-schema')
