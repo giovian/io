@@ -1,12 +1,13 @@
 <form class='prevent-default schema'{% if include.schema %} data-schema='{{ include.schema }}'{% endif %}>
   <h3>Schema{% if include.schema %} <code>{{ include.schema }}</code>{% endif %}</h3>
+
+  <input type='hidden' name='$schema' value='https://json-schema.org/draft/2020-12/schema'>
+
   <div data-type='string'>
     <label for='$id' markdown=1>`$id`: file path (no extension)</label>
     <input type='text' autocomplete='off' name='$id' required>
     <span markdown=1>Schema URI-reference inside `_data/`</span>
   </div>
-
-  <input type='hidden' name='$schema' value='https://json-schema.org/draft/2020-12/schema'>
 
 <!-- ANNOTATIONS -->
   <div data-type='string'>
