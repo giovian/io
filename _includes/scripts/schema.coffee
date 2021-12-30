@@ -9,7 +9,7 @@ get_template = (id, prepend) ->
     # Update inputs [name]
     template.find(':input[name]').attr 'name', (i, val) -> "#{prepend}[#{val}]"
     # Update switches
-    template.find('a[data-switch]').attr 'data-prepend', prepend
+    template.find('a[data-add="enum"]').attr 'data-prepend', prepend
   return template
 
 #
