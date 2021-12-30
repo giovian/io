@@ -27,7 +27,6 @@ request = (event) ->
   api = $.ajax "{{ site.github.api_url }}/#{link.attr('href').replace '#', ''}",
     method: link.attr 'github-api-method'
   api.done (data, status) ->
-    notification "API response: <code>#{status}</code>", 'green'
     # Loop out properties
     for out in link.attr('github-api-out').split ','
       property = out.trim()

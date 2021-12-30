@@ -27,7 +27,6 @@ login.permissions = ->
     ).assign 'repository',
       fork: data.fork
       parent: data.parent?.full_name?
-      build_unix: {{ site.time | date: "%s" }}
     return # End permission check
   repo.always ->
     login.setLogout()
@@ -43,7 +42,7 @@ login.logout_link.on 'click', ->
 login.setLogin = ->
   $('html').removeClass 'role-admin role-guest logged'
   $('html').removeAttr 'user'
-  storage.clear('login').clear 'repository'
+  storage.clear()
   apply_family()
   true
 
@@ -52,7 +51,6 @@ login.setLogout = ->
   $('html').attr 'user', login.storage()['user']
   login.login_link.removeAttr 'disabled'
   login.logout_link.attr 'title', login.text()
-  storage.assign 'repository', {build_unix: {{ site.time | date: "%s" }}}
   apply_family()
   true
 

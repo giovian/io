@@ -4,16 +4,16 @@
 # HELPERS
 
 {% include scripts/prevent.coffee %}        # Prevent default events for links and forms
+{% include scripts/storage.coffee %}        # Hashed storage system for localStorage
+{% include scripts/apply_family.coffee %}   # Apply classes to parents/childrens
+{% include scripts/datetime.coffee %}       # Use apply_family
 {% include scripts/prefilter.coffee %}      # Prefilter for Ajax calls
 {% include scripts/toc.coffee %}            # Move toc to sidebar
-{% include scripts/apply_family.coffee %}   # Apply classes to parents/childrens
 {% include scripts/slug.coffee %}           # Function for string slug
 
 # WIDGETS
 
-{% include scripts/datetime.coffee %}       # Use apply_family
 {% include scripts/notification.coffee %}   # Use datetime
-{% include scripts/storage.coffee %}        # Hashed storage system for localStorage
 {% include scripts/login.coffee %}          # Use notification, apply_family, storage
 {% include scripts/detail.coffee %}         # Use storage
 {% include scripts/github_api.coffee %}     # Perform GitHub API REST requests

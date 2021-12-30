@@ -9,6 +9,8 @@ notification = (code, cls, persist = false) ->
     span.remove()
     $('#notification').removeClass color_class
     return # End fadeout delay
+  # Log notification in console as well
+  console.log $("<b>#{code}</b>").text(), new Date().toLocaleTimeString('it-IT')
   return # end notification
 {%- capture api -%}
 ## Notification

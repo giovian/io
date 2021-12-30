@@ -10,7 +10,7 @@ datetime = (e) ->
   week = day * 7
   month = day * 30.42
   year = week * 52.14
-  diff = new Date().getTime() - (new Date(Date.parse $(e).attr "datetime").getTime())
+  diff = Date.now() - +new Date(Date.parse $(e).attr "datetime")
   absolute = Math.abs diff
 
   # Past or Future
@@ -84,7 +84,7 @@ time_diff = (date) ->
   week = day * 7
   month = day * 30.42
   year = week * 52.14
-  diff = new Date().getTime() - (new Date(Date.parse date).getTime())
+  diff = Date.now() - +new Date(Date.parse date)
   absolute = Math.abs diff
 
   # Define functions
