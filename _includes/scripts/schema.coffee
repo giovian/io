@@ -36,7 +36,11 @@ $('form.schema').each ->
   form = $ @
 
   load_schema = ->
-    schema_url = "{{ site.github.api_url }}/repos/{{ site.github.repository_nwo }}/contents/_data/#{form.attr 'data-schema'}.schema.json"
+    path = form.attr 'data-schema'
+    # Prepend user folder if repository is forked
+    if storage.get("repository.fork")
+      path = "user/#{storage.get 'login.user'}/#{path}"
+    schema_url = "{{ site.github.api_url }}/repos/{{ site.github.repository_nwo }}/contents/_data/#{path}.schema.json"
     form.attr 'disabled', ''
     get_schema = $.get schema_url
     get_schema.done (data, status) ->
@@ -101,13 +105,17 @@ $('form.schema').each ->
   form.on 'submit', ->
 
     # Check user is logged
-    if !$('html').hasClass 'logged'
-      notification 'You need to login', 'red'
+    if !$('html').hasClass('logged') or !$('html').hasClass('role-admin')
+      notification 'You need to login as `admin`', 'red'
       return
 
     # Write data
     encoded_content = Base64.encode JSON.stringify(form.serializeJSON(), null, 2)
-    schema_url = "{{ site.github.api_url }}/repos/{{ site.github.repository_nwo }}/contents/_data/#{form.find('[name="$id"]').val()}.schema.json"
+    path = form.find('[name="$id"]').val()
+    # Prepend user folder if repository is forked
+    if storage.get("repository.fork")
+      path = "user/#{storage.get 'login.user'}/#{path}"
+    schema_url = "{{ site.github.api_url }}/repos/{{ site.github.repository_nwo }}/contents/_data/#{path}.schema.json"
     notification 'Check if file exist'
     form.attr 'disabled', ''
 

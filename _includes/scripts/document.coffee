@@ -73,7 +73,11 @@ $('form.document').each ->
     return item # End create_item
 
   load_schema = ->
-    schema_url = "{{ site.github.api_url }}/repos/{{ site.github.repository_nwo }}/contents/_data/#{form.attr 'data-schema'}.schema.json"
+    path = form.attr 'data-schema'
+    # Prepend user folder if repository is forked
+    if storage.get("repository.fork")
+      path = "user/#{storage.get 'login.user'}/#{path}"
+    schema_url = "{{ site.github.api_url }}/repos/{{ site.github.repository_nwo }}/contents/_data/#{path}.schema.json"
     form.attr 'disabled', ''
     get_schema = $.get schema_url
     get_schema.done (data, status) ->
@@ -112,8 +116,8 @@ $('form.document').each ->
   form.on 'submit', ->
 
     # Check user is logged
-    if !$('html').hasClass 'logged'
-      notification 'You need to login', 'red'
+    if !$('html').hasClass 'logged' or !$('html').hasClass('role-admin')
+      notification 'You need to login as `admin`', 'red'
       return
 
     # Parse FORM
@@ -136,6 +140,9 @@ $('form.document').each ->
 
     # Prepare for requests
     path = form.attr('data-document') || form.attr('data-schema')
+    # Prepend user folder if repository is forked
+    if storage.get("repository.fork")
+      path = "user/#{storage.get 'login.user'}/#{path}"
     document_url = "{{ site.github.api_url }}/repos/{{ site.github.repository_nwo }}/contents/_data/#{path}.csv"
     form.attr 'disabled', ''
 
