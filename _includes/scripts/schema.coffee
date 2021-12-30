@@ -73,8 +73,27 @@ $('form.schema').each ->
       form.find('[properties-inject]').prepend get_property(property_name)
     return # End add-property
 
+  # ADD ENUM VALUE
+  form.on 'click', 'a[data-add="enum"]', ->
+    # Enum value
+    enum_value = prompt 'Enum value'
+    # Inject property
+    if enum_value
+      # Prepare DIV
+      div = $("<div data-type='string'></div>").append [
+        $("<label>#{enum_value}</label>")
+        $("<a href='#remove' data-remove='enum' class='prevent-default'>remove</a>")
+        $("<input name='enum[]' value='#{enum_value}' type='hidden'>")
+      ]
+      # Append DIV
+      $(@).parents('details').find('[enum-inject]').prepend div
+    return # End add-property
+
   # REMOVE PROPERTY
-  form.on 'click', 'a[data-remove="property"]', -> $(@).parents('.border-top').remove()
+  form.on 'click', 'a[data-remove="property"]', -> $(@).parents('details').remove()
+
+  # REMOVE ENUM VALUE
+  form.on 'click', 'a[data-remove="enum"]', -> $(@).parents('[data-type]').remove()
 
   # Change property type
   form.on 'change', 'select[name*="type"]', ->
@@ -84,6 +103,18 @@ $('form.schema').each ->
     # Append
     form.find('[type-inject]').empty().append selected_template
     return # End property type change
+
+  # Switches events
+  form.on 'click', 'a[data-switch]', ->
+    switch_value = $(@).attr 'data-switch'
+    container = $(@).parents '[type-inject]'
+    # Activate link
+    container.find('a[data-switch]').removeClass 'active'
+    $(@).addClass 'active'
+    # Show/hide DIVs
+    container.find('div[data-switch]').hide()
+    container.find("div[data-switch='#{switch_value}']").show()
+    return
 
   #
   # FORM EVENTS

@@ -96,8 +96,11 @@
       <option value='duration'>Duration</option>
     </select>
   </div>
-  <details>
-    <summary>Attributes</summary>
+  <div data-type='switch'>
+    <a href="#" class='prevent-default active' data-switch='attributes'>Attributes</a>
+    <a href="#" class='prevent-default' data-switch='enum'>Enum</a>
+  </div>
+  <div data-switch="attributes">
     <div data-type='string'>
       <label for='default'>Default</label>
       <input type='text' name='default' autocomplete='off'>
@@ -117,7 +120,13 @@
       <input type='text' autocomplete='off' name='pattern'>
       <span>ECMA-262 regular expression</span>
     </div>
-  </details>
+  </div>
+  <div data-switch="enum" class="hidden">
+    <div data-type='string'>
+      <label class='fg-secondary'>Enum values <a href='#add' data-add='enum' class='prevent-default'>add</a></label>
+    </div>
+    <div enum-inject></div>
+  </div>
 </template>
 
 <!--
@@ -131,8 +140,11 @@
       <option value='range'>Range</option>
     </select>
   </div>
-  <details>
-    <summary>Attributes</summary>
+  <div data-type='switch'>
+    <a href="#" class='prevent-default active' data-switch='attributes'>Attributes</a>
+    <a href="#" class='prevent-default' data-switch='enum'>Enum</a>
+  </div>
+  <div data-switch='attributes'>
     <div data-type='number'>
       <label for='default'>Default</label>
       <input type='number' name='default' autocomplete='off' data-value-type='number'>
@@ -151,7 +163,13 @@
       <label for='units'>Units</label>
       <input type='text' autocomplete='off' name='units'>
     </div>
-  </details>
+  </div>
+  <div data-switch="enum" class="hidden">
+    <div data-type='number'>
+      <label class='fg-secondary'>Enum values <a href='#add' data-add='enum' class='prevent-default'>add</a></label>
+    </div>
+    <div enum-inject></div>
+  </div>
 </template>
 
 <!--
@@ -165,8 +183,11 @@
       <option value='range'>Range</option>
     </select>
   </div>
-  <details>
-    <summary>Attributes</summary>
+  <div data-type='switch'>
+    <a href="#" class='prevent-default active' data-switch='attributes'>Attributes</a>
+    <a href="#" class='prevent-default' data-switch='enum'>Enum</a>
+  </div>
+  <div data-switch='attributes'>
     <div data-type='number'>
       <label for='default'>Default</label>
       <input type='number' name='default' autocomplete='off' data-value-type='number'>
@@ -185,7 +206,13 @@
       <label for='units'>Units</label>
       <input type='text' autocomplete='off' name='units'>
     </div>
-  </details>
+  </div>
+  <div data-switch="enum" class="hidden">
+    <div data-type='number'>
+      <label class='fg-secondary'>Enum values <a href='#add' data-add='enum' class='prevent-default'>add</a></label>
+    </div>
+    <div enum-inject></div>
+  </div>
 </template>
 
 <!--
