@@ -8,6 +8,8 @@ get_template = (id, prepend) ->
     template.find('label[for]').each -> $(@).attr 'for', (i, val) -> "#{prepend}[#{val}]"
     # Update inputs [name]
     template.find(':input[name]').attr 'name', (i, val) -> "#{prepend}[#{val}]"
+    # Update switches
+    template.find('a[data-switch]').attr 'data-prepend', prepend
   return template
 
 #
@@ -79,11 +81,13 @@ $('form.schema').each ->
     enum_value = prompt 'Enum value'
     # Inject property
     if enum_value
+      # Get prepend
+      prepepnd = $(@).attr 'data-prepend'
       # Prepare DIV
       div = $("<div data-type='string'></div>").append [
         $("<label>#{enum_value}</label>")
         $("<a href='#remove' data-remove='enum' class='prevent-default'>remove</a>")
-        $("<input name='enum[]' value='#{enum_value}' type='hidden'>")
+        $("<input name='#{prepend}[enum][]' value='#{enum_value}' type='hidden'>")
       ]
       # Append DIV
       $(@).parents('details').find('[enum-inject]').prepend div
