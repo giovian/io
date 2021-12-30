@@ -8,12 +8,19 @@
       "date": {
         "type": "string",
         "format": "date",
-        "default": "today"
+        "default": "today",
+        "minLength": 1
       },
       "serie": {
         "type": "integer",
         "default": 1
       }
     }
-  }
+  },
+  "enum": [
+    "4",
+    "3",
+    "2",
+    "1"
+  ]
 }
