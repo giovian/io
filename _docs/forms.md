@@ -87,7 +87,7 @@ order: 60
 
 **Authentication and saving path**
 
-To save a data file e.g. `path/file.json`, a logged user with writing permission is required.
+To save a data file is required a logged user with writing permission.
 ```js
 storage.get("login.role") = "admin"
 ```
@@ -99,7 +99,7 @@ storage.get("repository.fork") = false
 ```
 {:.minimal}
 
-When done in a forked repository, the file will be saved in `/_data/users/<username>/path/file.json` and a Pull request will be performed.
+When done in a forked repository, the file will be saved in `/_data/user/<username>/path/file.json` and a Pull request will be performed.
 ```js
 storage.get("repository.fork") = true
 ```
@@ -109,16 +109,22 @@ storage.get("repository.fork") = true
 
 - Schema path
 
-**Working on instances**
+**Working on documents**
 
-- Schema and instance path
+- Schema path and optional document path
 
 ## Schema FORM
 
+```liquid
+{% raw %}{% include widgets/schema.html schema='practices' %}{% endraw %}
+```
+{:.minimal}
 {% include widgets/schema.html schema='practices' %}
-{% include widgets/api.html include='widgets/schema' %}
 
 ## Document FORM
 
+```liquid
+{% raw %}{% include widgets/document.html schema='practices' %}{% endraw %}
+```
+{:.minimal}
 {% include widgets/document.html schema='practices' %}
-{% include widgets/api.html include='widgets/document' %}

@@ -50,5 +50,12 @@ $('form').each ->
 {%- capture api -%}
 ## Form
 
-Basic functions of the FORM. Manage reset and submit events, range and required fields.
+Basic functions of the FORM.  
+Manage reset and submit events, range and required fields, configure `serializeJSON`.
+
+```html
+<form class='prevent-default'>
+<!-- Fields -->
+</form>
+```
 {%- endcapture -%}
