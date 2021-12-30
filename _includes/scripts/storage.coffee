@@ -28,6 +28,12 @@ storage =
     console.log storage.get()
     console.groupEnd()
     return
+
+$(document).on "click", "a[log-storage]", (e) ->
+  e.preventDefault()
+  storage.console()
+  return
+
 {%- capture api -%}
 ## Storage
 

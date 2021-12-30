@@ -30,7 +30,7 @@ order: 1000
   {% include widgets/login.html %}
 </ul>
 **Local storage**
-- [Log](#){:.prevent-default onclick="console.log(JSON.parse(Base64.decode(localStorage.getItem('{{ site.github.repository_nwo }}'))))"} in console
+- [Log](#){:log-storage=''} in console
 </div>
   <div>
 <div apply-if-parent='hidden|html:not(.role-admin)' markdown="1">
