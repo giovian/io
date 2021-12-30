@@ -13,16 +13,14 @@
       },
       "serie": {
         "type": "integer",
-        "default": 1
+        "default": 1,
+        "enum": [
+          "1",
+          "2",
+          "3",
+          "4"
+        ]
       }
     }
-  },
-  "undefined": {
-    "enum": [
-      "1",
-      "2",
-      "3",
-      "4"
-    ]
   }
 }
