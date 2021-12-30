@@ -82,7 +82,7 @@ $('form.schema').each ->
     # Inject property
     if enum_value
       # Get prepend
-      prepepnd = $(@).attr 'data-prepend'
+      prepend = $(@).attr 'data-prepend'
       # Prepare DIV
       div = $("<div data-type='string'></div>").append [
         $("<label>#{enum_value}</label>")
