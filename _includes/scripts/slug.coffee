@@ -5,7 +5,7 @@ slug = (string) ->
   .replace /^-+|-+$/g, ''
 
 unslug = (string) ->
-  out = "#{string}".replace /[_-]/g, ' '
+  out = string.replace /[_-]/g, ' '
   return out.charAt(0).toUpperCase() + out.slice 1
 
 {%- capture api -%}
