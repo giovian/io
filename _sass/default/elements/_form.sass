@@ -137,7 +137,7 @@ form
   // --------------------------------------
 
   // Blocks
-  input:not([type=range], [type=button], [type=submit], [type=reset], .button),
+  input:not([type=range], [type=button], [type=submit], [type=reset], .button, .inline),
   textarea, select:not(.inline)
     @extend .block
 
@@ -147,12 +147,18 @@ form
       display: block
 
   //
-  // SCHEMA ARRAY
+  // ADD/REMOVE links
   // --------------------------------------
 
   // Links align right
   [data-add], [data-remove]
     float: right
+
+  //
+  // ENUM values spacing
+  // --------------------------------------
+  [enum-inject] [data-type]:not(:last-of-type)
+    padding-bottom: 0.2em
 
   //
   // DISABLED (Loading state)
