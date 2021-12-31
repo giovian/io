@@ -23,7 +23,9 @@ $('details').each ->
       delete obj[id]
       storage.set 'details', obj
     return
-  true
+
+  return # End DETAILS loop
+
 {%- capture api -%}
 ## Detail
 
