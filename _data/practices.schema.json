@@ -8,7 +8,8 @@
       "date": {
         "type": "string",
         "format": "date",
-        "default": "today"
+        "default": "today",
+        "class": "inline"
       },
       "serie": {
         "type": "integer",
