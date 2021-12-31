@@ -10,6 +10,12 @@ $('form.document').each ->
       field = $ '<input/>', {type: 'text'}
       data_type = 'string'
 
+      # Check enum SELECT
+      if value.enum?.length
+        field = $ '<select/>', {class: 'inline'}
+        for option in value.enum
+          field.append $ '<option/>', {value: option, text: option}
+
       # Check property type and format
       switch value.type
         when 'string'
@@ -31,7 +37,7 @@ $('form.document').each ->
         when 'boolean'
           data_type = 'select'
           field = $('<select/>',
-            class: 'inline mhh'
+            class: 'inline'
             'data-value-type': 'boolean'
           ).append [
             $ '<option/>', {value: true, text: 'True'}
@@ -41,6 +47,8 @@ $('form.document').each ->
 
       # Complete field attributes
       field.attr 'name', "#{key}"
+      # Classes
+      if value.class then field.addClass value.class
       # String
       if value.maxLength then field.attr 'maxlength', value.maxLength
       if value.minLength then field.attr 'minlength', value.minLength
@@ -59,8 +67,8 @@ $('form.document').each ->
       div = $ '<div/>', {'data-type': data_type}
       # Integer
       if value.type is 'integer' then field.attr 'step', 1
-      # Append field to DIV
-      div.append [label, field]
+      # Append label and field to DIV, add whitespace for inline SELECTs
+      div.append [label, " ", field]
       # Append output element for RANGE
       if value.format is 'range'
         div.append $('<output/>', {for: key})
