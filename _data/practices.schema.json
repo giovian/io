@@ -8,17 +8,16 @@
       "date": {
         "type": "string",
         "format": "date",
-        "default": "today",
-        "minLength": 1
+        "default": "today"
       },
       "serie": {
         "type": "integer",
         "default": 1,
         "enum": [
-          "1",
-          "2",
-          "3",
-          "4"
+          1,
+          2,
+          3,
+          4
         ]
       }
     }
