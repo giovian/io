@@ -1,13 +1,18 @@
 #
-# Initial TABs reset
+# Reset functions
 # --------------------------------------
-$('[tab-container]').each ->
-  container = $(@)
+reset_tabs = (tab) ->
+  container = $(tab)
   # Activate first link
   container.find('a[data-tab]:first-of-type').addClass 'active'
   # Show first tab
-  container.find('div[data-tab]:first').show()
+  container.find('div[data-tab]:not(:first)').addClass 'hidden'
   return
+
+#
+# Initial TABs reset
+# --------------------------------------
+$('[tab-container]').each -> reset_tabs @
 
 #
 # TAB link click event
@@ -22,8 +27,8 @@ $(document).on "click", "a[data-tab]", ->
   $(@).addClass 'active'
 
   # Show/hide TABs
-  container.find('div[data-tab]').hide()
-  container.find('div[data-tab]').eq($(@).index()).show()
+  container.find('div[data-tab]').addClass 'hidden'
+  container.find('div[data-tab]').eq($(@).index()).removeClass 'hidden'
 
   return # End link click event
 

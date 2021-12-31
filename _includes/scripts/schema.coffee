@@ -107,12 +107,10 @@ $('form.schema').each ->
     enum_value = prompt 'Enum value'
     # Inject property
     if enum_value
-      # Get prepend
-      prepend = $(@).attr 'data-prepend'
       # Get value type
       type = $(@).parents('[data-type]').attr 'data-type'
       # Prepare enum DIV
-      enum_div = get_template '#template-enum', prepend
+      enum_div = get_template '#template-enum', (@).attr('data-prepend')
       input = enum_div.find('input')
       # Reduce the prepend virulence
       input.attr 'name', (i, v) -> v.replace('[[enum][]]', '[enum][]')
@@ -134,10 +132,11 @@ $('form.schema').each ->
   # Change property type
   form.on 'change', 'select[name*="type"]', ->
     # Get parent
-    parent = $(@).attr('name').replace "[type]", ''
+    parent = $(@).attr('name').replace '[type]', ''
     selected_template = get_template "#template-#{$(@).val()}", parent
-    # Append
-    form.find('[type-inject]').empty().append selected_template
+    # Reset TABs and append on property [type-inject]
+    reset_tabs selected_template.find('[tab-container]')
+    $(@).parents('details').find('[type-inject]').empty().append selected_template
     return # End property type change
 
   #
