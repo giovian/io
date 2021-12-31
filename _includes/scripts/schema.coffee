@@ -204,7 +204,11 @@ $('form.schema').each ->
         method: 'PUT'
         data: JSON.stringify load
       put.done -> notification 'Schema edited', 'green'
-      put.always -> form.removeAttr 'disabled'
+      put.always ->
+        form.removeAttr 'disabled'
+        # Reset eventual Document
+        $('body').find("form.document[data-schema=#{form.find('[name="$id"]').val()}]")
+          .trigger 'reset'
       return # End overwrite
 
     return # End submit handler
