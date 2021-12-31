@@ -13,7 +13,7 @@
       },
       "serie": {
         "type": "integer",
-        "default": 2,
+        "default": 1,
         "enum": [
           1,
           2,
