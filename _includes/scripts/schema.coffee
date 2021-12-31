@@ -30,11 +30,14 @@ get_property = (key, value) ->
     # Check enums
     if key is 'enum' and Array.isArray property
       enum_inject = selected_template.find('[enum-inject]')
+      # Loop enum values
       for enum_value in property
         enum_div = get_template '#template-enum', prepend
         input = enum_div.find('input')
+        # Reduce the prepend virulence
         input.attr 'name', (i, v) -> v.replace('[[enum][]]', '[enum][]')
-        input.attr 'data-value-type', property_type
+        # Set attributes and values
+        input.attr 'data-value-type', (i, v) -> if property_type is 'integer' then 'number' else property_type
         input.val enum_value
         enum_div.find('label').text enum_value
         enum_inject.append enum_div
@@ -63,8 +66,20 @@ $('form.schema').each ->
       form.find('[name="title"]').val schema.title
       form.find('[name="$id"]').val schema['$id']
       form.find('[name="description"]').val schema.description
+      # Loop items.properties
       for own key, value of schema.items.properties
         form.find('[properties-inject]').append get_property(key, value)
+      # Loop tab DIVs
+      form.find('div[tab-container]').each ->
+        # Reveal first TAB
+        $(@).find('a[data-tab]:first').trigger 'click'
+        # Check for enum fields
+        enum_link = $(@).find 'a[data-tab="enum"]'
+        $(@).find('div[data-tab="enum"] div[enum-inject]').each ->
+          # If enum values are present, reveal enum tab
+          if !$(@).is(':empty') then enum_link.trigger 'click'
+          return
+        return
       return # Form is populated
     get_schema.fail -> form.find('[name="$id"]').val form.attr('data-schema')
     get_schema.always -> form.removeAttr 'disabled'
@@ -99,8 +114,10 @@ $('form.schema').each ->
       # Prepare enum DIV
       enum_div = get_template '#template-enum', prepend
       input = enum_div.find('input')
+      # Reduce the prepend virulence
       input.attr 'name', (i, v) -> v.replace('[[enum][]]', '[enum][]')
-      input.attr 'data-value-type', type
+      # Set attributes and values
+      input.attr 'data-value-type', (i, v) -> if type is 'integer' then 'number' else type
       input.val enum_value
       enum_div.find('label').text enum_value
       enum_inject.prepend enum_div
@@ -122,18 +139,6 @@ $('form.schema').each ->
     # Append
     form.find('[type-inject]').empty().append selected_template
     return # End property type change
-
-  # Switches events
-  form.on 'click', 'a[data-switch]', ->
-    switch_value = $(@).attr 'data-switch'
-    container = $(@).parents '[type-inject]'
-    # Activate link
-    container.find('a[data-switch]').removeClass 'active'
-    $(@).addClass 'active'
-    # Show/hide DIVs
-    container.find('div[data-switch]').hide()
-    container.find("div[data-switch='#{switch_value}']").show()
-    return
 
   #
   # FORM EVENTS
