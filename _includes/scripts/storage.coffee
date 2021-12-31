@@ -1,11 +1,7 @@
 storage =
   key: '{{ site.github.repository_nwo }}'
   get: (key) -> if key then key.split('.').reduce(((acc, part) => acc && acc[part]), storage.get_object()) else storage.get_object()
-  # get_object: () -> JSON.parse Base64.decode localStorage.getItem(storage.key) || 'e30='
-  get_object: () ->
-    item = localStorage.getItem(storage.key)
-    if !item or !$.isPlainObject(JSON.parse Base64.decode item) then item = 'e30='
-    return JSON.parse Base64.decode item
+  get_object: () -> JSON.parse Base64.decode localStorage.getItem(storage.key) || 'e30='
   set_object: (obj) -> localStorage.setItem(storage.key, Base64.encode JSON.stringify obj)
   push: (key, element) -> storage.set key, (storage.get(key) || []).concat [element]
   concat: (key, array) -> storage.set key, (storage.get(key) || []).concat array
