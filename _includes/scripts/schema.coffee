@@ -27,6 +27,17 @@ get_property = (key, value) ->
   # Set property values
   for own key, property of value
     selected_template.find("[name$='[#{key}]']").val property
+    # Check enums
+    if key is 'enum' and Array.isArray property
+      enum_inject = selected_template.find('[enum-inject]')
+      for enum_value in property
+        enum_div = get_template '#template-enum', prepend
+        input = enum_div.find('input')
+        input.attr 'name', (i, v) -> v.replace('[[enum][]]', '[enum][]')
+        input.attr 'data-value-type', property_type
+        input.val enum_value
+        enum_div.find('label').text enum_value
+        enum_inject.prepend enum_div
   # Append property
   template_property.find('[type-inject]').append selected_template
   return template_property # End property inject
@@ -83,14 +94,18 @@ $('form.schema').each ->
     if enum_value
       # Get prepend
       prepend = $(@).attr 'data-prepend'
-      # Prepare DIV
-      div = $("<div data-type='string'></div>").append [
-        $("<label>#{enum_value}</label>")
-        $("<a href='#remove' data-remove='enum' class='prevent-default'>remove</a>")
-        $("<input name='#{prepend}[enum][]' value='#{enum_value}' type='hidden'>")
-      ]
-      # Append DIV
-      $(@).parents('details').find('[enum-inject]').prepend div
+      # Get value type
+      type = $(@).parents('[data-type]').attr 'data-type'
+      # Prepare enum DIV
+      enum_div = get_template '#template-enum', prepend
+      input = enum_div.find('input')
+      input.attr 'name', (i, v) -> v.replace('[[enum][]]', '[enum][]')
+      input.attr 'data-value-type', type
+      input.val enum_value
+      enum_div.find('label').text enum_value
+      enum_inject.prepend enum_div
+      # Append enum DIV
+      $(@).parents('details').find('[enum-inject]').prepend enum_div
     return # End add-property
 
   # REMOVE PROPERTY
