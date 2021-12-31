@@ -23,6 +23,7 @@
 {% include scripts/focus.coffee %}          # Check website browser tab is focused
 {% include scripts/inview.coffee %}         # In view Observer
 {% include scripts/updates.coffee %}        # Check repository and remote theme updates
+{% include scripts/tab.coffee %}            # Manage TABs
 {% include scripts/form.coffee %}           # Form engine
 {% include scripts/schema.coffee %}         # Manage array schema engine
 {% include scripts/document.coffee %}       # Manage document from schema

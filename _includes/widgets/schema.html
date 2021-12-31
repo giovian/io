@@ -97,36 +97,37 @@
       <option value='duration'>Duration</option>
     </select>
   </div>
-  <div data-type='switch'>
-    <a href="#" class='prevent-default active' data-switch='attributes'>Attributes</a>
-    <a href="#" class='prevent-default' data-switch='enum'>Enum</a>
-  </div>
-  <div data-switch="attributes">
-    <div data-type='string'>
-      <label for='default'>Default</label>
-      <input type='text' name='default' autocomplete='off'>
+  <div tab-container>
+    <div data-type='tab' tab-links>
+      <a href="#" class='prevent-default' data-tab='attributes'>Attributes</a>
+      <a href="#" class='prevent-default' data-tab='enum'>Enum</a>
     </div>
-    <div data-type='number'>
-      <label for='minLength'>Minimun length</label>
-      <input type='number' name='minLength' min='0' step='1' pattern='\d+' data-value-type='number'>
-      <span>Positive integer</span>
+    <div data-tab='attributes'>
+      <div data-type='number'>
+        <label for='default'>Default</label>
+        <input type='number' name='default' autocomplete='off' data-value-type='number'>
+      </div>
+      <div data-type='number'>
+        <label for='minimum'>Minimun</label>
+        <input type='number' name='minimum' data-value-type='number'>
+        <span>Inclusive limit</span>
+      </div>
+      <div data-type='number'>
+        <label for='maximum'>Maximum</label>
+        <input type='number' name='maximum' data-value-type='number'>
+        <span>Inclusive limit</span>
+      </div>
+      <div data-type='string'>
+        <label for='units'>Units</label>
+        <input type='text' autocomplete='off' name='units'>
+      </div>
     </div>
-    <div data-type='number'>
-      <label for='maxLength'>Maximum length</label>
-      <input type='number' name='maxLength' min='0' step='1' pattern='\d+' data-value-type='number'>
-      <span>Positive integer</span>
+    <div data-tab="enum">
+      <div data-type='number'>
+        <label class='fg-secondary'>Enum values <a href='#add' data-add='enum' class='prevent-default'>add</a></label>
+      </div>
+      <div enum-inject></div>
     </div>
-    <div data-type='string'>
-      <label for='pattern'>Pattern</label>
-      <input type='text' autocomplete='off' name='pattern'>
-      <span>ECMA-262 regular expression</span>
-    </div>
-  </div>
-  <div data-switch="enum" class="hidden">
-    <div data-type='string'>
-      <label class='fg-secondary'>Enum values <a href='#add' data-add='enum' class='prevent-default'>add</a></label>
-    </div>
-    <div enum-inject></div>
   </div>
 </template>
 
@@ -141,35 +142,37 @@
       <option value='range'>Range</option>
     </select>
   </div>
-  <div data-type='switch'>
-    <a href="#" class='prevent-default active' data-switch='attributes'>Attributes</a>
-    <a href="#" class='prevent-default' data-switch='enum'>Enum</a>
-  </div>
-  <div data-switch='attributes'>
-    <div data-type='number'>
-      <label for='default'>Default</label>
-      <input type='number' name='default' autocomplete='off' data-value-type='number'>
+  <div tab-container>
+    <div data-type='tab' tab-links>
+      <a href="#" class='prevent-default' data-tab='attributes'>Attributes</a>
+      <a href="#" class='prevent-default' data-tab='enum'>Enum</a>
     </div>
-    <div data-type='number'>
-      <label for='minimum'>Minimun</label>
-      <input type='number' name='minimum' data-value-type='number'>
-      <span>Inclusive limit</span>
+    <div data-tab='attributes'>
+      <div data-type='number'>
+        <label for='default'>Default</label>
+        <input type='number' name='default' autocomplete='off' data-value-type='number'>
+      </div>
+      <div data-type='number'>
+        <label for='minimum'>Minimun</label>
+        <input type='number' name='minimum' data-value-type='number'>
+        <span>Inclusive limit</span>
+      </div>
+      <div data-type='number'>
+        <label for='maximum'>Maximum</label>
+        <input type='number' name='maximum' data-value-type='number'>
+        <span>Inclusive limit</span>
+      </div>
+      <div data-type='string'>
+        <label for='units'>Units</label>
+        <input type='text' autocomplete='off' name='units'>
+      </div>
     </div>
-    <div data-type='number'>
-      <label for='maximum'>Maximum</label>
-      <input type='number' name='maximum' data-value-type='number'>
-      <span>Inclusive limit</span>
+    <div data-tab="enum">
+      <div data-type='number'>
+        <label class='fg-secondary'>Enum values <a href='#add' data-add='enum' class='prevent-default'>add</a></label>
+      </div>
+      <div enum-inject></div>
     </div>
-    <div data-type='string'>
-      <label for='units'>Units</label>
-      <input type='text' autocomplete='off' name='units'>
-    </div>
-  </div>
-  <div data-switch="enum" class="hidden">
-    <div data-type='number'>
-      <label class='fg-secondary'>Enum values <a href='#add' data-add='enum' class='prevent-default'>add</a></label>
-    </div>
-    <div enum-inject></div>
   </div>
 </template>
 
@@ -184,35 +187,37 @@
       <option value='range'>Range</option>
     </select>
   </div>
-  <div data-type='switch'>
-    <a href="#" class='prevent-default active' data-switch='attributes'>Attributes</a>
-    <a href="#" class='prevent-default' data-switch='enum'>Enum</a>
-  </div>
-  <div data-switch='attributes'>
-    <div data-type='number'>
-      <label for='default'>Default</label>
-      <input type='number' name='default' autocomplete='off' data-value-type='number'>
+  <div tab-container>
+    <div data-type='tab' tab-links>
+      <a href="#" class='prevent-default' data-tab='attributes'>Attributes</a>
+      <a href="#" class='prevent-default' data-tab='enum'>Enum</a>
     </div>
-    <div data-type='number'>
-      <label for='minimum'>Minimun</label>
-      <input type='number' name='minimum' data-value-type='number'>
-      <span>Inclusive limit</span>
+    <div data-tab='attributes'>
+      <div data-type='number'>
+        <label for='default'>Default</label>
+        <input type='number' name='default' autocomplete='off' data-value-type='number'>
+      </div>
+      <div data-type='number'>
+        <label for='minimum'>Minimun</label>
+        <input type='number' name='minimum' data-value-type='number'>
+        <span>Inclusive limit</span>
+      </div>
+      <div data-type='number'>
+        <label for='maximum'>Maximum</label>
+        <input type='number' name='maximum' data-value-type='number'>
+        <span>Inclusive limit</span>
+      </div>
+      <div data-type='string'>
+        <label for='units'>Units</label>
+        <input type='text' autocomplete='off' name='units'>
+      </div>
     </div>
-    <div data-type='number'>
-      <label for='maximum'>Maximum</label>
-      <input type='number' name='maximum' data-value-type='number'>
-      <span>Inclusive limit</span>
+    <div data-tab="enum">
+      <div data-type='number'>
+        <label class='fg-secondary'>Enum values <a href='#add' data-add='enum' class='prevent-default'>add</a></label>
+      </div>
+      <div enum-inject></div>
     </div>
-    <div data-type='string'>
-      <label for='units'>Units</label>
-      <input type='text' autocomplete='off' name='units'>
-    </div>
-  </div>
-  <div data-switch="enum" class="hidden">
-    <div data-type='number'>
-      <label class='fg-secondary'>Enum values <a href='#add' data-add='enum' class='prevent-default'>add</a></label>
-    </div>
-    <div enum-inject></div>
   </div>
 </template>
 
