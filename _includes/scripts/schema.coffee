@@ -37,7 +37,7 @@ get_property = (key, value) ->
         input.attr 'data-value-type', property_type
         input.val enum_value
         enum_div.find('label').text enum_value
-        enum_inject.prepend enum_div
+        enum_inject.append enum_div
   # Append property
   template_property.find('[type-inject]').append selected_template
   return template_property # End property inject
